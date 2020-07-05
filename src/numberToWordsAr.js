@@ -39,18 +39,13 @@ let   NumberInWords    = "",
 
 // Select the right table for Subject Gender so we work with 1 table only
 if (IsFeminine) {
-   TableUnits    = [...TableUnitsFemale];
-   Table11_19    = [...TableUnitsFemale];
-   Table11_19[0] = TableUnitsMale[10];
-   Table11_19[1] = Ehda;
-   Table11_19[2] = Ethnata;
+   [TableUnits, Table11_19]                      = [[...TableUnitsFemale], [...TableUnitsFemale]];
+   [Table11_19[0], Table11_19[1], Table11_19[2]] = [TableUnitsMale[10], Ehda, Ethnata];
    } else {
-   TableUnits    = [...TableUnitsMale];
-   Table11_19    = [...TableUnitsMale];
-   Table11_19[0] = TableUnitsFemale[10];
-   Table11_19[1] = Ahad;
-   Table11_19[2] = Ethna;
-}
+   [TableUnits , Table11_19]                     = [[...TableUnitsMale], [...TableUnitsMale]];
+   [Table11_19[0], Table11_19[1], Table11_19[2]] = [TableUnitsFemale[10], Ahad, Ethna];
+ }
+      
 // Create Triples and create words for each
 NumIn = "0".repeat((NumIn+="").length * 2 % 3) + NumIn;
 let L = NumIn.length;

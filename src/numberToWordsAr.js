@@ -15,7 +15,7 @@
 *
 * @returns     : {string} The wordified number string in Arabic
 **********************************************************************/
-export function numberToWordsAr(NumIn=0, Flags=0) {
+module.exports =  function numberToWordsAr(NumIn=0, Flags=0) {
 if (NumIn == 0) return "صفر";
 const TableScalesSingle= ["","ألف","مليون","بليون","ترليون","كوادرليون","كوينتليون","سكستليون"],
       TableScalesPlural= ["","آلاف","ملايين","بلايين","ترليونات","كوادرليونات","كوينتليونات","سكستليونات"],

@@ -1,0 +1,22 @@
+{
+  "name": "arqam",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohsenAlyafei/arqam"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MohsenAlyafei/arqam/issues"
+  },
+  "homepage": "https://github.com/MohsenAlyafei/arqam#readme"
+}

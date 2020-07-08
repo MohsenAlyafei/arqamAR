@@ -5,7 +5,7 @@ function parse(num) {
   return numberToWordsAr(num);
 }
 
-describe("Reading numbers from Zero to Bilons", function () {
+describe("Reading numbers from Zero to Billions", function () {
   it("should read 0", function () {
     assert("صفر", parse());
   });

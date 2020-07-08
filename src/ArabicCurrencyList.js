@@ -15,7 +15,7 @@ Each Element contains 18 Sub-Elements with corresponding values
 For each Currency Code, there 19 elements of data (0 to 18) cotained in an array
 as follows:
 
- 0: The fraction decimal of of the Minor unir (عدد اكسر) (this is the Sub Unit max decimals)
+ 0: The fraction decimal of of the Minor unir (عدد الكسر) (this is the Sub Unit max decimals)
  1: Major Unit Single Name (اسم العملة مفردًا)
  2: Major Unit Single Country Name Adjective (صفة اسم البلد للعملة مفردًا)
  3: Major Unit Plural Name (اسم العملة جمعًا)

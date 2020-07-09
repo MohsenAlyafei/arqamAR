@@ -45,7 +45,7 @@ if (IsFeminine) {
    [TableUnits , Table11_19]                     = [[...TableUnitsMale], [...TableUnitsMale]];
    [Table11_19[0], Table11_19[1], Table11_19[2]] = [TableUnitsFemale[10], Ahad, Ethna];
  }
-      
+
 // Create Triples and create words for each
 NumIn = "0".repeat((NumIn+="").length * 2 % 3) + NumIn;
 let L = NumIn.length;
@@ -53,12 +53,10 @@ for (let i= L; i>0; i-=3) {
   TripletNum = +(NumIn.substr(L-i,3));
   if (+(NumIn.substr(L-i+3,i+1)) ===0) IsLastEffectiveTriplet= true;
   if (TripletNum) {
-  //**********************
-  var ScaleNameSingle = TableScalesSingle[i/3-1],
+    var ScaleNameSingle = TableScalesSingle[i/3-1],
       ScaleNamePlural = TableScalesPlural[i/3-1];
   NumberInWords += oneTripletToWords();    // convert 1 Triplet Number to Words
   if (!IsLastEffectiveTriplet) NumberInWords+= InsertComma + WaSp;
-  //**********************
   }
 }
 return NumberInWords; // we are all done

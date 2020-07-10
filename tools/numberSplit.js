@@ -12,7 +12,7 @@
 *              : This permits Boolean operation for testing the fraction.
 *
 * @Examples    : let [Whole, Fraction] = numberSplit(MyNumber);
-*                let [Whole, Fraction] = numberSplit("MyNumber");
+*                let [num, frc]        = numberSplit("123.456");
 **********************************************************************/
 function numberSplit(num){
 return n= (num+"").split(0.1.toLocaleString().substr(1,1)),

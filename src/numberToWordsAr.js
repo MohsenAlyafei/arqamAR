@@ -37,8 +37,7 @@ let   NumberInWords    = "",
       Miah             = !!(Flags>>1 &1) ? "مئة" : "مائة",
       TripletNum, TableUnits, Table11_19;
 
-// Select the right table for Subject Gender so we work with 1 table only
-if (IsFeminine) {
+if (IsFeminine) {                                // Select the right table for Subject Gender so we work with 1 table only
    [TableUnits, Table11_19]                      = [[...TableUnitsFemale], [...TableUnitsFemale]];
    [Table11_19[0], Table11_19[1], Table11_19[2]] = [TableUnitsMale[10], Ehda, Ethnata];
    } else {
@@ -46,16 +45,15 @@ if (IsFeminine) {
    [Table11_19[0], Table11_19[1], Table11_19[2]] = [TableUnitsFemale[10], Ahad, Ethna];
  }
       
-// Create Triples and create words for each
-NumIn = "0".repeat((NumIn+="").length * 2 % 3) + NumIn;
+NumIn = "0".repeat((NumIn+="").length * 2 % 3) + NumIn;    // Create Triples and create words for each
 let L = NumIn.length;
 for (let i= L; i>0; i-=3) {
-  TripletNum = +(NumIn.substr(L-i,3));
+  TripletNum = +(NumIn.substr(L-i,3));                     // Get one Triplet
   if (+(NumIn.substr(L-i+3,i+1)) ===0) IsLastEffectiveTriplet= true;
   if (TripletNum) {
   var ScaleNameSingle = TableScalesSingle[i/3-1],
       ScaleNamePlural = TableScalesPlural[i/3-1];
-  NumberInWords += oneTripletToWords();    // convert 1 Triplet Number to Words
+  NumberInWords += oneTripletToWords();                   // convert 1 Triplet Number to Words
   if (!IsLastEffectiveTriplet) NumberInWords+= InsertComma + WaSp;
   }
 }
@@ -67,30 +65,29 @@ let Num_100       = Math.floor(TripletNum/100),  // Hundreds
     Num_TensUnit  = TripletNum % 100,            // 00 to 99
     Num_Unit      = Num_TensUnit % 10,           // 0 to 9
     Num_Tens      = Math.floor(Num_TensUnit/10), // Tens
-    Word_100      = "",   // Holds words for Hundreds
-    Word_99       = "",   // Holds words for 1 - 99
-    a,wa;                 // temp working vars
+    Word_100      = "",                          // Holds words for Hundreds
+    Word_99       = "",                          // Holds words for 1 - 99
+    a,wa;                                        // temp working vars
 if (IsFeminine && Num_TensUnit>19) TableUnits[1] = Ehda;
 //------------  Handling Hundreds ----------------
 if (Num_100) {
   if (Num_100>2) Word_100 = TableUnitsFemale[Num_100] + SplitHund+ Miah; // 300-900
-  else if (Num_100 === 1) Word_100 = Miah; // 100
-  else a = TextWillFollow ? Taa : Taan,    // 200
+  else if (Num_100 === 1) Word_100 = Miah;       // 100
+  else a = TextWillFollow ? Taa : Taan,          // 200
        Num_TensUnit && (a =Taan),
        ScaleNameSingle && !Num_TensUnit && (a=Taa),
        Word_100 = Miah.slice(0,-1) + a;
   }
 //------------  Handling 0-99 ----------------
-if (Num_TensUnit >19) // 20-99
+if (Num_TensUnit >19)                            // 20-99
     Word_99 = TableUnits[Num_Unit] + (Num_Unit>0 ? WaSp :"") +
               (Num_Tens===2 ? "عشر" : TableUnitsFemale[Num_Tens]) + Woon;
 else Word_99 = Num_TensUnit > 10 ? Table11_19[Num_TensUnit-10]+" "+Table11_19[0] :
     TableUnits[Num_TensUnit];
 wa = (Num_100 && Num_TensUnit) ? WaSp:"";        // add "و" between Hund & Units
 // One Triplet Words Done
-let NumberInWords999 = Word_100 + wa + Word_99; // Join Hund, Tens, and Units
-if (!ScaleNameSingle) return NumberInWords999;  // No Scale Name then 'Done'
-
+let NumberInWords999 = Word_100 + wa + Word_99;  // Join Hund, Tens, and Units
+if (!ScaleNameSingle) return NumberInWords999;   // No Scale Name then 'Done'
 //  ----- Add Scale Name -----------
 let Word_100Wa = (Num_100 ? Word_100 + WaSp :"")+ScaleNameSingle;
 if (Num_TensUnit > 2) {

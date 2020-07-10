@@ -53,12 +53,10 @@ for (let i= L; i>0; i-=3) {
   TripletNum = +(NumIn.substr(L-i,3));
   if (+(NumIn.substr(L-i+3,i+1)) ===0) IsLastEffectiveTriplet= true;
   if (TripletNum) {
-  //**********************
   var ScaleNameSingle = TableScalesSingle[i/3-1],
       ScaleNamePlural = TableScalesPlural[i/3-1];
   NumberInWords += oneTripletToWords();    // convert 1 Triplet Number to Words
   if (!IsLastEffectiveTriplet) NumberInWords+= InsertComma + WaSp;
-  //**********************
   }
 }
 return NumberInWords; // we are all done
@@ -104,5 +102,4 @@ if (Num_TensUnit > 2) {
   }
 return NumberInWords999;   // Return the Triple in Words with Scale Name
 }
-
 }

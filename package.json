@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A JavaScript Arabic numbers utility library and more.",
   "main": "index.js",
+  "license": "MIT",
   "directories": {
     "test": "test"
   },

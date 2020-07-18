@@ -1,8 +1,8 @@
 {
-  "name": "arqam",
-  "version": "1.0.0",
+  "name": "arqam-jason",
+  "version": "1.0.9",
   "description": "A JavaScript Arabic numbers utility library and more.",
-  "main": "arqam.js",
+  "main": "numberToWordsAr.js",
   "license": "MIT",
   "directories": {
     "test": "test"
@@ -14,13 +14,22 @@
     "type": "git",
     "url": "git+https://github.com/MohsenAlyafei/arqam.git"
   },
+  "keywords": [
+    "arqam",
+    "numbers",
+    "arabicnumbers",
+    "tafqeet",
+    "tafgeet"
+  ],
   "devDependencies": {
     "mocha": "^3.5.0"
   },
-  "author": "Mohsen Alyafei",
-  "license": "ISC",
+  "author": "",
   "bugs": {
     "url": "https://github.com/MohsenAlyafei/arqam/issues"
   },
-  "homepage": "https://github.com/MohsenAlyafei/arqam#readme"
+  "homepage": "https://github.com/MohsenAlyafei/arqam#readme",
+  "dependencies": {
+    "arqam": "^1.0.8"
+  }
 }

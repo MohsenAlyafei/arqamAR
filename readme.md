@@ -2,6 +2,10 @@
 
 arqam is a JavaScript Arabic numbers utility library ***still under development***.
 
+#### arqam will convert numbers into the equivalent Arabic text, taking into account the correct tye of the counted subject's gender therefore ensuring accuracy of the converting numbers in accordance with the Arabic grammar rules.
+
+#### This will ensure that you will have no more errors in writing cheques in Arabic !!
+***
 ## Purpose
 
 The library is intended to provide the following functionalities and features:

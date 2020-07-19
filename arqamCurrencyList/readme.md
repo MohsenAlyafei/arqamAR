@@ -1,9 +1,8 @@
-ISO Currencies List in Arabic
-=============================
+# ISO Currencies List in Arabic
 
 Each element consists of the following:
 
-**Element Name**
+## Element Name
 
 Is the ISO 4217 3-Letter Currency Code of the Main Unit. The list contain **158 Currencies** of used today covering all ISO 4217 Currencies.
 

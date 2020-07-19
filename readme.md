@@ -4,7 +4,7 @@ arqam is a JavaScript Arabic numbers utility library ***still under development*
 
 ## Purpose
 
-The library is intended to provide the following functionalities:
+The library is intended to provide the following functionalities and features:
 
 - Convert Nummbers to the equivalent Arabic Words.
 - Convert Currency Number to the equivalent Arabic Words (***Tafqeet***).

@@ -5,7 +5,7 @@
 *             Decimal Part.
 *             The Whole Part is not affected by the rounding
 *             of the Decimal Part.
-* @version  : 1.00
+* @version  : 1.01
 * @author   : Mohsen Alyafei
 * @date     : 15 July 2020
 * @param      {Num} Float Number to be splitted.

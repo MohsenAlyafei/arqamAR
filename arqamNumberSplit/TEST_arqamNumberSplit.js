@@ -1,4 +1,4 @@
-import {arqamNumberSplit} from './arqamNumberSplit.js'
+import {arqamNumberSplit} from './arqamNumberSplit.js';
 
 testCase1();
 //=========================================

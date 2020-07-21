@@ -1,5 +1,5 @@
 /************************************************************************
-* @function : numberSplit(Num, DecimalPlaces)
+* @function : arqamNumberSplit(Num, DecimalPlaces)
 * @purpose  : Splits a Float Number into its whole and fractional parts
 *             taking into account the required rounding for the
 *             Decimal Part.
@@ -20,7 +20,7 @@
 *             Note: Empty strings are handy for logical testing.
 *************************************************************************/
 
-export function numberSplit(Num,DecimalPlaces){
+export function arqamNumberSplit(Num,DecimalPlaces){
 Num= (Num+"").split(0.1.toLocaleString().substr(1,1));
 let a, WholePart=Num[0], fractionalPart= Num[1];
 if (DecimalPlaces>=0) {

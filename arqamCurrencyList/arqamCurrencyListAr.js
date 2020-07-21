@@ -35,7 +35,7 @@ as follows:
 17: Major Unit Gender (0 = Male, 1 = Female) (جنس العملة مذكر أو مؤنث)
 18: Minor Unit (Fraction) (0 = Male, 1 = Female) (جنس الكسر مذكر أو مؤنث)
 */
-export var arqamCurrencyList = {
+export var arqamCurrencyListAr = {
 AED:[2,
 "درهم","إماراتي","دراهم","إماراتية",
 "فلس","إماراتي","فلوس","إماراتية",

@@ -1,4 +1,4 @@
-import {numberSplit} from './numberSplit.js'
+import {arqamNumberSplit} from './arqamNumberSplit.js'
 
 testCase1();
 //=========================================
@@ -48,7 +48,7 @@ if (r==0) console.log("Test Case Passed.");
 }
 //------------------
 function test(param1,param2,should) {
-let result = numberSplit(param1,param2);
+let result = arqamNumberSplit(param1,param2);
 if (result[0] !== should[0] || result[1] !== should[1]) {
 console.log(`${param1} Output   : ${result}\n${param1} Should be: ${should}`);return 1;}
 }

@@ -21,17 +21,33 @@ The library is intended to provide the following functionalities and features:
 
 All full list of Options is provided below.
 
-First test page
-
 # arqam Configuration Options
 
 Options can be controlled by using the `arqamConfig()`.
 Once specific options are specified, all subsequent calls for `arqam.NumToWords()` will use the already defined options. So the `arqamConfig()` can be called the start of the code. Options can be changed at any time.
 
+_**Example:**_
+
+
+```javascript
+// Set the options to QAR Currency with Tashkeel and using Miah
+   arqamConfig({Currency: "QAR", Tashkeel: "on", Miah: "on"});
+
+   let result = arqamNumberToWords("2500.35");     // convert the number to currency text
+   console.log(result);
+
+```
+Output:
+###       ألْفانِ وَخَمْسُمَائَةِ رِيَالٍ قَطَرِيٍّ، وَخَمْسَةٌ وَثَلاثونَ دِرْهَمًا
+
+
+
+## Table of Options
+
 | No.| Option |Default|Purpose  
 |:---:|:---|:---:|:---
 |1|Currency           |none|The 3-Letter ISO Code of the Currency. Specifying a valid currency-code will generate the text for a currency taking into account the sub-currency.
-|2|Miah               |**on**| Selects between "مئة" (off) and "مائة" (on) style.    
+|2|Miah               |off| Selects between "مئة" (off) and "مائة" (on) style. Default is "مئة".
 |3|MiahSeparate       |off| Use separation between number and hundred words (e.g. ثلاثمائة becomes ثلاث مائة).
 |4|Tashkeel           |off| Use full Tashkeel (تشكيل كامل للحروف)
 |5|TanweenOnly        |off| Use Tanweens (Tanween Fath/Rafi, Kasr, and Dham) (استخدام تنوين الفتح/رفع وتنوين النصب والجر)

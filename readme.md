@@ -74,6 +74,5 @@ With this option enabled, the fractional part of the number will be outputted in
 
 The Option may be combined with any other Options.
 
-<img width=“964” alt=“Fractions In Brackets” src=“https://github.com/MohsenAlyafei/arqam/blob/master/images/arqam_002.png?raw=true”>
-
+https://github.com/MohsenAlyafei/arqam/blob/master/images/arqam_002.png?raw=true”
 

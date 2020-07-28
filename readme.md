@@ -45,7 +45,7 @@ Output:
 ## Table of Options
 
 | No.| Option |Default|Purpose  
-|:---:|:---|:---:|:---
+|:---:|:---|:---:|:-----
 |1|Currency           |none|The 3-Letter ISO Code of the Currency. Specifying a valid currency-code will generate the text for a currency taking into account the sub-currency.
 |2|Miah               |off| Selects between "مئة" (off) and "مائة" (on) style. Default is "مئة".
 |3|MiahSeparate       |off| Use separation between number and hundred words (e.g. ثلاثمائة becomes ثلاث مائة).
@@ -64,14 +64,19 @@ Output:
 |16|IgnoreCountry      |off| Ignores the country name but keeps the currency name.
 |17|FractionFaslah     |off| The word "fasila" (فاصلة) is added before the fractional part for the number. The default is "Juzu" (جزء).
 |18|FractionPlaces     |10| Default 10 decimal points for fractions (max 20)
-|19|Prefix             |none| Add a prefix text before the text. Default no prefix
-|20|Suffix             |none| Add a suffix text to the end of the text. Default no suffix
+|19|Prefix             |none| Add a prefix text before the text. Default no prefix.
+|20|Suffix             |none| Add a suffix text to the end of the text. Default no suffix.
 |21|MaxZeros           |100|The maximum scale zeros. Default up to 100 zeros for numbers. This can be up to 3000 zeros.
 
 <h2 id="fraction-in-brackets">13. Fractions In Brackets</h2>
 
-With this option enabled, the fractional part of the number will be outputted inside round brackets.
+| Function| Description
+|:---|:-----
+|**Purpose**    |Permits the Fractional Part of the Number to be distinguished from the Whole Part. The Fractional Part could be the sub-unit of a currency.
+|**Output**     | The Fractional Part of the Number (if any) will be enclosed in round brackets (). Where there a Whole Number preceding the Fractional Part, a comma is inserted in between the two (2) parts. The Option may be combined with any other Options.
+|**Conditions** | This option only applies if the Number has a Whole Part and will not apply for numbers that have fractions only.
 
-The Option may be combined with any other Options.
+***Examples:***
+
 
 ![Image](/images/arqam_002.png?raw=true)

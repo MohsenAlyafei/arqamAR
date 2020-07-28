@@ -74,4 +74,4 @@ With this option enabled, the fractional part of the number will be outputted in
 
 The Option may be combined with any other Options.
 
-![Image](../blob/master/images/arqam_002.png?raw=true)
+![Image](/images/arqam_002.png?raw=true)

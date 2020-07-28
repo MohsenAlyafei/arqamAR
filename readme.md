@@ -58,7 +58,7 @@ Output:
 |10|Accountant         |off| Use the accounting mode; helpful to get the correct legal writing.
 |11|WholeNumAtEnd      |off| Adds the whole number at the end of the text inside round brackets.
 |12|FractionsInNums    |off| Displays the fractional part as a number rather than text.
-|13|FractionsInBrackets|off| Inserts the fractional part (either text or number) inside round brackets at the end of the text.
+|13|[FractionsInBrackets](13.-Fractions-In-Brackets) |off| Inserts the fractional part (either text or number) inside round brackets at the end of the text.
 |14|IgnoreFractions    |off| Ignores the fractional part of the number.
 |15|NumbersOnly        |off| Ignores any currencies and displays text for the number only.
 |16|IgnoreCountry      |off| Ignores the country name but keeps the currency name.

@@ -67,3 +67,11 @@ Output:
 |19|Prefix             |none| Add a prefix text before the text. Default no prefix
 |20|Suffix             |none| Add a suffix text to the end of the text. Default no suffix
 |21|MaxZeros           |100|The maximum scale zeros. Default up to 100 zeros for numbers. This can be up to 3000 zeros.
+
+## 13. Fractions In Brackets
+
+With this option enabled, the fractional part of the number will be outputted inside round brackets.
+
+The Option may be combined with any other Options.
+
+![](https://github.com/MohsenAlyafei/arqam/blob/master/images/arqam_002.png?raw=true)

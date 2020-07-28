@@ -78,5 +78,27 @@ Output:
 
 ***Examples:***
 
+```javascript
+
+  // Configuration Options may be set once for further processing
+  arqam.config( {FractionsInBrackets:"on", Tashkeel:"on", Miah:"on"} );
+
+  arqam.numberToWords(113.13);
+   مَائَةٌ وَثَلاثَةَ عَشَر، وَ(ثَلاثَةَ عَشَرَ جُزءًا مِنَ المَائَةْ)٠
+
+  arqam.numberToWords(2000.2,"LBP");
+   ألْفا لْيرَةٍ لُبْنانِيَّةٍ، وَ(عِشْرونَ قِرْشًا)٠
+
+  arqam.numberToWords(0.13);      // A fraction only Number will not be placed in brackets
+    ثَلاثَةَ عَشَرَ جُزءًا مِنَ المَائَة
+
+  arqam.numberToWords(0.5,"OMR"); // A fraction only Number will not be placed in brackets
+   خَمْسُمَائَةِ بَيْسَةٍ عُمَانِيَّةٍ
+
+
+  Note: The Examples above Uses “Tashkeel” and “Miah” Options
+
+
+```
 
 ![Image](/images/arqam_002.png?raw=true)

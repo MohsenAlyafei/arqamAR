@@ -1,5 +1,5 @@
 {
-  "name": "arqam-jason",
+  "name": "arqam",
   "version": "1.0.9",
   "description": "A JavaScript Arabic numbers utility library and more.",
   "main": "numberToWordsAr.js",

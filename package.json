@@ -1,6 +1,6 @@
 {
   "name": "arqam",
-  "version": "1.0.9",
+  "version": "1.1.1",
   "description": "A JavaScript Arabic numbers utility library and more.",
   "main": "numberToWordsAr.js",
   "license": "MIT",
@@ -28,8 +28,5 @@
   "bugs": {
     "url": "https://github.com/MohsenAlyafei/arqam/issues"
   },
-  "homepage": "https://github.com/MohsenAlyafei/arqam#readme",
-  "dependencies": {
-    "arqam": "^1.0.8"
-  }
+  "homepage": "https://github.com/MohsenAlyafei/arqam#readme"
 }

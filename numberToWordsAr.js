@@ -27,7 +27,7 @@ const TableScales =["","ألف","مليون","مليار","ترليون","كوا
       TableMale   =["","واحد","اثنان","ثلاثة","أربعة","خمسة","ستة","سبعة","ثمانية","تسعة","عشرة"],
       TableFemale =["","واحدة","اثنتان","ثلاث","أربع","خمس","ست","سبع","ثمان","تسع","عشر"];
 
-function numberToWordsAr(NumIn=0,
+export function numberToWordsAr(NumIn=0,
 {Feminine="", Comma="", SplitHund="", Miah="", UseBillions="",TextAfter="",Accusative="",Genitive=""}={}) {
 if (NumIn == 0) return "صفر";                          // if 0 or "0" then "zero"
 let Triplet, digits, Scale, ScalePlural, ScalePos, TableUnits, Table11_19,

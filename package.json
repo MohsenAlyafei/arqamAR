@@ -2,8 +2,8 @@
   "name": "arqam",
   "version": "1.1.1",
   "description": "A JavaScript Arabic numbers utility library and more.",
-  "main": "numberToWordsAr.js",
-  "unpkg": "numberToWordsAr.js",
+  "main": "nArabicWords.js",
+  "unpkg": "nArabicWords.js",
   "license": "MIT",
   "directories": {
     "test": "test"

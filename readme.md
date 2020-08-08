@@ -1,6 +1,8 @@
 # arqam
 
-arqam is a JavaScript Arabic numbers utility library ***still under development***.
+##🔨🔨🔨
+
+arqam is a JavaScript Arabic numbers utility library 🔨🔨🔨***still under development*** 🔨🔨🔨.
 
 #### arqam will convert numbers into the equivalent Arabic text, taking into account the correct tye of the counted subject's gender therefore ensuring accuracy of the converting numbers in accordance with the Arabic grammar rules.
 

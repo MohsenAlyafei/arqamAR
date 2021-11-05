@@ -19,9 +19,9 @@
 
    6.2 [Currency Mode](#CurrencyMode)
 
-   6.3 [Compact](#compact)
+   6.3 [Compact Mode](#compact)
 
-   6.4 [Tashkeel (تشكيل الحروف)](#tashkeel)
+   6.4 [Tashkeel Mode (تشكيل الحروف)](#tashkeel)
 
    6.5 [Tanween (تنوين كامل)](#tanween)
 
@@ -49,7 +49,7 @@
 
    6.17 [Thousands Separator](#sepThousands)
 
-   6.18 [Brackets](#brackets)
+   6.18 [Brackets Mode](#brackets)
 
    6.19 [Brackets Type](#bracketsType)
 
@@ -235,8 +235,8 @@ arqam.ar(2200.2,"KWD");
 ```javascript
 // Shortcut to change the configuration without using the arqam.arConfig()
 
-arqam.ar(2200.2,{tashkeel:"on", currCode:"QAR", brackets: "end"});
-arqam.ar(3300.5,{tashkeel:"on", currCode:"AED", brackets: "end", arabicNumbers: "on"});
+arqam.ar(2200.2,{tashkeel:"on", code:"QAR", brackets: "end"});
+arqam.ar(3300.5,{tashkeel:"on", code:"AED", brackets: "end", arabicNumbers: "on"});
 
 // ===== Output =======
 (QAR 2,200٫20) ألْفانِ وَمَائَتا رِيَالٍ قَطَرِيٍّ، وَعِشْرونَ دِرْهَمًا
@@ -255,7 +255,7 @@ arqam.ar(3300.5,{tashkeel:"on", currCode:"AED", brackets: "end", arabicNumbers: 
 | No.| Config Option |Available<br/>Settings|Default<br/>Setting|Purpose
 |:---:|:---|:---:|:---:|:-----
 |     |    |     |     |
-|1|[currCode](#CurrencyMode)|"" empty<br/>ISO code<br/>'sub'|"" empty|The 3-Letter ISO Code of the Currency.<br/>Specifying a valid currency-code will switch to the **[Currency Mode](#CurrencyMode)** and generate the text for a currency taking into account the sub-currency.<br/>An empty "" string  will switch to the **[Numbers Mode](#NumbersMode)** which is the default.<br/>'sub' will enter the **[Subjects Mode](#subjectsMode)**.
+|1|[code](#CurrencyMode)|"" empty<br/>ISO code<br/>'sub'|"" empty|The 3-Letter ISO Code of the Currency.<br/>Specifying a valid currency-code will switch to the **[Currency Mode](#CurrencyMode)** and generate the text for a currency taking into account the sub-currency.<br/>An empty "" string  will switch to the **[Numbers Mode](#NumbersMode)** which is the default.<br/>'sub' will enter the **[Subjects Mode](#subjectsMode)**.
 |2|[compact](#compact) |"on"<br/>"off"|'off'|Use the [compact](#compact) display mode.
 |3|[tashkeel](#tashkeel)|"on"<br/>"off"|"off"|Use full Tashkeel (تشكيل كامل للحروف).<br/><br/>**Examples:**<br/>‏خَمْسَةَ عَشَرَ ألْفَ دِينَارٍ أُردُنِيٍّ<br/>ثَلاثَةُ رِيَالاتٍ عُمَانِيَّةٍ<br/>‏ ثَلاثَةُ آلَافٍ وَخَمْسُمَائَةٍ وَخَمْسَةٌ وَخَمْسونَ دُولارًا أمْريكِيًّا
 |4|[tanween](#tanween)|"on"<br/>"off"|"off"|Use full Tanweens (Tanween Fatih, Dham, and Kasr)<br/>(استخدام تنوين الفتح وتنوين النصب والكسر).<br/><br/>**Examples:**<br/>‏خمسة عشر ألف دينارٍ أردنيٍ<br/>ثلاثة ريالاتٍ عمانيةٍ<br/>‏ ثَلاثة آلافٍ وخمسمائةٍ وخمسةٌ وخمسون دولارًا أمريكيًا
@@ -269,15 +269,15 @@ arqam.ar(3300.5,{tashkeel:"on", currCode:"AED", brackets: "end", arabicNumbers: 
 |12|[scale](#scale)  |"arabic"<br/>"short"<br/>"long"|"arabic"| Selects the Numbering Scale System. "arabic", "short", or "long" numbering scale system. The Default is the Arabic-Modified Short Scale Numbering System. See more details below.
 |13|[maxNumber](#maxNumber) |\<number\>|100|The maximum number in zeros on the right hand. Default up to 100 zeros for numbers. This can be up to 3000 zeros. The maxNumber also sets the maximum number of decimal digits that can be translated to words.
 |14|[addZero](#addZero)  |"on"<br/>"off"||Adds the word zero "صفر" for numbers below one (1).
-|15|[sepDecimal](#sepDecimal) |\<string\><br/>"" empty|"" empty|The decimal separator to use for display. Defaults to the system locale if "" empty.
-|16|[sepThousands](#sepThousands) |\<string\><br/>"" empty|"" empty|The thousands separator to use for display.Defaults to the system locale if empty.
+|15|[sepDecimal](#sepDecimal) |"" empty<br/>\<string\><br/>lang tag|"" empty|The decimal separator to use for display. Defaults to the system locale if "" empty.
+|16|[sepThousands](#sepThousands) |"" empty<br/>\<string\><br/>lang tag|"" empty|The thousands separator to use for display. Defaults to the system locale if empty.
 |17|[brackets](#brackets) |"" empty<br/>"start"<br/>"end"|"" empty| Adds the whole number (including any decimal parts) in digits form inside brackets either at the end of the text or at the start of the text, with the options in the Currency Mode to add the currency ISO Code or the currency symbol/sign. Default: no number in bracket shown.<br/>The brackets type can be controlled by the `bracketsOpen` and `bracketsClose` options.
 |18|[bracketsType](#bracketsType) |\<string\><br/>empty|"" empty|Change the brackets type from the default round brackets '()' to any other type such '[]' or '{}', etc.
 |19|[numSymbol](#numSymbol) |"" empty<br/>"iso"<br/>"symbol"<br/>"symbolL"<br/>"currency"|"" empty|With the brackets option, controls the symbol/sign to be used when displaying currency numbers inside brackets. Available with the **[brackets](#brackets)** and the **[Currency Mode](#CurrencyMode)** options only.
 |20|[decRound](#decRound) |number<br/>"" empty|"" empty|The number of decimal places for rounding decimals. Default no rounding and all decimal digits will be converted to words. Available in **[Numbers Mode](#NumbersMode)** Only. In the **[Currency Mode](#CurrencyMode)**, rounding is dictated by the *minor unit* decimals.
 |21|[decFormat](#decFormat) |"" empty<br/>"ww"<br/>"wn"<br/>"nw"<br/>"nn"<br/>"sw"<br/>"d"<br/>"/"<br/>"n"<br/>"w"|"" empty|Controls the format of the decimal (fractional) part with nine (9) options.<br/>Defaults to "w" in the **[Currency Mode](#CurrencyMode)** and to "ww" in the **[Numbers Mode](#NumbersMode)**.<br/>See below for more details and examples.
 |22|[decInBrackets](#dec-in-brackets)|"on"<br/>"off"|'off'|Inserts the fractional part (either text or number) inside brackets at the end of the text.<br/>The brackets type can be controlled by the `bracketsOpen` and `bracketsClose` options.
-|23|[decJuz](#decJuz) |"on"<br/>"off"|'on'| The word "Juzu'" (جزء من) is used in the formation of the Decimal Part for the number. This is the default ans i set to 'on'.
+|23|[decJuz](#decJuz) |"on"<br/>"off"|'on'| The word "Juzu'" (جزء من) is used in the formation of the Decimal Part for the number. This is the default and is set to 'on'.
 |24|[decFaslah](#decFaslah) |"on"<br/>"off"|'off'| The word "fasila" (فاصلة) is used in the formation of the Decimal Part for the number. The default is "Juzu" (جزء).
 |25|[decIgnore](#decIgnore)    |"on"<br/>"off"|'off'|Ignores the fractional part of the number.
 |26|[decAL](#decAL)   |"on"<br/>"off"||Adds .
@@ -331,7 +331,7 @@ arqam.arConfig({currMode : ''}).
 
 <h2 id="CurrencyMode">⚙6.2 Currency Mode</h2>
 
-The **Currency Mode** is enabled by specifying a **valid** 3-letter ISO **Currency Code** using the configuration option **`arqam.arConfig()`** ***`{currCode: <ISO Code>`***.
+The **Currency Mode** is enabled by specifying a **valid** 3-letter ISO **Currency Code** using the configuration option **`arqam.arConfig()`** ***`{code: <ISO Code>`***.
 
 The 3-letter ISO Code must be in **block letters**, for example : USD, GBP, KWD, QAR, JOD, EGP, etc.
 
@@ -402,7 +402,7 @@ arqam.ar(0.35);
 //--------------------------
 // Examples using Currencies
 //--------------------------
-arqam.arConfig({ compact : "on" , currCode: "USD" }); // enable both compact and currency options
+arqam.arConfig({ compact : "on" , code: "USD" }); // enable both compact and currency options
 
 arqam.ar(20200);
 arqam.ar(2560000);
@@ -426,15 +426,17 @@ arqam.ar(0.35);
 *Note: You will notice that the words "ألفان", "ألف", "مليون", "مليونان",  etc. will not be converted into digit form as this will lead to incorrect Arabic grammar.*
 
 
-<h2 id="tashkeel">⚙6.4 Tashkeel (تشكيل الحروف)</h2>
+<h2 id="tashkeel">⚙6.4 Tashkeel Mode (تشكيل الحروف)</h2>
 
-The `tashkeel` option provides full Arabic tashkeel of the outputted text.
+The **Taskeel Mode** is enabled by setting the option `{tashkeel: 'on'}`.
+
+The **Taskeel Mode** provides full Arabic tashkeel of the outputted text.
 
 **Applicability**
 - [x] This option is available in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
 
 **Notes:**
-- [x] This option overrides the [`tanween`](#tanween) and [`tanweenFatih`](#tanweenFatih) options.
+- [x] The The **Taskeel Mode** overrides the [`tanween`](#tanween) and [`tanweenFatih`](#tanweenFatih) options.
 
 
 ***Examples in Numbers Mode:***
@@ -466,7 +468,7 @@ arqam.ar(0.35);
 //--------------------------
 // Examples using Currencies
 //--------------------------
-arqam.arConfig({ tashkeel: "on"  currCode: "JOD"}); // enable both tashkeel and currency options
+arqam.arConfig({ tashkeel: "on"  code: "JOD"}); // enable both tashkeel and currency options
 
 arqam.ar(20200);
 arqam.ar(2560000);
@@ -537,7 +539,7 @@ arqam.ar(0.35);
 //--------------------------
 // Examples using Currencies
 //--------------------------
-arqam.arConfig({ tanween: "on"  currCode: "EGP"}); // enable both tanween and currency options
+arqam.arConfig({ tanween: "on"  code: "EGP"}); // enable both tanween and currency options
 
 arqam.ar(20200);
 arqam.ar(2560000);
@@ -596,7 +598,7 @@ arqam.ar(0.35);
 //--------------------------
 // Examples using Currencies
 //--------------------------
-arqam.arConfig({ tanween: "on"  currCode: "KWD"}); // enable both tanween and currency options
+arqam.arConfig({ tanween: "on"  code: "KWD"}); // enable both tanween and currency options
 
 arqam.ar(20200);
 arqam.ar(3356789);
@@ -1034,30 +1036,203 @@ arqam.ar("1100100100100100000" {scale : "long"});   // short scale
 
 Set the maximum number that can be used by ***arqam***.
 
-The default is 10^1000 (i.e. 100 xxxxxx).
+The default is 10^1000 (i.e. 100 دِيْوْتْرِيجِنْتاترِسِنْتِلْيون).
 
-The maximum number is 10^3000 in the Short Scale Numbering System and 10^6000 in the Long Scale Numbering System.
+The Largest number that can be converted by ***arqam*** is:
 
-The maximum number also sets the maximum number of digits for the Decimal Part of the number.
+*  100 نُوفِنوناجِنْتانونْجِنْتِلْيون   which is (10^3002) under the Short Scale System, and
+*  100 نُوفِنوناجِنْتانونْجِنْتِلْيَارات which is (10^6000) under the Long Scale System.
+
+💡 *Note: Increasing the [Decimal Rounding](#decRound) using the `{decRound}` above the Maximum Number will also increase the maximum number so that large decimal places are correctly converted.*
 
 💡 ***Only change the default number if you want to work with extremely very large numbers. Which is always not necessary.***
 
 
 <h2 id="addZero">⚙6.15 Add Zero</h2>
 
+Adds the word zero "صفر" for numbers below one (1).
+
+By default, numbers below zero (i.e. with only **Decimal Parts**) will have their **Decimal Parts** only converted to text.
+
+**Applicability**
+- [x] This option is available in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
 
 
+***Examples in the Numbers Mode:***
+```javascript
+arqam.ar(aqmAFd(0.5);
+arqam.ar(aqmAFd(0.01);
+arqam.ar(aqmAFd(0.2);
+arqam.ar(aqmAFd(0.5,{addZero:"on"});    // option on
+arqam.ar(aqmAFd(0.01,{addZero:"on"});   // option on
+arqam.ar(aqmAFd(0.2,{addZero:"on"});    // option on
+
+// ===== Output =======
+خمسة أجزاء من العشرة
+جزء واحد من المائة
+جزءان اثنان من العشرة
+صفر، وخمسة أجزاء من العشرة     // option on 'صفر' added
+صفر، وجزء واحد من المائة       // option on 'صفر' added
+صفر، وجزءان اثنان من العشرة    // option on 'صفر' added
+```
+
+***Examples in the Currency Mode:***
+```javascript
+arqam.ar(aqmAFd(0.5, {code:"USD"});
+arqam.ar(aqmAFd(0.01,{code:"USD"});
+arqam.ar(aqmAFd(0.2, {code:"USD"});
+arqam.ar(aqmAFd(0.5, {code:"USD", addZero:"on"});   // option on
+arqam.ar(aqmAFd(0.01,{code:"USD", addZero:"on"});   // option on
+arqam.ar(aqmAFd(0.2, {code:"USD", addZero:"on"});   // option on
+
+// ===== Output =======
+خمسون سنتًا أمريكيًا
+سنت أمريكي واحد
+عشرون سنتًا أمريكيًا
+صفر دولار أمريكي، وخمسون سنتًا       // option on
+صفر دولار أمريكي، وسنت واحد         // option on
+صفر دولار أمريكي، وعشرون سنتًا       // option on
+```
 
 <h2 id="sepDecimal">⚙6.16 Decimal Separator</h2>
 
+When options are used for displaying numbers in digits inside brackets, ***arqam*** uses the system locale setting for displaying the **Decimal Separator** by default.
 
+You can use this option to change the charatrer for the **Decimal Separator** irrespective of the system locale.
+
+The character may be any type or may be a BCP 47 language tag.
+
+In the [Arabic Numbers Mode](#arabicNumbers), if no specific **Decimal Separator** is specified using this option, then the **Decimal Separator** is automatically set to `٫` (Unicode U+066B) by default.
+
+**Applicability**
+- [x] This option is available in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
+
+
+***Examples:***
+
+`{sepDecimal : ""}`    : Default uses the system local as the Decimal Separator.
+
+`{sepDecimal : ","}`   : Uses comma (,) as the Decimal Separator.
+
+```javascript
+// Examples
+100,20
+230,1
+10,3
+```
+
+`{sepDecimal : "'"}`   : Uses apostrophe (') as the Decimal Separator.
+```javascript
+// Examples
+100'20
+230'1
+10'3
+```
+`{sepDecimal : "•"}`   : Uses dot symbol (•) as the Decimal Separator.
+```javascript
+// Examples
+100•20
+230•1
+10•3
+```
+`{sepDecimal : "en"}`  : Uses the BCP 47 language tag 'en' (English) as the Decimal Separator.
+```javascript
+// Examples
+100.20
+230.1
+10.3
+```
+`{sepDecimal : "ar-sa"}`  : Uses the BCP 47 language tag 'ar-sa' (Arabic-Saudia) as the Decimal Separator.
+```javascript
+// Examples
+100٫20
+230٫1
+10٫3
+```
+
+`{sepDecimal : "fr"}`  : Uses the BCP 47 language tag 'fr' (French) as the Decimal Separator.
+```javascript
+// Examples
+100,20
+230,1
+10,3
+```
+
+⚠ Note 1: If the BCP 47 language tag is invalid, then the system locale setting is used.
+
+⚠ Note 2: While it is possible to set both the Thousands Separator and the Decimal Separator to different BCP 47 language tags, it is recommended when using a BCP 47 language tag to use the same language tag for both the Thousands Separator and the Decimal Separator.
 
 <h2 id="sepThousands">⚙6.17 Thousands Separator</h2>
 
-When options are used for displaying numbers in digits inside brackets, arqam uses the system locale setting for displaying the Thousand Separator by default.
+When options are used for displaying numbers in digits inside brackets, ***arqam*** uses the system locale setting for displaying the **Thousand Separator** by default.
 
-You can use this option to change how the Thousands Separator is shown irrespective of the system locale.
+You can use this option to change the charatrer for the **Thousands Separator** irrespective of the system locale.
 
+The character may be any type or may be a BCP 47 language tag.
+
+In the [Arabic Numbers Mode](#arabicNumbers), if no specific **Thousands Separator** is specified using this option, then the **Thousands Separator** is automatically set to `٬` (Unicode U+066C) by default.
+
+**Applicability**
+- [x] This option is available in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
+
+💡 Note: The **Thousands Separator** only applies to how the output number is displayed. It does not apply to the input number. The input number's Thousands Separator is taken from the system locale.
+
+***Examples:***
+
+`{sepThousands : ""}`    : Default uses the system local as the Thousands Separator.
+
+`{sepThousands : "."}`   : Uses dot (.) as the Thousands Separator.
+```javascript
+// Examples
+123.456.000
+3.500.001
+```
+`{sepThousands : "'"}`   : Uses apostrophe (') as the Thousands Separator.
+```javascript
+// Examples
+123'456'000
+3'500'001
+```
+`{sepThousands : " "}`   : Uses space as the Thousands Separator.
+```javascript
+// Examples
+123 456 000
+3 500 001
+```
+`{sepThousands : "•"}`   : Uses dot symbol (•) as the Thousands Separator.
+```javascript
+// Examples
+123•456•000
+3•500•001
+```
+`{sepThousands : "en"}`  : Uses the BCP 47 language tag 'en' as the Thousands Separator.
+```javascript
+// Examples
+123,456,000
+3,500,001
+```
+`{sepThousands : "ar-sa"}`  : Uses the BCP 47 language tag ''ar-sa' (Arabic-Saudia) as the Thousands Separator.
+```javascript
+// Examples
+123٬456٬000
+3٬500٬001
+```
+`{sepThousands : "fr"}`  : Uses the BCP 47 language tag 'fr' (French) as the Thousands Separator.
+```javascript
+// Examples
+123 456 000
+3 500 001
+```
+`{sepThousands : "de"}`  : Uses the BCP 47 language tag 'de' (German) as the Thousands Separator.
+```javascript
+// Examples
+123.456.000
+3.500.001
+```
+
+⚠ Note 1: If the BCP 47 language tag is invalid, then the system locale setting is used.
+
+⚠ Note 2: While it is possible to set both the Thousands Separator and the Decimal Separator to different BCP 47 language tags, it is recommended when using a BCP 47 language tag to use the same language tag for both the Thousands Separator and the Decimal Separator.
 
 
 <h2 id="brackets">⚙6.18 Brackets</h2>
@@ -1072,8 +1247,7 @@ The default type of brackets is the round brackets "()". This may however be cha
 
 When the `brackets` option is enabled, the following options are also available to format the number inside the brackets:
 
-- [`bracketsOpen`](#bracketsOpen) change the closing bracket character.
-- [`bracketsClose`](#bracketsClose) change the opening bracket character.
+- [`bracketsType`](#bracketsType) change the opening and closing bracket characters.
 - [`numSymbol`](#numSymbol) add the type of symbol or sign before or after the currency.
 
 If only the Decimal Part needs to be placed inside brackets rather than the whole number then use the option [decInBrackets](#dec-in-brackets).
@@ -1123,9 +1297,11 @@ arqam.ar(120000);
 
 Change the characters used with the **[`brackets`](#brackets)** option, and therefore is only available when the **[`brackets`](#brackets)** option is also enabled.
 
-The default brackets type is the round brackets "()". This may be changed to (say) "[" or "{" or "<" or any other character.
+The default brackets type is the round brackets "()". This may be changed to (say) "[]" or "{}" or "<>" or any other characters.
 
-The setting must contain 2 charaters (the opening type followed by closing type). For example: '[]', '{}', '<>', etc. An empty string sets the default '()' type. Any other characters may be used. If only one charater is used, it will be used for both the opening and closing characters.
+The setting must contain 2 charaters (the opening type followed by closing type). For example: '[]', '{}', '<>', etc. An empty string sets the default '()' type. Any other characters may be used.
+
+If only one charater is specified, it will be used for both the opening and closing characters.
 
 
 ***Examples:***
@@ -1235,13 +1411,21 @@ arqam.ar(120000,"QAR");
 
 <h2 id="decRound">⚙6.21 Decimal Rounding</h2>
 
-The `decRound` option specifies the number of decimal places for upward rounding of the **Decimal Part** of the number.
+The `decRound` option specifies the **number** of decimal places for upward rounding of the **Decimal Part** of the number.
 
 Rounding **only affects the Decimal Part** of the number and will not affect or overflow to the Whole Part; this is intentional.
 
-The default is "no rounding" and the entire digits of the Decimal Part of the number will be converted to text as they are.
+The default is "no rounding" and the entire digits of the **Decimal Part** of the number will be converted to text as they are.
 
-Trailing zeros in a Decimal Part will not be converted to text. For example 0.12000 will be interpreted as 0.12 before conversion.
+Trailing zeros in a **Decimal Part** will not be converted to text. For example 0.12000 will be interpreted as 0.12 before conversion.
+
+The default maximum number of decimal places is 10^1000 (جزء واحد من مائة دِيْوْتْرِيجِنْتاترِسِنْتِلْيون).
+
+The maximum number of decimal places that can be converted by ***arqam*** is:
+
+*  1 part of 100 نُوفِنوناجِنْتانونْجِنْتِلْيون   which is (1 part of 10^3002) under the Short Scale System, and
+*  1 part of 100 نُوفِنوناجِنْتانونْجِنْتِلْيَارات which is (1 part of 10^6000) under the Long Scale System.
+
 
 **Applicability**
 - [x] This option is available in the **[Numbers Mode](#NumbersMode)** only.
@@ -1306,7 +1490,7 @@ arqam.ar(22.9999, "USD");
 
 <h2 id="decFormat">⚙6.22 Decimal Formats (تنسيقات الكسور)</h2>
 
-This option controls the display format of the **Decimal Part** of the number in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
+This option controls the text formatting of the **Decimal Part** of the number in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
 
 There are a total of nine (9) options of display and can be combined with other options.
 
@@ -1413,9 +1597,9 @@ With this option, the words **'جزءًا من'** can be ignored (removed) by us
 ***Examples in the default {decJuz: "on"}:***
 ```javascript
 arqam.ar(22.1);
-arqamAR(22.2);
-arqamAR(22.3);
-arqamAR(22.238);
+aqmAFd(22.2);
+aqmAFd(22.3);
+aqmAFd(22.238);
 
 //======= Output ========
 اثنان وعشرون، وجزء واحد من العشرة
@@ -1428,9 +1612,9 @@ arqamAR(22.238);
 arqam.arConfig( {decJuz:"off"} );
 
 arqam.ar(22.1);
-arqamAR(22.2);
-arqamAR(22.3);
-arqamAR(22.238);
+aqmAFd(22.2);
+aqmAFd(22.3);
+aqmAFd(22.238);
 
 //======= Output ========
 اثنان وعشرون، وواحد من العشرة
@@ -1493,9 +1677,9 @@ The default is with the **`{decAL: 'on'}`**
 ***Examples in the default {decAL: "on"}:***
 ```javascript
 arqam.ar(22.1);
-arqamAR(22.2);
-arqamAR(22.3);
-arqamAR(22.238);
+aqmAFd(22.2);
+aqmAFd(22.3);
+aqmAFd(22.238);
 
 //======= Output ========
 اثنان وعشرون، وجزء واحد من العشرة
@@ -1508,9 +1692,9 @@ arqamAR(22.238);
 arqam.arConfig( {decAL:"off"} );
 
 arqam.ar(22.1);
-arqamAR(22.2);
-arqamAR(22.3);
-arqamAR(22.238);
+aqmAFd(22.2);
+aqmAFd(22.3);
+aqmAFd(22.238);
 
 //======= Output ========
 اثنان وعشرون، وجزء واحد من عشرة
@@ -1682,7 +1866,7 @@ Each Currency has **19** attributes; any of can be changed:
 
 **minorPluralCT**  : Major currency country name (plural) adjective Tashkeel. e.g. 'كُوَيتِيَّةٍ' 'أمْريكِيَّةٍ' 'قَطَرِيَّةٍ'
 
-⚠ Note: The singular forms for the minor and major (both currency and country name) should not hav any Tanween for the last character. This will be added by ***arqam** depending on the word position. The other attribute entries must have Tanween Kasr for the last character.
+⚠ Note: The singular forms for the minor and major (both currency and country name) should not have any Tanween for the last character. This will be added by ***arqam*** depending on the word position. The other attribute entries must have Tanween Kasr for the last character.
 
 
 
@@ -1690,7 +1874,7 @@ Each Currency has **19** attributes; any of can be changed:
 
 ```javascript
 arqam.arConfig( {
-    currCode    : "USD",
+    code        : "USD",
     majorSingle : "جنيه",
     });
 
@@ -1710,7 +1894,7 @@ A proper way to do that is as follows:
 
 ```javascript
 arqam.arConfig( {
-    currCode    : "USD",
+    code        : "USD",
     majorSingle : "جنيه",
     majorPlural : "جنيهات",
     });
@@ -1740,15 +1924,15 @@ Let us create a New Currency called 'سحتوت' that belongs to Egypt and has a
 
 ```javascript
 arqam.arConfig( {
-    currCode    : "EGS",      // a new non-ISO code (can be anything)
-    majorSingle : "سحتوت",
+    code         : "EGS",      // a new non-ISO code (can be anything)
+    majorSingle  : "سحتوت",
     majorSingleC : "مصري",
-    majorPlural : "سحاتيت",
+    majorPlural  : "سحاتيت",
     majorPluralC : "مصرية",
 
-    minorSingle : "مليم",
+    minorSingle  : "مليم",
     minorSingleC : "مصري",
-    minorPlural : "ملاليم",
+    minorPlural  : "ملاليم",
     minorPluralC : "مصرية",
 
     currDecimal  : 3,           // 1000 مليم in 1 سحتوت
@@ -1764,7 +1948,7 @@ arqam.ar(3);
 ثلاثة سحاتيت مصرية
 ```
 
-⚠ Note: ***arqam** enters the **New Currency Mode** if 3 attributes are provided (i.e. not empty): `majorSingle`, `majorPlural`, and `currCode`. To get out of the New Currency Mode, set the `majorSingle` and `majorPlural` to empty strings.
+⚠ Note: ***arqam** enters the **New Currency Mode** if 3 attributes are provided (i.e. not empty): `majorSingle`, `majorPlural`, and `code`. To get out of the New Currency Mode, set the `majorSingle` and `majorPlural` to empty strings.
 
 ⚠ Note: The Tashkeel attributes are optional; if not stated, the standard names are used in the Tashkeel Option.
 
@@ -1774,7 +1958,7 @@ arqam.ar(3);
 
 Like creating a new currency, you can create other subjects to be counted. In this case you may not need to state the country name adjective.
 
-To enter the **Subjects Mode** set the currency Code to 'sub' **`{currCode : 'sub'`**.
+To enter the **Subjects Mode** set the currency Code to 'sub' **`{code : 'sub'`**.
 
 
 Let us create a subject kilometer 'كيلومتر' with the minor meter 'متر':
@@ -1783,14 +1967,14 @@ Let us create a subject kilometer 'كيلومتر' with the minor meter 'متر'
 
 ```javascript
 arqam.arConfig( {
-    currCode    : "sub",      // use the 'Subject Mode'
+    code        : "sub",      // use the 'Subject Mode'
     majorSingle : "كيلومتر",
     majorPlural : "كيلومترات",
 
     minorSingle : "متر",
     minorPlural : "أمتار",
 
-    currDecimal  : 3,           //1000 meter in 1 kilometer
+    currDecimal : 3,           //1000 meter in 1 kilometer
     });
 
 arqam.ar(22.5);
@@ -1811,7 +1995,7 @@ Let us now create a subject that has no sub-subject like Degree 'درجة' :
 
 ```javascript
 arqam.arConfig( {
-    currCode    : "sub",      // use the 'Subject Mode'
+    code        : "sub",      // use the 'Subject Mode'
     majorSingle : "درجة",
     majorPlural : "درجات",
     });
@@ -1835,7 +2019,7 @@ Let us now create a subject that has no sub-subject by has an adjective like Deg
 
 ```javascript
 arqam.arConfig( {
-    currCode    : "sub",      // use the 'Subject Mode'
+    code        : "sub",      // use the 'Subject Mode'
     majorSingle : "درجة",
     majorSingleC: "مئوية",
     majorPlural : "درجات",
@@ -1863,7 +2047,7 @@ We also add to it Meter per Hour 'متر في الساعة' as a sub-subject (or
 
 ```javascript
 arqam.arConfig( {
-    currCode    : "sub",      // use the 'Subject Mode'
+    code        : "sub",      // use the 'Subject Mode'
     majorSingle : "كيلومتر",
     majorSingleC: "في الساعة",
     majorPlural : "كيلومترات",
@@ -1875,7 +2059,7 @@ arqam.arConfig( {
     minorPluralC: "في الساعة",
 
     currDecimal  : 3,           // 1000 meter in 1 kilometer
-    decSubInParts : "on"        // see note below on this setting
+    decSubInParts: "on"        // see note below on this setting
     });
 
 arqam.ar(1);
@@ -1894,7 +2078,7 @@ arqam.ar(0.25);
 مائتان وخمسون مترًا في الساعة
 ```
 
-⚠ Note 1: If the adjective part of the subject is a compund sentence such as 'per second' 'في الثانية' or per hour 'في الساعة' then enable the option `{decSubInParts : "on"}` for a propr orienttion of the output text.
+⚠ Note 1: If the adjective part of the subject is a compund sentence such as 'per second' 'في الثانية' or per hour 'في الساعة', etc. then enable the option `{decSubInParts : "on"}` for a propr orienttion of the output text. However, ***arqam*** will automatically detect the presence of the words "في ال" in the `{majorSingleC}` and will use it in the `{majorPluralC}` setting, and will automatically set the `{decSubInParts : "on"}` option.
 
 ⚠ Note 2: Remember when using subjects like Square Kilometer 'كيلومتر مربع' or Square Meter 'متر مربع' that the decimal part should be correctly set.
 
@@ -1907,7 +2091,7 @@ Likewise, 1 Square Meter = 100 x 100 = 10,000 Square Centemeter, so the decimal 
 
 ```javascript
 arqam.arConfig( {
-    currCode    : "sub",      // use the 'Subject Mode'
+    code        : "sub",      // use the 'Subject Mode'
     majorSingle : "متر",
     majorSingleC: "مربع",
     majorPlural : "أمتار",
@@ -1918,7 +2102,7 @@ arqam.arConfig( {
     minorPlural : "سنتيمترات",
     minorPluralC: "مربعة",
 
-      currDecimal  : 4,            // note decimal is 4 not 2
+    currDecimal : 4,            // note decimal is 4 not 2
     });
 
 arqam.ar(1);
@@ -1937,5 +2121,3 @@ arqam.ar(0.25);
 ألفان وخمسمائة سنتيمتر مربع             // note 2500 cm2
 
 ```
-
-

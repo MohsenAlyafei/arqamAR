@@ -1,6 +1,6 @@
 <!-- # arqam ![Image](/images/ArqamLogo_2_64.png?raw=true) -->
 
-# <img src="./images/ArqamLogo_2_64.png?raw=true" style ="display: inline-block; height: 100%;vertical-align: middle;"> arqam
+# <img src="./images/ArqamLogo_2_64.png?raw=true" style ="display: inline-block; height: 100%;vertical-align: middle;"> arqamAR
 
 ### **Table of Contents**
 1. **[Introduction ](#introduction)**
@@ -86,7 +86,7 @@
 
 9.  **[Create New Currency](#createNew)**
 
-10. **[Use Other Subjects](#subjectsMode)**
+10. **[Use Other Subjects (the Subjects Mode)](#subjectsMode)**
 
 
 
@@ -97,22 +97,22 @@ Some time ago I felt that it was necessary to have a library that properly and c
 Many websites and library functions exist (in various programming languages) that attempt to convert numbers and currencies to Arabic text but fail to do it properly in accordance with the correct Arabic language grammar, let alone provide the needed options and facilities required.
 
 <div align="center">
-  NOW HERE IT IS
+  NOW IT IS HERE
 </div>
 
 <h2 id="purpose">2️⃣ Purpose</h2>
 
-#### ***arqam*** is a JavaScript utility library that converts numbers and currencies into the equivalent Arabic text, taking into account the correct type of the counted subject's gender (مؤنث ومذكر) and other Arabic language grammar and styling rules therefore ensuring accuracy of the converted numbers and currencies in accordance with the Arabic grammar rules.
+#### ***arqamAR*** is a JavaScript utility library part of the ***arqam Library Group*** that converts numbers and currencies into the equivalent Arabic text, taking into account the correct type of the counted subject's gender (مؤنث ومذكر) and other Arabic language grammar and styling rules therefore ensuring accuracy of the converted numbers and currencies in accordance with the Arabic grammar rules.
 
-#### ***arqam*** ensures that you have no errors in writing numbers in words especially when writing cheques in Arabic !!
+#### ***arqamAR*** ensures that you have no errors in writing numbers in words especially when writing cheques in Arabic !!
 
 <h2 id="features">3️⃣ Features</h2>
 
-The library provides the following functionalities and features in the ***Numbers Mode*** and a ***Currency Mode***.
+The ***arqamAR*** library provides the following functionalities and features in the ***Numbers Mode***, the ***Currency Mode***, and the ***Subjects Mode***.
 
 ### General Features
 
-- ***arqam*** provides many **Options** for the display and formatting of the outputted Arabic Text which includes:
+- ***arqamAR*** provides many **Options** for the display and formatting of the outputted Arabic Text which includes:
   - [x] Arabic output text in accordance with the Arabic grammar rules.
   - [x] Handles both numbers (**[Numbers Mode](#NumbersMode)**) and currencies (**[Currency Mode](#CurrencyMode)**) with decimals and sub-units.
   - [x] Comes with **173** currencies including all current ISO currencies.
@@ -135,12 +135,12 @@ A full list of all options is provided below.
 
 <h2 id="syntax">4️⃣ Syntax and Parameters</h2>
 
- ***arqam*** uses **`arqam.ar()`** to convert a number to text. This will use the default configuration.
+ ***arqamAR*** uses **`arqamAR.toWords()`** to convert a number to text. This will use the default configuration.
 
 ### Syntax:
 
 ```javascript
-    arqam.ar(number | array [, ISO_code | {options} ])
+    arqamAR.toWords(number | array [, ISO_code | {options} ])
 ```
 
 ### Input Parameters:
@@ -156,17 +156,17 @@ Underscores may be used as separators in numeric literals (ES2021).
 
 **array**: an array of number to be batch processed. See **[Batch Processing](#batch)** below for details.
 
-⛔ ***arqam*** does not accept the exponent (e-notation) number formats.
+⛔ ***arqamAR*** does not accept the exponent (e-notation) number formats.
 
 #### Second Parameter
 
-The Second Parameter is optional and is used as a short-cut instead of the **`arqam.arConfig()`**.
+The Second Parameter is optional and is used as a short-cut instead of the **`arqamAR.config()`**.
 
 The 2nd parameter may be:
 
 - **ISO_Code** : "String" a 3-letter ISO code in \<string\> form.
 
-- **{options}**: object {name:value} representing the options as required by **`arqam.arConfig()`**.
+- **{options}**: object {name:value} representing the options as required by **`arqamAR.config()`**.
 
 ### Return Value:
 
@@ -175,20 +175,39 @@ An Arabic text string representation of the number or currency.
 
 <h2 id="options">5️⃣ Configuration Options</h2>
 
-The various options and configuration can be set and changed using the **`arqam.arConfig()`**.
+The various options and configuration can be set and changed using the **`arqamAR.config()`**.
 
 The configuration options provide full and flexible control of how the output text is formatted and displayed.
 
-Once specific options are set, all subsequent calls to `arqam.ar()` will use the already defined options. So the `arqam.arConfig()` can be called only once at the start of your code.
+Once specific options are set, all subsequent calls to `arqamAR.toWords()` will use the already defined options. So the `arqamAR.config()` can be called only once at the start of your code.
 
 Options can be changed at any time.
+
+💡**Important Note**
+
+Options are **sticky** in that they are remembered for the next call.
+For example:
+
+```javascript
+arqamAR.toWords(20,"USD");
+```
+will result in **عشرون دولارًا أمريكيًا**
+
+If then you issue another line like:
+
+```javascript
+arqamAR.toWords(30);  // without any options
+```
+will result in  **ثلاثون دولارًا أمريكيًا**
+
+because the option "USD" is remembered in the next call.
 
 ***Example:***
 ```javascript
 // Set the options to QAR Currency with Tashkeel and using Miah
-   arqam.arConfig({Currency: "QAR", tashkeel: "on"});
+   arqamAR.config({Currency: "QAR", tashkeel: "on"});
 
-   let result = arqam.ar(2500.35);     // convert the number to currency text
+   let result = arqamAR.toWords(2500.35);     // convert the number to currency text
    console.log(result);
 
 // ===== Output =======
@@ -198,25 +217,25 @@ Options can be changed at any time.
 
 
 ### Alternative Configuration Shortcuts
-`arqam.arConfig()` provides full access to arqam configurations.
+`arqamAR.config()` provides full access to arqam configurations.
 
-However, rather than using the `arqam.arConfig()`, arqam provides two (2) alternative methods of shortcut using the `arqam.ar()` itself by using the second parameter of `arqam.ar()`. See above for the [`arqam.ar()` syntax](#syntax).
+However, rather than using the `arqamAR.config()`, arqam provides two (2) alternative methods of shortcut using the `arqamAR.toWords()` itself by using the second parameter of `arqamAR.toWords()`. See above for the [`arqamAR.toWords()` syntax](#syntax).
 
-If the 2nd parameter of the `arqam.ar()` function is a valid ISO Currency Code, then that code is used and a switch is made to the **[Currency Mode](#CurrencyMode)**.
+If the 2nd parameter of the `arqamAR.toWords()` function is a valid ISO Currency Code, then that code is used and a switch is made to the **[Currency Mode](#CurrencyMode)**.
 
-If the 2nd parameter in `arqam.ar()` is an `object` then that is assumed to be a configuration option and is then decoded as is done for the `arqam.arConfig()`.
+If the 2nd parameter in `arqamAR.toWords()` is an `object` then that is assumed to be a configuration option and is then decoded as is done for the `arqamAR.config()`.
 
 ***Example Shortcut to use the Currency Mode***
 ```javascript
 // Shortcut to enter and use the Currency Mode
 
-arqam.ar(2200.2,"USD");
-arqam.ar(2200.2,"LBP");
-arqam.ar(2200.2,"EGP");
-arqam.ar(2200.2,"GBP");
-arqam.ar(2200.2,"JOD");
-arqam.ar(2200.2,"OMR");
-arqam.ar(2200.2,"KWD");
+arqamAR.toWords(2200.2,"USD");
+arqamAR.toWords(2200.2,"LBP");
+arqamAR.toWords(2200.2,"EGP");
+arqamAR.toWords(2200.2,"GBP");
+arqamAR.toWords(2200.2,"JOD");
+arqamAR.toWords(2200.2,"OMR");
+arqamAR.toWords(2200.2,"KWD");
 
 // ===== Output =======
 ألفان ومائتا دولار أمريكي، وعشرون سنتًا
@@ -233,10 +252,10 @@ arqam.ar(2200.2,"KWD");
 ***Example Shortcut to change the Configurations***
 
 ```javascript
-// Shortcut to change the configuration without using the arqam.arConfig()
+// Shortcut to change the configuration without using the arqamAR.config()
 
-arqam.ar(2200.2,{tashkeel:"on", code:"QAR", brackets: "end"});
-arqam.ar(3300.5,{tashkeel:"on", code:"AED", brackets: "end", arabicNumbers: "on"});
+arqamAR.toWords(2200.2,{tashkeel:"on", code:"QAR", brackets: "end"});
+arqamAR.toWords(3300.5,{tashkeel:"on", code:"AED", brackets: "end", arabicNumbers: "on"});
 
 // ===== Output =======
 (QAR 2,200٫20) ألْفانِ وَمَائَتا رِيَالٍ قَطَرِيٍّ، وَعِشْرونَ دِرْهَمًا
@@ -286,6 +305,8 @@ arqam.ar(3300.5,{tashkeel:"on", code:"AED", brackets: "end", arabicNumbers: "on"
 |29|[prefix](#prefix) |\<string\>|"" empty|Add a prefix text before the resulting output text. Default no prefix.
 |30|[suffix](#suffix) |\<string\>|"" empty|Add a suffix text to the end of the resulting output text. Default no suffix.
 |31|[isNaN](#isNaN) |\<string\>|"" empty|The text to be returned if the number passed is not a valid number. Default is an empty string.
+|31|[decSubInParts](#) |'on'|off|Applicable only, and used in the **[Subjects Mode](#subjectsMode)** in the case of compounded adjectives. See the **[Subjects Mode](#subjectsMode)** below.
+
 
 ### General Notes on the Configuration Options
 
@@ -296,7 +317,7 @@ arqam.ar(3300.5,{tashkeel:"on", code:"AED", brackets: "end", arabicNumbers: "on"
 
 <h2 id="NumbersMode">⚙6.1 Numbers Mode</h2>
 
-The **Numbers Mode** is the default ***arqam*** display mode. ***arqam*** will always start in the **Numbers Mode** by default.
+The **Numbers Mode** is the default ***arqamAR*** display mode. ***arqamAR*** will always start in the **Numbers Mode** by default.
 
 In this mode, numbers in digit form are converted into Arabic text using various configuration formats.
 
@@ -306,12 +327,12 @@ The default output is very simple and precise Arabic text; with an example below
 
 #### Examples:
 ```javascript
-arqam.ar(123);
-arqam.ar(2560000);
-arqam.ar(3356789);
-arqam.ar(25.27);
-arqam.ar(0.5);
-arqam.ar(0.35);
+arqamAR.toWords(123);
+arqamAR.toWords(2560000);
+arqamAR.toWords(3356789);
+arqamAR.toWords(25.27);
+arqamAR.toWords(0.5);
+arqamAR.toWords(0.35);
 
 // ===== Output =======
 مائة وثلاثة وعشرون
@@ -326,33 +347,33 @@ arqam.ar(0.35);
 If you were in the ***Currency Mode***, you can switch back to the **[Numbers Mode](#NumbersMode)** by setting the `arqam.arConfig` to (currMode : '') using the following line:
 
 ```javascript
-arqam.arConfig({currMode : ''}).
+arqamAR.config({currMode : ''}).
 ```
 
 <h2 id="CurrencyMode">⚙6.2 Currency Mode</h2>
 
-The **Currency Mode** is enabled by specifying a **valid** 3-letter ISO **Currency Code** using the configuration option **`arqam.arConfig()`** ***`{code: <ISO Code>`***.
+The **Currency Mode** is enabled by specifying a **valid** 3-letter ISO **Currency Code** using the configuration option **`arqamAR.config()`** ***`{code: <ISO Code>`***.
 
 The 3-letter ISO Code must be in **block letters**, for example : USD, GBP, KWD, QAR, JOD, EGP, etc.
 
-An invalid ISO Code will not produce and error and ***arqam*** will switch to the **[Numbers Mode](#NumbersMode)** unless a **New Currency** is intended. See below how to create a **New Currency** or **Modify Existing Currency**.
+An invalid ISO Code will not produce and error and ***arqamAR*** will switch to the **[Numbers Mode](#NumbersMode)** unless a **New Currency** is intended. See below how to create a **New Currency** or **Modify Existing Currency**.
 
-Almost all of the ***arqam*** configuration options are available in the **Currency Mode**.
+Almost all of the ***arqamAR*** configuration options are available in the **Currency Mode**.
 
-In addition, there are specific ***arqam*** configuration options which only apply in the **Currency Mode**.
+In addition, there are specific ***arqamAR*** configuration options which only apply in the **Currency Mode**.
 
-***arqam*** recognises **173** currency codes (including the latest ISO-4217 codes) and has all necessary data settings for each currency. This includes the names of the *major* and *minor* currencies, the applicable country names, and the decimal sub-units.
+***arqamAR*** recognises **173** currency codes (including the latest ISO-4217 codes) and has all necessary data settings for each currency. This includes the names of the *major* and *minor* currencies, the applicable country names, and the decimal sub-units.
 
 #### Examples:
 ```javascript
-arqam.arConfig({currMode : 'USD'});
+arqamAR.config({currMode : 'USD'});
 
-arqam.ar(20000);
-arqam.ar(2560000);
-arqam.ar(3356789);
-arqam.ar(25.27);
-arqam.ar(0.5);
-arqam.ar(0.35);
+arqamAR.toWords(20000);
+arqamAR.toWords(2560000);
+arqamAR.toWords(3356789);
+arqamAR.toWords(25.27);
+arqamAR.toWords(0.5);
+arqamAR.toWords(0.35);
 
 // ===== Output =======
 عشرون ألف دولار أمريكي
@@ -378,14 +399,14 @@ The compact output text is a combination of both digits and words.
 // Examples using Numbers
 //--------------------------
 
-arqam.arConfig({ compact : "on" });  // enable compact mode
+arqamAR.config({ compact : "on" });  // enable compact mode
 
-arqam.ar(20200);
-arqam.ar(2560000);
-arqam.ar(3356789);
-arqam.ar(25.27);
-arqam.ar(0.5);
-arqam.ar(0.35);
+arqamAR.toWords(20200);
+arqamAR.toWords(2560000);
+arqamAR.toWords(3356789);
+arqamAR.toWords(25.27);
+arqamAR.toWords(0.5);
+arqamAR.toWords(0.35);
 
 // ===== Output =======
 ‏20 ألفًا و‏200
@@ -402,14 +423,14 @@ arqam.ar(0.35);
 //--------------------------
 // Examples using Currencies
 //--------------------------
-arqam.arConfig({ compact : "on" , code: "USD" }); // enable both compact and currency options
+arqamAR.config({ compact : "on" , code: "USD" }); // enable both compact and currency options
 
-arqam.ar(20200);
-arqam.ar(2560000);
-arqam.ar(3356789);
-arqam.ar(25.27);
-arqam.ar(0.5);
-arqam.ar(0.35);
+arqamAR.toWords(20200);
+arqamAR.toWords(2560000);
+arqamAR.toWords(3356789);
+arqamAR.toWords(25.27);
+arqamAR.toWords(0.5);
+arqamAR.toWords(0.35);
 
 // ===== Output =======
 ‏20 ألفًا و‏200 دولار أمريكي
@@ -444,14 +465,14 @@ The **Taskeel Mode** provides full Arabic tashkeel of the outputted text.
 //--------------------------
 // Examples using Numbers
 //--------------------------
-arqam.arConfig({ tashkeel : "on"  }); // enable tashkeel option
+arqamAR.config({ tashkeel : "on"  }); // enable tashkeel option
 
-arqam.ar(20200);
-arqam.ar(2560000);
-arqam.ar(3356789);
-arqam.ar(25.27);
-arqam.ar(0.5);
-arqam.ar(0.35);
+arqamAR.toWords(20200);
+arqamAR.toWords(2560000);
+arqamAR.toWords(3356789);
+arqamAR.toWords(25.27);
+arqamAR.toWords(0.5);
+arqamAR.toWords(0.35);
 
 // ===== Output =======
 عِشْرونَ ألْفًا وَمَائَتَان
@@ -468,14 +489,14 @@ arqam.ar(0.35);
 //--------------------------
 // Examples using Currencies
 //--------------------------
-arqam.arConfig({ tashkeel: "on"  code: "JOD"}); // enable both tashkeel and currency options
+arqamAR.config({ tashkeel: "on"  code: "JOD"}); // enable both tashkeel and currency options
 
-arqam.ar(20200);
-arqam.ar(2560000);
-arqam.ar(3356789);
-arqam.ar(25.27);
-arqam.ar(0.5);
-arqam.ar(0.35);
+arqamAR.toWords(20200);
+arqamAR.toWords(2560000);
+arqamAR.toWords(3356789);
+arqamAR.toWords(25.27);
+arqamAR.toWords(0.5);
+arqamAR.toWords(0.35);
 
 // ===== Output =======
 عِشْرونَ ألْفًا وَمَائَتا دِينَارٍ أُردُنِيٍّ
@@ -515,14 +536,14 @@ Arabic Tanween (Nunation) has three (3) forms: tanween Fath (تنوين الفت
 //--------------------------
 // Examples using Numbers
 //--------------------------
-arqam.arConfig({ tanween : "on"  }); // enable tanween option
+arqamAR.config({ tanween : "on"  }); // enable tanween option
 
-arqam.ar(20200);
-arqam.ar(2560000);
-arqam.ar(3356789);
-arqam.ar(25.27);
-arqam.ar(0.5);
-arqam.ar(0.35);
+arqamAR.toWords(20200);
+arqamAR.toWords(2560000);
+arqamAR.toWords(3356789);
+arqamAR.toWords(25.27);
+arqamAR.toWords(0.5);
+arqamAR.toWords(0.35);
 
 // ===== Output =======
 عشرون ألفًا ومائتان
@@ -539,14 +560,14 @@ arqam.ar(0.35);
 //--------------------------
 // Examples using Currencies
 //--------------------------
-arqam.arConfig({ tanween: "on"  code: "EGP"}); // enable both tanween and currency options
+arqamAR.config({ tanween: "on"  code: "EGP"}); // enable both tanween and currency options
 
-arqam.ar(20200);
-arqam.ar(2560000);
-arqam.ar(3356789);
-arqam.ar(25.27);
-arqam.ar(0.5);
-arqam.ar(0.35);
+arqamAR.toWords(20200);
+arqamAR.toWords(2560000);
+arqamAR.toWords(3356789);
+arqamAR.toWords(25.27);
+arqamAR.toWords(0.5);
+arqamAR.toWords(0.35);
 
 // ===== Output =======
 عشرون ألفًا ومائتا جنيهٍ مصريٍ
@@ -564,13 +585,13 @@ arqam.ar(0.35);
 
 <h2 id="tanweenFatih">⚙6.6 Tanween Fath (تنوين فتح)</h2>
 
-The `tanweenFatih` option is the basic option that provides tanween fatih (تنوين الفتح) only, and is the default ***arqam*** option.
+The `tanweenFatih` option is the basic option that provides tanween fatih (تنوين الفتح) only, and is the default ***arqamAR*** option.
 
 **Applicability**
 - [x] This option is available in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
 
 **Notes:**
-- [x] This option is the default ***arqam*** option.
+- [x] This option is the default ***arqamAR*** option.
 - [x] The [`tashkeel`](#tashkeel) and [`tanween`](#tanween) options override this option.
 
 
@@ -579,12 +600,12 @@ The `tanweenFatih` option is the basic option that provides tanween fatih (تن�
 //--------------------------
 // Examples using Numbers
 //--------------------------
-arqam.arConfig({ tanweenFatih : "on"  }); // enable tanween option
+arqamAR.config({ tanweenFatih : "on"  }); // enable tanween option
 
-arqam.ar(20200);
-arqam.ar(3356789);
-arqam.ar(25.27);
-arqam.ar(0.35);
+arqamAR.toWords(20200);
+arqamAR.toWords(3356789);
+arqamAR.toWords(25.27);
+arqamAR.toWords(0.35);
 
 // ===== Output =======
 عشرون ألفًا ومائتان
@@ -598,12 +619,12 @@ arqam.ar(0.35);
 //--------------------------
 // Examples using Currencies
 //--------------------------
-arqam.arConfig({ tanween: "on"  code: "KWD"}); // enable both tanween and currency options
+arqamAR.config({ tanween: "on"  code: "KWD"}); // enable both tanween and currency options
 
-arqam.ar(20200);
-arqam.ar(3356789);
-arqam.ar(25.27);
-arqam.ar(0.35);
+arqamAR.toWords(20200);
+arqamAR.toWords(3356789);
+arqamAR.toWords(25.27);
+arqamAR.toWords(0.35);
 
 // ===== Output =======
 عشرون ألفًا ومائتا دينار كويتي
@@ -617,7 +638,7 @@ arqam.ar(0.35);
 
 <h2 id="jarnsb">⚙6.7 Accusative/Genitive (حالة الجر/النصب)</h2>
 
-The default ***arqam*** ouput is the Nominative case (حالة الرفع).
+The default ***arqamAR*** ouput is the Nominative case (حالة الرفع).
 
 When using this option, the output text is produced in the Accusative/Genitive (جر/نصب) case.
 
@@ -646,9 +667,9 @@ Examples with both the default and with the option `{miah: "on"}`:
 
 ***Example with the default option "on":***
 ```javascript
-arqam.ar(300);
-arqam.ar(2500);
-arqam.ar(700900.02);
+arqamAR.toWords(300);
+arqamAR.toWords(2500);
+arqamAR.toWords(700900.02);
 
 //======= Output ========
 ثلاثمائة
@@ -659,11 +680,11 @@ arqam.ar(700900.02);
 
 ***Example with the option "off":***
 ```javascript
-arqam.arConfig({ miah: "off"}); // use default miah option
+arqamAR.config({ miah: "off"}); // use default miah option
 
-arqam.ar(300);
-arqam.ar(2500);
-arqam.ar(700900.02);
+arqamAR.toWords(300);
+arqamAR.toWords(2500);
+arqamAR.toWords(700900.02);
 
 //======= Output ========
 ثلاثمئة
@@ -694,11 +715,11 @@ The flowing diagram illustrates the effect of this option:
 ***Example with split the default "miah" option:***
 
 ```javascript
-arqam.arConfig({ miahSplit: "on"}); // enable miahSplit option
+arqamAR.config({ miahSplit: "on"}); // enable miahSplit option
 
-arqam.ar(300);
-arqam.ar(2500);
-arqam.ar(700900.02);
+arqamAR.toWords(300);
+arqamAR.toWords(2500);
+arqamAR.toWords(700900.02);
 
 //======= Output ========
 ثلاث مائة
@@ -708,11 +729,11 @@ arqam.ar(700900.02);
 
 ***Example with split the "miah" option "off":***
 ```javascript
-arqam.arConfig({ miah: "off", miahSplit: "on"}); // enable miahSplit option with default miah option
+arqamAR.config({ miah: "off", miahSplit: "on"}); // enable miahSplit option with default miah option
 
-arqam.ar(300);
-arqam.ar(2500);
-arqam.ar(700900.02);
+arqamAR.toWords(300);
+arqamAR.toWords(2500);
+arqamAR.toWords(700900.02);
 
 //======= Output ========
 ثلاث مئة
@@ -740,10 +761,10 @@ The following are examples with both the default and with the option `{comma: "o
 //------------------------------------
 // Examples with the 'comma' option on
 //------------------------------------
-arqam.arConfig({ comma: "on"}); // enable comma option
+arqamAR.config({ comma: "on"}); // enable comma option
 
-arqam.ar(12003050200);
-arqam.ar(700900);
+arqamAR.toWords(12003050200);
+arqamAR.toWords(700900);
 
 //======= Output ========
 اثنا عشر مليارًا، وثلاثة ملايين، وخمسون ألفًا، ومائتان
@@ -761,8 +782,8 @@ The output text is produced in a legal non-ambiguous form.
 
 Consider the following examples:
 ```javascript
-arqam.ar(101,000);                 // "مائة وألف"
-arqam.ar(102,010);                 // "مائة وألفان وعشرة"
+arqamAR.toWords(101,000);                 // "مائة وألف"
+arqamAR.toWords(102,010);                 // "مائة وألفان وعشرة"
 ```
 In the above examples, the output "مائة وألف" could be interpreted to mean **100 plus 1000** giving a total of 1,100. This of courses is not what is intended; what is intended is 101,000.
 
@@ -775,10 +796,10 @@ This option permits such situations of ambiguity to be avoided.
 The above examples cab ne re-done with the option `{legal: "on"}`:
 
 ```javascript
-arqam.arConfig({ legal: "on"}); // enable legal option
+arqamAR.config({ legal: "on"}); // enable legal option
 
-arqam.ar(101000);   // "مائة ألف وألف"
-arqam.ar(102010);   // "مائة ألف وألفان وعشرة"
+arqamAR.toWords(101000);   // "مائة ألف وألف"
+arqamAR.toWords(102010);   // "مائة ألف وألفان وعشرة"
 ```
 
 💡 ***As additional protection against any ambiguity, it is advisable to enable the option {comma: "on"} to clearly indicate the separation between triplets.***
@@ -802,11 +823,11 @@ With the `{arabicNumbers: 'on'`, the Arabic-Western numbers (0123456789) are rep
 //-------------------------------------
 // Examples with the `compact` option
 //-------------------------------------
-arqam.arConfig({ compact: "on", arabicNumbers: "on"}); // enable arabicNumbers with compact option
+arqamAR.config({ compact: "on", arabicNumbers: "on"}); // enable arabicNumbers with compact option
 
-arqam.ar(5299530);
-arqam.ar(1560);
-arqam.ar(33.2);
+arqamAR.toWords(5299530);
+arqamAR.toWords(1560);
+arqamAR.toWords(33.2);
 
 // ===== Output =======
 ‏٥ ملايين و‏٢٩٩ ألفًا و‏٥٣٠
@@ -821,14 +842,14 @@ arqam.ar(33.2);
 //--------------------------------------
 // Examples with the `brackets` option
 //--------------------------------------
-arqam.arConfig({ brackets: "end", arabicNumbers: "on"}); // enable arabicNumbers with brackets option
+arqamAR.config({ brackets: "end", arabicNumbers: "on"}); // enable arabicNumbers with brackets option
 
-arqam.ar(5530);
-arqam.ar(1560);
-arqam.ar(33.2);
-arqam.ar(5530.98,"JOD");
-arqam.ar(1560.45,"BHD");
-arqam.ar(33.2,"SDG");
+arqamAR.toWords(5530);
+arqamAR.toWords(1560);
+arqamAR.toWords(33.2);
+arqamAR.toWords(5530.98,"JOD");
+arqamAR.toWords(1560.45,"BHD");
+arqamAR.toWords(33.2,"SDG");
 
 // ===== Output =======
 (٥٬٥٣٠) خمسة آلاف وخمسمائة وثلاثون
@@ -845,14 +866,14 @@ arqam.ar(33.2,"SDG");
 //-------------------------------------------
 // Examples with the decFormat:'nn' option
 //-------------------------------------------
-arqam.arConfig({ decFormat: "nn", arabicNumbers: "on"}); // enable arabicNumbers with decFormat:'nn' option
+arqamAR.config({ decFormat: "nn", arabicNumbers: "on"}); // enable arabicNumbers with decFormat:'nn' option
 
-arqam.ar(5530.98);
-arqam.ar(1560.45);
-arqam.ar(33.2);
-arqam.ar(5530.98,"JOD");
-arqam.ar(1560.45,"BHD");
-arqam.ar(33.2,"SDG");
+arqamAR.toWords(5530.98);
+arqamAR.toWords(1560.45);
+arqamAR.toWords(33.2);
+arqamAR.toWords(5530.98,"JOD");
+arqamAR.toWords(1560.45,"BHD");
+arqamAR.toWords(33.2,"SDG");
 
 // ===== Output =======
 خمسة آلاف وخمسمائة وثلاثون، و‏٩٨ جزءًا من الـ١٠٠
@@ -869,14 +890,14 @@ arqam.ar(33.2,"SDG");
 //-------------------------------------------
 // Examples with the decFormat:'wn' option
 //-------------------------------------------
-arqam.arConfig({ decFormat: "wn", arabicNumbers: "on"}); // enable arabicNumbers with decFormat:'wn' option
+arqamAR.config({ decFormat: "wn", arabicNumbers: "on"}); // enable arabicNumbers with decFormat:'wn' option
 
-arqam.ar(5530.98);
-arqam.ar(1560.45);
-arqam.ar(33.2);
-arqam.ar(5530.98,"JOD");
-arqam.ar(1560.45,"BHD");
-arqam.ar(33.2,"SDG");
+arqamAR.toWords(5530.98);
+arqamAR.toWords(1560.45);
+arqamAR.toWords(33.2);
+arqamAR.toWords(5530.98,"JOD");
+arqamAR.toWords(1560.45,"BHD");
+arqamAR.toWords(33.2,"SDG");
 
 // ===== Output =======
 خمسة آلاف وخمسمائة وثلاثون، و‏ثمانية وتسعون جزءًا من الـ١٠٠
@@ -893,14 +914,14 @@ arqam.ar(33.2,"SDG");
 //-------------------------------------------
 // Examples with the decFormat:'nw' option
 //-------------------------------------------
-arqam.arConfig({ decFormat: "nw", arabicNumbers: "on"}); // enable arabicNumbers with decFormat:'nw' option
+arqamAR.config({ decFormat: "nw", arabicNumbers: "on"}); // enable arabicNumbers with decFormat:'nw' option
 
-arqam.ar(5530.98);
-arqam.ar(1560.45);
-arqam.ar(33.2);
-arqam.ar(5530.98,"JOD");
-arqam.ar(1560.45,"BHD");
-arqam.ar(33.2,"SDG");
+arqamAR.toWords(5530.98);
+arqamAR.toWords(1560.45);
+arqamAR.toWords(33.2);
+arqamAR.toWords(5530.98,"JOD");
+arqamAR.toWords(1560.45,"BHD");
+arqamAR.toWords(33.2,"SDG");
 // ===== Output =======
 خمسة آلاف وخمسمائة وثلاثون، و‏٩٨ جزءًا من المائة
 ألف وخمسمائة وستون، و‏٤٥ جزءًا من المائة
@@ -916,14 +937,14 @@ arqam.ar(33.2,"SDG");
 //-------------------------------------------
 // Examples with the decFormat:'n' option
 //-------------------------------------------
-arqam.arConfig({ decFormat: "n", arabicNumbers: "on"}); // enable arabicNumbers with decFormat:'n' option
+arqamAR.config({ decFormat: "n", arabicNumbers: "on"}); // enable arabicNumbers with decFormat:'n' option
 
-arqam.ar(5530.98);
-arqam.ar(1560.45);
-arqam.ar(33.2);
-arqam.ar(5530.98,"JOD");
-arqam.ar(1560.45,"BHD");
-arqam.ar(33.2,"SDG");
+arqamAR.toWords(5530.98);
+arqamAR.toWords(1560.45);
+arqamAR.toWords(33.2);
+arqamAR.toWords(5530.98,"JOD");
+arqamAR.toWords(1560.45,"BHD");
+arqamAR.toWords(33.2,"SDG");
 // ===== Output =======
 خمسة آلاف وخمسمائة وثلاثون، فاصلة ٩٨
 ألف وخمسمائة وستون، فاصلة ٤٥
@@ -939,14 +960,14 @@ arqam.ar(33.2,"SDG");
 //-------------------------------------------
 // Examples with the decFormat:'d' option
 //-------------------------------------------
-arqam.arConfig({ decFormat: "d", arabicNumbers: "on"}); // enable arabicNumbers with decFormat:'d' option
+arqamAR.config({ decFormat: "d", arabicNumbers: "on"}); // enable arabicNumbers with decFormat:'d' option
 
-arqam.ar(5530.98);
-arqam.ar(1560.45);
-arqam.ar(33.2);
-arqam.ar(5530.98,"JOD");
-arqam.ar(1560.45,"BHD");
-arqam.ar(33.2,"SDG");
+arqamAR.toWords(5530.98);
+arqamAR.toWords(1560.45);
+arqamAR.toWords(33.2);
+arqamAR.toWords(5530.98,"JOD");
+arqamAR.toWords(1560.45,"BHD");
+arqamAR.toWords(33.2,"SDG");
 // ===== Output =======
 خمسة آلاف وخمسمائة وثلاثون، و٠٫٩٨
 ألف وخمسمائة وستون، و٠٫٤٥
@@ -962,14 +983,14 @@ arqam.ar(33.2,"SDG");
 //-------------------------------------------
 // Examples with the decFormat:'/' option
 //-------------------------------------------
-arqam.arConfig({ decFormat: "/", arabicNumbers: "on"}); // enable arabicNumbers with decFormat:'/' option
+arqamAR.config({ decFormat: "/", arabicNumbers: "on"}); // enable arabicNumbers with decFormat:'/' option
 
-arqam.ar(5530.98);
-arqam.ar(1560.45);
-arqam.ar(33.2);
-arqam.ar(5530.98,"JOD");
-arqam.ar(1560.45,"BHD");
-arqam.ar(33.2,"SDG");
+arqamAR.toWords(5530.98);
+arqamAR.toWords(1560.45);
+arqamAR.toWords(33.2);
+arqamAR.toWords(5530.98,"JOD");
+arqamAR.toWords(1560.45,"BHD");
+arqamAR.toWords(33.2,"SDG");
 // ===== Output =======
 خمسة آلاف وخمسمائة وثلاثون، و٩٨/١٠٠
 ألف وخمسمائة وستون، و٤٥/١٠٠
@@ -1014,11 +1035,11 @@ The following diagram illustrates the difference between the three (3) systems:
 //-------------------------------------
 // Examples with the `compact` option
 //-------------------------------------
-arqam.arConfig({ compact: "on"}); // used compact mode for better comparison readability
+arqamAR.config({ compact: "on"}); // used compact mode for better comparison readability
 
-arqam.ar("1100100100100100000");                    // default arabic scale
-arqam.ar("1100100100100100000" {scale : "short"});  // short scale
-arqam.ar("1100100100100100000" {scale : "long"});   // short scale
+arqamAR.toWords("1100100100100100000");                    // default arabic scale
+arqamAR.toWords("1100100100100100000" {scale : "short"});  // short scale
+arqamAR.toWords("1100100100100100000" {scale : "long"});   // short scale
 
 
 // ===== Output =======
@@ -1034,11 +1055,11 @@ arqam.ar("1100100100100100000" {scale : "long"});   // short scale
 
 <h2 id="maxNumber">⚙6.14 Maximum Number</h2>
 
-Set the maximum number that can be used by ***arqam***.
+Set the maximum number that can be used by ***arqamAR***.
 
 The default is 10^1000 (i.e. 100 دِيْوْتْرِيجِنْتاترِسِنْتِلْيون).
 
-The Largest number that can be converted by ***arqam*** is:
+The Largest number that can be converted by ***arqamAR*** is:
 
 *  100 نُوفِنوناجِنْتانونْجِنْتِلْيون   which is (10^3002) under the Short Scale System, and
 *  100 نُوفِنوناجِنْتانونْجِنْتِلْيَارات which is (10^6000) under the Long Scale System.
@@ -1060,12 +1081,12 @@ By default, numbers below zero (i.e. with only **Decimal Parts**) will have thei
 
 ***Examples in the Numbers Mode:***
 ```javascript
-arqam.ar(aqmAFd(0.5);
-arqam.ar(aqmAFd(0.01);
-arqam.ar(aqmAFd(0.2);
-arqam.ar(aqmAFd(0.5,{addZero:"on"});    // option on
-arqam.ar(aqmAFd(0.01,{addZero:"on"});   // option on
-arqam.ar(aqmAFd(0.2,{addZero:"on"});    // option on
+arqamAR.toWords(aqmAFd(0.5);
+arqamAR.toWords(aqmAFd(0.01);
+arqamAR.toWords(aqmAFd(0.2);
+arqamAR.toWords(aqmAFd(0.5,{addZero:"on"});    // option on
+arqamAR.toWords(aqmAFd(0.01,{addZero:"on"});   // option on
+arqamAR.toWords(aqmAFd(0.2,{addZero:"on"});    // option on
 
 // ===== Output =======
 خمسة أجزاء من العشرة
@@ -1078,12 +1099,12 @@ arqam.ar(aqmAFd(0.2,{addZero:"on"});    // option on
 
 ***Examples in the Currency Mode:***
 ```javascript
-arqam.ar(aqmAFd(0.5, {code:"USD"});
-arqam.ar(aqmAFd(0.01,{code:"USD"});
-arqam.ar(aqmAFd(0.2, {code:"USD"});
-arqam.ar(aqmAFd(0.5, {code:"USD", addZero:"on"});   // option on
-arqam.ar(aqmAFd(0.01,{code:"USD", addZero:"on"});   // option on
-arqam.ar(aqmAFd(0.2, {code:"USD", addZero:"on"});   // option on
+arqamAR.toWords(aqmAFd(0.5, {code:"USD"});
+arqamAR.toWords(aqmAFd(0.01,{code:"USD"});
+arqamAR.toWords(aqmAFd(0.2, {code:"USD"});
+arqamAR.toWords(aqmAFd(0.5, {code:"USD", addZero:"on"});   // option on
+arqamAR.toWords(aqmAFd(0.01,{code:"USD", addZero:"on"});   // option on
+arqamAR.toWords(aqmAFd(0.2, {code:"USD", addZero:"on"});   // option on
 
 // ===== Output =======
 خمسون سنتًا أمريكيًا
@@ -1096,7 +1117,7 @@ arqam.ar(aqmAFd(0.2, {code:"USD", addZero:"on"});   // option on
 
 <h2 id="sepDecimal">⚙6.16 Decimal Separator</h2>
 
-When options are used for displaying numbers in digits inside brackets, ***arqam*** uses the system locale setting for displaying the **Decimal Separator** by default.
+When options are used for displaying numbers in digits inside brackets, ***arqamAR*** uses the system locale setting for displaying the **Decimal Separator** by default.
 
 You can use this option to change the charatrer for the **Decimal Separator** irrespective of the system locale.
 
@@ -1164,7 +1185,7 @@ In the [Arabic Numbers Mode](#arabicNumbers), if no specific **Decimal Separator
 
 <h2 id="sepThousands">⚙6.17 Thousands Separator</h2>
 
-When options are used for displaying numbers in digits inside brackets, ***arqam*** uses the system locale setting for displaying the **Thousand Separator** by default.
+When options are used for displaying numbers in digits inside brackets, ***arqamAR*** uses the system locale setting for displaying the **Thousand Separator** by default.
 
 You can use this option to change the charatrer for the **Thousands Separator** irrespective of the system locale.
 
@@ -1260,14 +1281,14 @@ This option has priority and will override the [decInBrackets](#dec-in-brackets)
 //----------------------------------------
 // Examples with the `brackets` at the start
 //----------------------------------------
-arqam.arConfig({ brackets: "start"}); // add brackets at the start
+arqamAR.config({ brackets: "start"}); // add brackets at the start
 
-arqam.ar(256);
-arqam.ar(2500);
-arqam.ar(120000);
-arqam.ar(256,"USD");
-arqam.ar(2500,"USD");
-arqam.ar(120000,"USD");
+arqamAR.toWords(256);
+arqamAR.toWords(2500);
+arqamAR.toWords(120000);
+arqamAR.toWords(256,"USD");
+arqamAR.toWords(2500,"USD");
+arqamAR.toWords(120000,"USD");
 // ===== Output =======
 مائتان وستة وخمسون ‎(256)
 ألفان وخمسمائة ‎(2,500)
@@ -1278,11 +1299,11 @@ arqam.ar(120000,"USD");
 //----------------------------------------
 // Examples with the `brackets` at the end
 //----------------------------------------
-arqam.arConfig({ brackets: "end"}); // add brackets at the end
+arqamAR.config({ brackets: "end"}); // add brackets at the end
 
-arqam.ar(256);
-arqam.ar(2500);
-arqam.ar(120000);
+arqamAR.toWords(256);
+arqamAR.toWords(2500);
+arqamAR.toWords(120000);
 
 // ===== Output =======
 ‎(256) مائتان وستة وخمسون
@@ -1306,10 +1327,10 @@ If only one charater is specified, it will be used for both the opening and clos
 
 ***Examples:***
 ```javascript
-arqam.arConfig({ brackets: "end", bracketsType : "[]" }); // change brackets to square brackets
+arqamAR.config({ brackets: "end", bracketsType : "[]" }); // change brackets to square brackets
 
-arqam.ar(256);
-arqam.ar(256,"USD");
+arqamAR.toWords(256);
+arqamAR.toWords(256,"USD");
 
 // ===== Output =======
 [256] مائتان وستة وخمسون // brackets changed to square brackets
@@ -1340,11 +1361,11 @@ However, you can give any other string.
 //-----------------------------------------------
 // Examples of the default sign/symbol (ISO Code)
 //-----------------------------------------------
-arqam.arConfig({ brackets: "end" }); // add brackets at the start
+arqamAR.config({ brackets: "end" }); // add brackets at the start
 
-arqam.ar(256,"USD");
-arqam.ar(2500,"KWD");
-arqam.ar(120000,"QAR");
+arqamAR.toWords(256,"USD");
+arqamAR.toWords(2500,"KWD");
+arqamAR.toWords(120000,"QAR");
 
 // ===== Output =======
 (USD 256.00) مائتان وستة وخمسون دولارًا أمريكيًا
@@ -1357,11 +1378,11 @@ arqam.ar(120000,"QAR");
 //----------------------------------------
 // Examples of the Currency Native Symbol
 //----------------------------------------
-arqam.arConfig({ brackets: "end" , numSymbol:"n" });  // native symbol
+arqamAR.config({ brackets: "end" , numSymbol:"n" });  // native symbol
 
-arqam.ar(256,"USD");
-arqam.ar(2500,"KWD");
-arqam.ar(120000,"QAR");
+arqamAR.toWords(256,"USD");
+arqamAR.toWords(2500,"KWD");
+arqamAR.toWords(120000,"QAR");
 
 // ===== Output =======
 ($ 256.00) مائتان وستة وخمسون دولارًا أمريكيًا
@@ -1374,11 +1395,11 @@ arqam.ar(120000,"QAR");
 //----------------------------------------
 // Examples of the Currency Latin Symbol
 //----------------------------------------
-arqam.arConfig({ brackets: "end" , numSymbol:"L" });  // Latin symbol
+arqamAR.config({ brackets: "end" , numSymbol:"L" });  // Latin symbol
 
-arqam.ar(256,"USD");
-arqam.ar(2500,"KWD");
-arqam.ar(120000,"QAR");
+arqamAR.toWords(256,"USD");
+arqamAR.toWords(2500,"KWD");
+arqamAR.toWords(120000,"QAR");
 
 // ===== Output =======
 ($ 256.00) مائتان وستة وخمسون دولارًا أمريكيًا
@@ -1391,11 +1412,11 @@ arqam.ar(120000,"QAR");
 //----------------------------------------
 // Examples of the Currency with Currency  Symbol
 //----------------------------------------
-arqam.arConfig({ brackets: "end" , numSymbol:"L" });  // Currency Name as symbol
+arqamAR.config({ brackets: "end" , numSymbol:"L" });  // Currency Name as symbol
 
-arqam.ar(256,"USD");
-arqam.ar(2500,"KWD");
-arqam.ar(120000,"QAR");
+arqamAR.toWords(256,"USD");
+arqamAR.toWords(2500,"KWD");
+arqamAR.toWords(120000,"QAR");
 
 // ===== Output =======
 (256.00 دولار أمريكي) مائتان وستة وخمسون دولارًا أمريكيًا
@@ -1421,7 +1442,7 @@ Trailing zeros in a **Decimal Part** will not be converted to text. For example 
 
 The default maximum number of decimal places is 10^1000 (جزء واحد من مائة دِيْوْتْرِيجِنْتاترِسِنْتِلْيون).
 
-The maximum number of decimal places that can be converted by ***arqam*** is:
+The maximum number of decimal places that can be converted by ***arqamAR*** is:
 
 *  1 part of 100 نُوفِنوناجِنْتانونْجِنْتِلْيون   which is (1 part of 10^3002) under the Short Scale System, and
 *  1 part of 100 نُوفِنوناجِنْتانونْجِنْتِلْيَارات which is (1 part of 10^6000) under the Long Scale System.
@@ -1441,11 +1462,11 @@ The maximum number of decimal places that can be converted by ***arqam*** is:
 //--------------------------
 // Examples using Numbers
 //--------------------------
-arqam.arConfig({ decRound : 3  }); // round to 3 decimal places
+arqamAR.config({ decRound : 3  }); // round to 3 decimal places
 
-arqam.ar(22.1238);
-arqam.ar(22.3838);
-arqam.ar(22.9999);
+arqamAR.toWords(22.1238);
+arqamAR.toWords(22.3838);
+arqamAR.toWords(22.9999);
 
 // ===== Output =======
 اثنان وعشرون، و‏مائة وأربعة وعشرون جزءًا من الألف
@@ -1455,11 +1476,11 @@ arqam.ar(22.9999);
 //------------------------------------------------------------------
 // Examples using Numbers in 'compact' mode for better understanding
 //------------------------------------------------------------------
-arqam.arConfig({compact: "on" }); // round to 3 decimal places with compact mode
+arqamAR.config({compact: "on" }); // round to 3 decimal places with compact mode
 
-arqam.ar(22.1238);
-arqam.ar(22.3838);
-arqam.ar(22.9999);
+arqamAR.toWords(22.1238);
+arqamAR.toWords(22.3838);
+arqamAR.toWords(22.9999);
 
 // ===== Output =======
 ‏22، و‏124 جزءًا من الـ1,000
@@ -1473,11 +1494,11 @@ arqam.ar(22.9999);
 //--------------------------
 // Examples using Currencies
 //--------------------------
-arqam.arConfig({ decRound : 3, compact: "on"}); // round to 3 decimal places with compact mode
+arqamAR.config({ decRound : 3, compact: "on"}); // round to 3 decimal places with compact mode
 
-arqam.ar(22.1238, "USD");
-arqam.ar(22.3838, "USD");
-arqam.ar(22.9999, "USD");
+arqamAR.toWords(22.1238, "USD");
+arqamAR.toWords(22.3838, "USD");
+arqamAR.toWords(22.9999, "USD");
 
 // ===== Output =======
 ‏22 دولارًا أمريكيًا، و‏12 سنتًا
@@ -1485,7 +1506,7 @@ arqam.ar(22.9999, "USD");
 ‏22 دولارًا أمريكيًا، و‏99 سنتًا   // whole number not affected
 ```
 
-💡 The above is another example that shows how you can combine configuration options using the `arqam.arConfig()` and using the `arqam.ar()`.
+💡 The above is another example that shows how you can combine configuration options using the `arqamAR.config()` and using the `arqamAR.toWords()`.
 
 
 <h2 id="decFormat">⚙6.22 Decimal Formats (تنسيقات الكسور)</h2>
@@ -1560,30 +1581,30 @@ The type of brackets can be changed using the [`bracketsOpen`](#bracketsOpen) an
 ***Examples:***
 
 ```javascript
-arqam.arConfig( {decInBrackets:"on"} );
+arqamAR.config( {decInBrackets:"on"} );
 
 // Example with Numbers only
-arqam.ar(113.13);
+arqamAR.toWords(113.13);
 مائة وثلاثة عشر، (‏و‏ثلاثة عشر جزءًا من المائة)‏
 
 // Example with Currency
-arqam.ar(2000.2,"LBP");
+arqamAR.toWords(2000.2,"LBP");
 ألفا ليرة لبنانية، و(‏عشرون قرشًا)
 
 // Example A fraction only Number will not be placed in brackets except in addZero option
-arqam.ar(0.13);
+arqamAR.toWords(0.13);
 ثلاثة عشر جزءًا من المائة
 
 // Example A fraction only Number will not be placed in brackets except in addZero option
-arqam.ar(0.5,"OMR");
+arqamAR.toWords(0.5,"OMR");
 خمسمائة بيسة عمانية
 
 // examples with only decimal numbers but using the "addZero" option
-arqam.arConfig( {decInBrackets:"on", addZero :" on"} );
-arqam.ar(0.13);
+arqamAR.config( {decInBrackets:"on", addZero :" on"} );
+arqamAR.toWords(0.13);
 صفر، (‏و‏ثلاثة عشر جزءًا من المائة)‏
 
-arqam.ar(0.5,"OMR");
+arqamAR.toWords(0.5,"OMR");
 صفر ريال عماني، و(‏خمسمائة بيسة)‏
 ```
 
@@ -1596,7 +1617,7 @@ With this option, the words **'جزءًا من'** can be ignored (removed) by us
 
 ***Examples in the default {decJuz: "on"}:***
 ```javascript
-arqam.ar(22.1);
+arqamAR.toWords(22.1);
 aqmAFd(22.2);
 aqmAFd(22.3);
 aqmAFd(22.238);
@@ -1609,9 +1630,9 @@ aqmAFd(22.238);
 ```
 ***Examples with {decJuz: "off"}:***
 ```javascript
-arqam.arConfig( {decJuz:"off"} );
+arqamAR.config( {decJuz:"off"} );
 
-arqam.ar(22.1);
+arqamAR.toWords(22.1);
 aqmAFd(22.2);
 aqmAFd(22.3);
 aqmAFd(22.238);
@@ -1649,12 +1670,12 @@ The **Decimal Part** of a number (and the Sub-Unit of a Currency Value) is not d
 
 ***Examples with the option {decIgnore: "on"}:***
 ```javascript
-arqam.arConfig( {decIgnore:"on"} );
+arqamAR.config( {decIgnore:"on"} );
 
-arqam.ar(22.01);
-arqam.ar(145.32);
-arqam.ar(22.01,"QAR");
-arqam.ar(145.32,"BHD");
+arqamAR.toWords(22.01);
+arqamAR.toWords(145.32);
+arqamAR.toWords(22.01,"QAR");
+arqamAR.toWords(145.32,"BHD");
 
 // ========= Output ==========
 // The Decimal Part is ignored
@@ -1676,7 +1697,7 @@ The default is with the **`{decAL: 'on'}`**
 
 ***Examples in the default {decAL: "on"}:***
 ```javascript
-arqam.ar(22.1);
+arqamAR.toWords(22.1);
 aqmAFd(22.2);
 aqmAFd(22.3);
 aqmAFd(22.238);
@@ -1689,9 +1710,9 @@ aqmAFd(22.238);
 ```
 ***Examples with {decAL: "off"}:***
 ```javascript
-arqam.arConfig( {decAL:"off"} );
+arqamAR.config( {decAL:"off"} );
 
-arqam.ar(22.1);
+arqamAR.toWords(22.1);
 aqmAFd(22.2);
 aqmAFd(22.3);
 aqmAFd(22.238);
@@ -1714,11 +1735,11 @@ In the **[Currency Mode](#CurrencyMode)**, this option permits the output text t
 
 ***Examples in the option {ignoreCountry: "on"}:***
 ```javascript
-arqam.arConfig( {ignoreCountry:"on"} );
+arqamAR.config( {ignoreCountry:"on"} );
 
-arqam.ar(22.01,"QAR");
-arqam.ar(2000.01,"USD");
-arqam.ar(145.32,"BHD");
+arqamAR.toWords(22.01,"QAR");
+arqamAR.toWords(2000.01,"USD");
+arqamAR.toWords(145.32,"BHD");
 
 // ========= Output ==========
 // The Country name is ignored
@@ -1766,10 +1787,10 @@ This may be changed to any other string.
 
 ***Examples***
 ```javascript
-arqam.arConfig( {isNaN:"ليس رقمًا"} );
+arqamAR.config( {isNaN:"ليس رقمًا"} );
 
-arqam.ar('');
-arqam.ar('text');
+arqamAR.toWords('');
+arqamAR.toWords('text');
 
 // ========= Output ==========
 ليس رقمًا
@@ -1786,7 +1807,7 @@ The output will be an array containing the text for each number.
 ***Example 1 with Numbers***
 
 ```javascript
-arqam.ar([22,777,1000,2000,3300,2500]);
+arqamAR.toWords([22,777,1000,2000,3300,2500]);
 
 // ========= Output ==========
 [
@@ -1802,7 +1823,7 @@ arqam.ar([22,777,1000,2000,3300,2500]);
 ***Example 2 with Currency***
 
 ```javascript
-arqam.ar([22,777,1000,2000,3300,2500,0.55,1.6],"DZD");
+arqamAR.toWords([22,777,1000,2000,3300,2500,0.55,1.6],"DZD");
 
 // ========= Output ==========
 [
@@ -1822,65 +1843,67 @@ arqam.ar([22,777,1000,2000,3300,2500,0.55,1.6],"DZD");
 
 You can modify an existing currency attributes and therefore adjusting or correcting such attributes as necessary.
 
-Each Currency has **19** attributes; any of can be changed:
+Each Currency (or Subject) has **19** attributes; any of can be changed.
 
-**currDecimal**    : The currency minor sub-unit decimal places (normally 2 or 3).
+The following attributes are applicable in both the **[Currency Mode](#CurrencyMode)** and the **[Subjects Mode](#subjectsMode)**.
+
+**currDecimal**    : The currency or subject minor sub-unit decimal places (normally 2 or 3).
 
 ***Standard Currency Attributes:***
 
-**majorSingle**    : **Major** currency name (**singular**) e.g. 'دينار' 'ريال' 'دولار'
+**majorSingle**    : **Major** currency or subject name (**singular**) e.g. 'دينار' 'ريال' 'دولار'
 
-**majorSingleC**   : **Major** currency country name (**singuar**) adjective. e.g. 'كويتي' 'أمريكي' 'قطري'
+**majorSingleC**   : **Major** currency country name or adjective/demonym (**singuar**). e.g. 'كويتي' 'أمريكي' 'قطري'
 
-**majorPlural**    : **Major** currency name (**plural**) e.g. 'دنانير' 'ريالات' 'دولارات'
+**majorPlural**    : **Major** currency or subject name (**plural**) e.g. 'دنانير' 'ريالات' 'دولارات'
 
-**majorPluralC**   : **Major** currency country name (**plural**) adjective. e.g. 'كويتية' 'أمريكية' 'قطرية'
+**majorPluralC**   : **Major** currency country name or adjective/demonym (**plural**). e.g. 'كويتية' 'أمريكية' 'قطرية'
 
-**majorGender**    : **Major** currency Gender; 0 for male gender and 1 for female gender.
+**majorGender**    : **Major** currency or subject Gender; 0 for male gender and 1 for female gender.
 
-**minorSingle**    : **Minor** currency name (**singular**) e.g. 'فلس' 'درهم' 'سنت'
+**minorSingle**    : **Minor** currency or subject name (**singular**) e.g. 'فلس' 'درهم' 'سنت'
 
-**minorSingleC**   : **Minor** currency country name (**singuar**) adjective. e.g. 'كويتي' 'أمريكي' 'قطري'
+**minorSingleC**   : **Minor** currency country name or adjective/demonym (**singuar**). e.g. 'كويتي' 'أمريكي' 'قطري'
 
-**minorPlural**    : **Minor** currency name (**plural**) e.g. 'فلوس' 'دراهم' 'سنتات'
+**minorPlural**    : **Minor** currency or subject name (**plural**) e.g. 'فلوس' 'دراهم' 'سنتات'
 
-**minorPluralC**   : **Minor** currency country name (**plural**) adjective. e.g. 'كويتية' 'أمريكية' 'قطرية'
+**minorPluralC**   : **Minor** currency country name or adjective/demonym (**plural**). e.g. 'كويتية' 'أمريكية' 'قطرية'
 
-**minorGender**    : **Minor** currency Gender; 0 for male gender and 1 for female gender.
+**minorGender**    : **Minor** currency or subject Gender; 0 for male gender and 1 for female gender.
 
-***Tashkeel Currency Attributes:***
+***Tashkeel Currency Attributes:*** These are **Optional**
 
 **majorSingleT**   : Major currency name (singular) Tashkeel. e.g. 'دِينَار' 'رِيَال' 'دُولار'
 
-**majorSingleCT**  : Major currency country name (singuar) adjective Tashkeel. e.g. 'كُوَيتِيّ' 'أمْريكِيّ' 'قَطَرِيّ'
+**majorSingleCT**  : Major currency country name (singuar) adjective/demonym Tashkeel. e.g. 'كُوَيتِيّ' 'أمْريكِيّ' 'قَطَرِيّ'
 
 **majorPluralT**   : Major currency name (plural) Tashkeel. e.g. 'دَنَانَيرٍ' 'رِيَالاتٍ' 'دُولاراتٍ'
 
-**majorPluralCT**  : Major currency country name (plural) adjective Tashkeel. e.g. 'كُوَيتِيَّةٍ' 'أمْريكِيَّةٍ' 'قَطَرِيَّةٍ'
+**majorPluralCT**  : Major currency country name (plural) adjective/demonym Tashkeel. e.g. 'كُوَيتِيَّةٍ' 'أمْريكِيَّةٍ' 'قَطَرِيَّةٍ'
 
 **minorSingleT**   : Major currency name (singular) Tashkeel. e.g. 'فِلْس' 'دِرْهَم' 'سِنْت'
 
-**minorSingleCT**  : Major currency country name (singuar) adjective Tashkeel. e.g. 'كُوَيتِيّ' 'أمْريكِيّ' 'قَطَرِيّ'
+**minorSingleCT**  : Major currency country name (singuar) adjective/demonym Tashkeel. e.g. 'كُوَيتِيّ' 'أمْريكِيّ' 'قَطَرِيّ'
 
 **minorPluralT**   : Major currency name (plural) Tashkeel. e.g. 'فُلُوسٍ' 'دَرَاهمٍ' 'سِنْتَاتٍ'
 
-**minorPluralCT**  : Major currency country name (plural) adjective Tashkeel. e.g. 'كُوَيتِيَّةٍ' 'أمْريكِيَّةٍ' 'قَطَرِيَّةٍ'
+**minorPluralCT**  : Major currency country name (plural) adjective/demonym Tashkeel. e.g. 'كُوَيتِيَّةٍ' 'أمْريكِيَّةٍ' 'قَطَرِيَّةٍ'
 
-⚠ Note: The singular forms for the minor and major (both currency and country name) should not have any Tanween for the last character. This will be added by ***arqam*** depending on the word position. The other attribute entries must have Tanween Kasr for the last character.
+⚠ Note 1: The singular forms for the minor and major (both currency (Subject) and country name (Adjective/demonym)) should not have any Tanween for the last character. This will be added by ***arqamAR*** depending on the word position. The other attribute entries must have Tanween Kasr for the last character.
 
+⚠ Note 2: It is not essential to create the Tashkeel forms of the entries as the normal ones will be used by default.
 
-
-***Example Chanلing the USD Currency Major Name***
+***Example 1 Changing the USD Currency Major Name***
 
 ```javascript
-arqam.arConfig( {
+arqamAR.config( {
     code        : "USD",
     majorSingle : "جنيه",
     });
 
-arqam.ar(22.5);
-arqam.ar(100);
-arqam.ar(3);
+arqamAR.toWords(22.5);
+arqamAR.toWords(100);
+arqamAR.toWords(3);
 
 // ========= Output ==========
 اثنان وعشرون جنيهًا أمريكيًا، وخمسون سنتًا
@@ -1892,16 +1915,18 @@ arqam.ar(3);
 
 A proper way to do that is as follows:
 
+***Example 2***
+
 ```javascript
-arqam.arConfig( {
+arqamAR.config( {
     code        : "USD",
     majorSingle : "جنيه",
     majorPlural : "جنيهات",
     });
 
-arqam.ar(22.5);
-arqam.ar(100);
-arqam.ar(3);
+arqamAR.toWords(22.5);
+arqamAR.toWords(100);
+arqamAR.toWords(3);
 
 // ========= Output ==========
 اثنان وعشرون جنيهًا أمريكيًا، وخمسون سنتًا
@@ -1911,19 +1936,22 @@ arqam.ar(3);
 
 <h2 id="createNew">9️⃣ Create New Currency</h2>
 
-To create an all new currency you will need, as minimum, to provide three (3) settings:
+If the existing 172 currencies provide by ***arqamAR*** are not enough and you want to create an all new currency you will need, as minimum, to provide three (3) settings:
 
 1. A new code to replace the ISO code. (this can be a 2 character word or any ISO code but in lower case).
 2. The currency name Singular (`majorSingle` string).
 3. The currency name Plural (`majorPlural` string).
-4. It is good to provide the name of the minor units (`minorSingle` and `minorPlural`) to avoid ***arqam*** switching to the `decJuz` mode and displaying the Decimal Parts as: **'جزء من'**.
+4. It is good to provide the name of the minor units (`minorSingle` and `minorPlural`) to avoid ***arqamAR*** switching to the `decJuz` mode and displaying the Decimal Parts as: **'جزء من'**.
 5. If you do not provide the `currDecimal`, it will be assumed as 2 (i.e. there are 100 minor units in one major unit).
 6. If you want to attach it to any particular country, then you can add the (`minorSingleC` and `minorPluralC`) setting; otherwise no country name will be shown.
+
+
+***Example 1***
 
 Let us create a New Currency called 'سحتوت' that belongs to Egypt and has a sub-unit (minor) called 'مليم' with 3 decimal places.
 
 ```javascript
-arqam.arConfig( {
+arqamAR.config( {
     code         : "EGS",      // a new non-ISO code (can be anything)
     majorSingle  : "سحتوت",
     majorSingleC : "مصري",
@@ -1938,9 +1966,9 @@ arqam.arConfig( {
     currDecimal  : 3,           // 1000 مليم in 1 سحتوت
     });
 
-arqam.ar(22.5);
-arqam.ar(100);
-arqam.ar(3);
+arqamAR.toWords(22.5);
+arqamAR.toWords(100);
+arqamAR.toWords(3);
 
 // ========= Output ==========
 اثنان وعشرون سحتوتًا مصريًا، وخمسمائة مليم
@@ -1948,26 +1976,106 @@ arqam.ar(3);
 ثلاثة سحاتيت مصرية
 ```
 
-⚠ Note: ***arqam** enters the **New Currency Mode** if 3 attributes are provided (i.e. not empty): `majorSingle`, `majorPlural`, and `code`. To get out of the New Currency Mode, set the `majorSingle` and `majorPlural` to empty strings.
+⚠ Note: ***arqamAR*** enters the **New Currency Mode** if 3 attributes are provided (i.e. not empty): `majorSingle`, `majorPlural`, and `code`. To get out of the New Currency Mode, set the `majorSingle` and `majorPlural` to empty strings.
 
 ⚠ Note: The Tashkeel attributes are optional; if not stated, the standard names are used in the Tashkeel Option.
 
 
+***Example 2***
 
-<h2 id="subjectsMode">🔟 Use Other Subjects</h2>
+Let us now create a New Currency called 'نكلة' that belongs to "تركيا" and has a sub-unit (minor) called 'بقشة' with 2 decimal places. We also enable the **[Brackets Mode](#brackets)** to show the number and code.
 
-Like creating a new currency, you can create other subjects to be counted. In this case you may not need to state the country name adjective.
+```javascript
+arqamAR.config( {
+    code         : "NKL",      // a new non-ISO code (can be anything)
+    majorSingle  : "نكلة",
+    majorSingleC : "تركية",
+    majorPlural  : "نكلات",
+    majorPluralC : "تركية",
+    majorGender  : 1,          // indicate Female Currency
 
-To enter the **Subjects Mode** set the currency Code to 'sub' **`{code : 'sub'`**.
+    minorSingle  : "بقشة",
+    minorSingleC : "تركية",
+    minorPlural  : "بقشات",
+    minorPluralC : "تركية",
+    minorGender  : 1,          // indicate Female sub-Currency
+
+    brackets :"end",           // enable Brackets Mode
+
+    currDecimal  : 2,           // 100 بقشة in 1 نكلة
+    });
+
+console.log( arqamAR.toWords(22.5) );
+console.log( arqamAR.toWords(100) );
+console.log( arqamAR.toWords(3) );
+console.log( arqamAR.toWords(0.1) );
+
+// ========= Output ==========
+(22.50 NKL) اثنتان وعشرون نكلةً تركيةً، وخمسون بقشةً
+(100.00 NKL) مائة نكلة تركية
+(3.00 NKL) ثلاث نكلات تركية
+(0.10 NKL) عشر بقشات تركية‎
+```
 
 
-Let us create a subject kilometer 'كيلومتر' with the minor meter 'متر':
+***Example 3***
+
+This example shows how you can create an all new currency using an existing currency data as a shortcut.
+
+Let us create the old French currency 'Franc' (old iso code FRF) and it had the sub-unit 'Centime'.
+
+There are few countries that still use the Franc and Centime, one of them Guinea in west Africa.
+
+Guinean Franc has the iso code 'GNF' which we can use and modify.
+
+But in the Brackets Mode, the code will be shown as 'GNF' not as 'FRF'. We can fix that with the option `numSymbol`
+
+
+```javascript
+arqamAR.config( {
+arqamAR.config( {
+    code         : "GNF",      //use Guinea iso code
+    majorSingleC : "فرنسي",   // change demonym (adjectives) for Single to France
+    majorPluralC : "فرنسية",  // change demonym (adjectives) for Plural to France
+
+    minorSingleC : "فرنسي",   // do the same for the sub-unit
+    minorPluralC : "فرنسية",
+
+    numSymbol    : "FRF",     // use France old ISO code
+    brackets     :"end",      // enale Brackets Mode to show the the code
+
+    });
+    });
+
+console.log( arqamAR.toWords(22.5) );
+console.log( arqamAR.toWords(100) );
+console.log( arqamAR.toWords(3) );
+console.log( arqamAR.toWords(0.1) );
+
+// ========= Output ==========
+(22.50 FRF) اثنان وعشرون فرنكًا فرنسيًا، وخمسون سنتيمًا ‎
+(100.00 FRF) مائة فرنك فرنسي ‎
+(3.00 FRF) ثلاثة فرنكات فرنسية ‎
+‎(0.10 FRF) عشرة سنتيمات فرنسية
+```
+
+
+
+
+<h2 id="subjectsMode">🔟 Use Other Subjects (the Subjects Mode)</h2>
+
+Like creating a new currency, you can create other subjects to be counted. In this case you may not need to state the country name adjective (demonym).
+
+To enter the **Subjects Mode** you need to set the `code` option to the word 'sub' **`{code : 'sub'}`**.
+
+
+Let us create a subject kilometer 'كيلومتر' with the minor unit meter 'متر':
 
 ***Example 1 Subject with a Sub-Subject***
 
 ```javascript
-arqam.arConfig( {
-    code        : "sub",      // use the 'Subject Mode'
+arqamAR.config( {
+    code        : "sub",      // use the 'Subjects Mode'
     majorSingle : "كيلومتر",
     majorPlural : "كيلومترات",
 
@@ -1977,10 +2085,10 @@ arqam.arConfig( {
     currDecimal : 3,           //1000 meter in 1 kilometer
     });
 
-arqam.ar(22.5);
-arqam.ar(100);
-arqam.ar(3);
-arqam.ar(0.25);
+arqamAR.toWords(22.5);
+arqamAR.toWords(100);
+arqamAR.toWords(3);
+arqamAR.toWords(0.25);
 
 // ========= Output ==========
 اثنان وعشرون كيلومترًا، وخمسمائة متر
@@ -1994,16 +2102,16 @@ Let us now create a subject that has no sub-subject like Degree 'درجة' :
 ***Example 2 Subject without a Sub-Subject***
 
 ```javascript
-arqam.arConfig( {
-    code        : "sub",      // use the 'Subject Mode'
+arqamAR.config( {
+    code        : "sub",      // use the 'Subjects Mode'
     majorSingle : "درجة",
     majorPlural : "درجات",
     });
 
-arqam.ar(22.5);
-arqam.ar(100);
-arqam.ar(3);
-arqam.ar(0.25);
+arqamAR.toWords(22.5);
+arqamAR.toWords(100);
+arqamAR.toWords(3);
+arqamAR.toWords(0.25);
 
 // ========= Output ==========
 اثنان وعشرون درجةً، وخمسون جزءًا من المائة درجة
@@ -2012,24 +2120,26 @@ arqam.ar(0.25);
 خمسة وعشرون جزءًا من المائة درجة
 ```
 
+⚠ **Note above that because there is no minor unit provided, the words *"جزءًا"* is used for the decimal parts of the number.**
 
-Let us now create a subject that has no sub-subject by has an adjective like Degree 'درجة مئوية' :
+
+Let us now create a subject that has no sub-subject by has an adjective (demonym) like Degree 'درجة مئوية' :
 
 ***Example 3 Subject without a Sub-Subject by with an adjective***
 
 ```javascript
-arqam.arConfig( {
-    code        : "sub",      // use the 'Subject Mode'
+arqamAR.config( {
+    code        : "sub",      // use the 'Subjects Mode'
     majorSingle : "درجة",
     majorSingleC: "مئوية",
     majorPlural : "درجات",
     majorPluralC: "مئوية",
     });
 
-arqam.ar(22.5);
-arqam.ar(100);
-arqam.ar(3);
-arqam.ar(0.25);
+arqamAR.toWords(22.5);
+arqamAR.toWords(100);
+arqamAR.toWords(3);
+arqamAR.toWords(0.25);
 
 // ========= Output ==========
 اثنان وعشرون درجةً مئويةً، وخمسون جزءًا من المائة درجة مئوية
@@ -2038,16 +2148,17 @@ arqam.ar(0.25);
 خمسة وعشرون جزءًا من المائة درجة
 ```
 
+⚠ **Note here that unlike in the Currency Mode, the words "مئوية" is also repeated for the Decimal Part.**
 
-Let us now create a compund subject like Kilometer per Hour 'كيلومتر في الساعة'.
+Let us now create a compounded subject like **Kilometer per Hour** **'كيلومتر في الساعة'**.
 
-We also add to it Meter per Hour 'متر في الساعة' as a sub-subject (or its minor unit).
+We also add to it **Meter per Hour 'متر في الساعة'** as a sub-subject (or its minor unit).
 
 ***Example 4 Compund Subject***
 
 ```javascript
-arqam.arConfig( {
-    code        : "sub",      // use the 'Subject Mode'
+arqamAR.config( {
+    code        : "sub",      // use the 'Subjects Mode'
     majorSingle : "كيلومتر",
     majorSingleC: "في الساعة",
     majorPlural : "كيلومترات",
@@ -2062,12 +2173,12 @@ arqam.arConfig( {
     decSubInParts: "on"        // see note below on this setting
     });
 
-arqam.ar(1);
-arqam.ar(2);
-arqam.ar(1.5);
-arqam.ar(3);
-arqam.ar(100);
-arqam.ar(0.25);
+arqamAR.toWords(1);
+arqamAR.toWords(2);
+arqamAR.toWords(1.5);
+arqamAR.toWords(3);
+arqamAR.toWords(100);
+arqamAR.toWords(0.25);
 
 // ========= Output ==========
 كيلومتر واحد في الساعة
@@ -2078,7 +2189,7 @@ arqam.ar(0.25);
 مائتان وخمسون مترًا في الساعة
 ```
 
-⚠ Note 1: If the adjective part of the subject is a compund sentence such as 'per second' 'في الثانية' or per hour 'في الساعة', etc. then enable the option `{decSubInParts : "on"}` for a propr orienttion of the output text. However, ***arqam*** will automatically detect the presence of the words "في ال" in the `{majorSingleC}` and will use it in the `{majorPluralC}` setting, and will automatically set the `{decSubInParts : "on"}` option.
+⚠ Note 1: If the adjective (demonym) part of the subject is a compounded sentence such as 'per second' 'في الثانية' or per hour 'في الساعة', etc. then enable the option `{decSubInParts : "on"}` for a propr orienttion of the output text. However, ***arqamAR*** will automatically detect the presence of the words "في ال" in the `{majorSingleC}` and will use it in the `{majorPluralC}` setting, and will automatically set the `{decSubInParts : "on"}` option.
 
 ⚠ Note 2: Remember when using subjects like Square Kilometer 'كيلومتر مربع' or Square Meter 'متر مربع' that the decimal part should be correctly set.
 
@@ -2090,8 +2201,8 @@ Likewise, 1 Square Meter = 100 x 100 = 10,000 Square Centemeter, so the decimal 
 ***Example 4 with Square Meter***
 
 ```javascript
-arqam.arConfig( {
-    code        : "sub",      // use the 'Subject Mode'
+arqamAR.config( {
+    code        : "sub",      // use the 'Subjects Mode'
     majorSingle : "متر",
     majorSingleC: "مربع",
     majorPlural : "أمتار",
@@ -2105,12 +2216,12 @@ arqam.arConfig( {
     currDecimal : 4,            // note decimal is 4 not 2
     });
 
-arqam.ar(1);
-arqam.ar(2);
-arqam.ar(1.5);
-arqam.ar(3);
-arqam.ar(100);
-arqam.ar(0.25);
+arqamAR.toWords(1);
+arqamAR.toWords(2);
+arqamAR.toWords(1.5);
+arqamAR.toWords(3);
+arqamAR.toWords(100);
+arqamAR.toWords(0.25);
 
 // ========= Output ==========
 متر مربع واحد
@@ -2119,5 +2230,48 @@ arqam.ar(0.25);
 ثلاثة أمتار مربعة
 مائة متر مربع
 ألفان وخمسمائة سنتيمتر مربع             // note 2500 cm2
-
 ```
+
+
+
+***Example 45 with Kilomgram using the Symbol and Brackets Mode***
+
+In this example we create the Subject **'Kilogram'** and sub-Subject **'Gram'** and also add the option to enable the **[Brackets Mode](#brackets)** and add the symbol **'كغ'**.
+
+```javascript
+arqamAR.config( {
+    code        : "sub",           // use the 'Subjects Mode'
+    majorSingle : "كيلوغرام",
+    majorSingleC: "",
+    majorPlural : "كيلوغرامات",
+    majorPluralC: "",
+
+    minorSingle : "غرام",
+    minorSingleC: "",
+    minorPlural : "غرامات",
+    minorPluralC: "",
+
+    brackets     :"end",        // use the Brackets Mode
+    numSymbol    :"كغ",         // use the symbol "كغ" inside the brackets
+    currDecimal  : 3,           // 1000 gram in 1 kilogram
+    });
+
+console.log(arqamAR.toWords(1));
+console.log(arqamAR.toWords(2));
+console.log(arqamAR.toWords(1.5));
+console.log(arqamAR.toWords(3));
+console.log(arqamAR.toWords(100));
+console.log(arqamAR.toWords(0.25));
+
+// ========= Output ==========
+(كغ 1) كيلوغرام واحد
+(2 كغ) كيلوغرامان اثنان
+‎(1.500 كغ) كيلوغرام واحد ، وخمسمائة غرام
+(3 كغ) ثلاثة كيلوغرامات
+‎(100 كغ) مائة كيلوغرام
+(0.250 كغ) مائتان وخمسون غرامًا
+```
+
+⚠ Note: The position of the symbol word "كغ" and the number will not show correctly here as Github using the Markdown language does not allow right-to-left text direction. The following image illustrates the output better.
+
+![Image](/images/subject01.png?raw=true)

@@ -90,13 +90,15 @@
 
 10. **[Use Other Subjects (the Subjects Mode)](#subjectsMode)**
 
+11. **[Notes on Coding and Use](#codingnotes)**
+
 
 
 <h2 id="introduction">1️⃣ Introduction</h2>
 
-Some time ago I felt that it was necessary to have a library that properly and correctly converts numbers and currencies to Arabic text.
+Some time ago I felt that it was necessary to have a library that properly and correctly converts numbers and currencies into Arabic text.
 
-Many websites and library functions exist (in various programming languages) that attempt to convert numbers and currencies to Arabic text but fail to do it properly in accordance with the correct Arabic language grammar, let alone provide the needed options and facilities required.
+Many websites and library functions exist (in various programming languages) that attempt to convert numbers and currencies to Arabic text but many fail to do it properly in accordance with the correct Arabic language grammar, let alone provide the needed options, flexibilities, and facilities required.
 
 <div align="center">
   NOW IT IS HERE
@@ -150,7 +152,7 @@ A full list of all options is provided below.
 #### First Parameter
 **number**: Number in Numeric or String form.
 
-Large numbers and numbers with large decimals may be passed in a string form if required.
+Large numbers and numbers with large decimals may be passed in a string form if required. It is advisable that numbers are passed inside quotes (as a string) especially large or very small decimals to prevent Javascript from converting them to e-notation numbers.
 
 Numbers may be passed in Arabic-Eastern format (i.e. numbers ٠١٢٣٤٥٦٧٨٩) (as a string), if required.
 
@@ -2217,10 +2219,10 @@ arqamAR.toWords(0.25);
 خمسة وعشرون جزءًا من المائة درجة
 ```
 
-⚠ **Note above that because there is no minor unit provided, the words *"جزءًا"* is used for the decimal parts of the number.**
+⚠ **Note above that because there is no minor unit provided, ***arqamAR*** automatically uses the words *"جزءًا"* for the **Decimal Parts** of the number.**
 
 
-Let us now create a subject that has no sub-subject by has an adjective (demonym) like Degree 'درجة مئوية' :
+Let us now create a subject that has no sub-subject but has an adjective (demonym) like Degree 'درجة مئوية' :
 
 ***Example 3 Subject without a Sub-Subject by with an adjective***
 
@@ -2369,6 +2371,69 @@ console.log(arqamAR.toWords(0.25));
 (0.250 كغ) مائتان وخمسون غرامًا
 ```
 
-⚠ Note: The position of the symbol word "كغ" and the number will not show correctly here as Github using the Markdown language does not allow right-to-left text direction. The following image illustrates the output better.
+⚠ Note: The position of the symbol word "كغ" and the number will not show correctly here as Github using the Markdown language does not allow right-to-left (RTL) text direction. The following image illustrates the output better.
 
 ![Image](/images/subject01.png?raw=true)
+
+
+
+<h2 id="codingnotes">1️⃣1️⃣ Notes on Coding and Use</h2>
+
+**1. Pass Large Numbers as a String**
+
+Very large numbers and very small decimal numbers should be passed to ***arqamAR*** as a string to avoid Javascript converting them to e-notation (exponent) numbers. ***arqamAR*** does not handle exponent numbers.
+
+Consider the following:
+
+```javascript
+console.log(arqamAR.towords(0.0000001));
+```
+
+The output will be a blank String because arqam considers not to be a number.
+What happended is that javascript passed the number to arqam as 1e-7.
+
+***arqamAR*** removed all no digit character and the result was **1-7**. This becomes a NaN.
+
+You will get more understanding if you change the line to the following:
+
+```javascript
+console.log(arqamAR.toWords(0.0000001, {isNaN:"ليس رقمًا"}));
+```
+
+Now the output will be:
+ليس رقمًا
+
+The above should be passed to ***arqamAR*** is a string as follows:
+
+```javascript
+console.log(arqamAR.towords("0.0000001"));
+
+//---- Correct Output ----
+جزء واحد من العشرة ملايين
+```
+
+Similarly, for large numbers. See this funy example:
+
+```javascript
+console.log(arqamAR.towords(1000000000000000000000));
+
+//---- Incorrect Output ----
+مائة وواحد وعشرون
+```
+The output is incorrect. The reason is that the number was passed by javascript to ***arqamAR*** as **1e21**. ***arqamAR*** removed all non-digits and ended up with 121 and such number was converted.
+
+Therefore, the above should be passed to ***arqamAR*** is a string as follows:
+
+```javascript
+console.log(arqamAR.towords("1000000000000000000000"));
+
+//---- Correct Output ----
+سكستليون
+```
+
+The other reason that numbers be passed as strings is because javascript will tend to round approximate the number to fit its internal binary storage limits.
+
+**2. Currency List Array**
+
+***arqamAR*** has a built-in table array of world currencies in a compact mode (simple encoding) to reduce the size of the ***arqamAR*** code.
+

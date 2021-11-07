@@ -221,6 +221,8 @@ because the option "USD" is remembered in the next call.
 ### Alternative Configuration Shortcuts
 `arqamAR.config()` provides full access to ***arqamAR*** configurations.
 
+It is preferred to use the `arqamAR.config()` at the start of your code, and then simply use `arqamAR.toWords()` to process whatever numbers you like. This is also the fastest processing method.
+
 However, rather than using the `arqamAR.config()`, ***arqamAR*** provides two (2) alternative methods of shortcut using the `arqamAR.toWords()` itself by using the second parameter of `arqamAR.toWords()`. See above for the [`arqamAR.toWords()` syntax](#syntax).
 
 If the 2nd parameter of the `arqamAR.toWords()` function is a valid ISO Currency Code, then that code is used and a switch is made to the **[Currency Mode](#CurrencyMode)**.

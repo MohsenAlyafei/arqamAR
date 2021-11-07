@@ -273,24 +273,23 @@ arqamAR.toWords(3300.5,{tashkeel:"on", code:"AED", brackets: "end", arabicNumber
 
 <h2 id="table">6️⃣ Table of Configurations</h2>
 
-| No.| Config Option |Available<br/>Settings|Default<br/>Setting|Purpose
+| No.| Configuration Option |Available<br/>Settings|Default<br/>Setting|Purpose
 |:---:|:---|:---:|:---:|:-----
-|     |    |     |     |
-|1|[code](#CurrencyMode)|"" empty<br/>ISO code<br/>'sub'|"" empty|The 3-Letter ISO Code of the Currency.<br/>Specifying a valid currency-code will switch to the **[Currency Mode](#CurrencyMode)** and generate the text for a currency taking into account the sub-currency.<br/>An empty "" string  will switch to the **[Numbers Mode](#NumbersMode)** which is the default.<br/>'sub' will enter the **[Subjects Mode](#subjectsMode)**.
+|1|[code](#CurrencyMode)|"" empty<br/>ISO code<br/>'sub'|"" empty|The 3-Letter ISO Code of the Currency.<br/>Specifying a valid currency-code will switch to the **[Currency Mode](#CurrencyMode)** and generate the text for a currency taking into account the sub-currency.<br/><br/>An empty "" string  will switch to the **[Numbers Mode](#NumbersMode)** which is the default.<br/><br/>'sub' will enter the **[Subjects Mode](#subjectsMode)**.
 |2|[compact](#compact) |"on"<br/>"off"|'off'|Use the **[Compact Mode](#compact)**.
 |3|[tashkeel](#tashkeel)|"on"<br/>"off"|"off"|Use full Tashkeel (تشكيل كامل للحروف).<br/><br/>**Examples:**<br/>‏خَمْسَةَ عَشَرَ ألْفَ دِينَارٍ أُردُنِيٍّ<br/>ثَلاثَةُ رِيَالاتٍ عُمَانِيَّةٍ<br/>‏ ثَلاثَةُ آلَافٍ وَخَمْسُمَائَةٍ وَخَمْسَةٌ وَخَمْسونَ دُولارًا أمْريكِيًّا
 |4|[tanween](#tanween)|"on"<br/>"off"|"off"|Use full Tanweens (Tanween Fatih, Dham, and Kasr)<br/>(استخدام تنوين الفتح وتنوين الضم والكسر).<br/><br/>**Examples:**<br/>‏خمسة عشر ألف دينارٍ أردنيٍ<br/>ثلاثة ريالاتٍ عمانيةٍ<br/>‏ ثلاثة آلافٍ وخمسمائةٍ وخمسةٌ وخمسون دولارًا أمريكيًا
 |5|[tanweenFatih](#tanweenFatih)|"on"<br/>"off"|**"on"**|Use Tanween Fatih only (تنوين فتح فقط). This is the default Basic Tanween and is "on" by default.<br/><br/>**Examples:**<br/>خمسون ريالًا قطريًا<br/>‏ ثلاثة آلاف وخمسمائة وخمسة وخمسون دولارًا أمريكيًا
 |6|[tanweenType](#tanweenType)|"on"<br/>"off"|"off"|In the case of Tanween Fatih. Selects the placement of the tanween sign either on the charater before last (default), or on the last character.<br/><br/>**Examples:**<br/>ريالًا قطريًا   and ‏ دولارًا أمريكيًا<br/>with option 'on' becomes:<br/>ريالاً قطرياً   and ‏ دولاراً أمريكياً
-|7|[jarnsb](#jarnsb)  |"on"<br/>"off"||The output text is displayed in Jar/Nasb (جر/نصب) mode.
+|7|[jarnsb](#jarnsb)  |"on"<br/>"off"|'off'|The output text is displayed in Jar/Nasb (Accusative/Genitive) (جر/نصب) mode.<br/>The **default** is Nominative case (حالة الرفع).<br/><br/>**Examples:**<br/>ثلاثون ==> ثلاثين<br/>خمسون ==> خمسين<br/>ألفان ==> ألفين<br/>اثنان ==> اثنين<br/>
 |8|[miah](#miah)     |"on"<br/>"off"|"**on**"| Selects between "مئة" (off) and "مائة" (on) style. **Default is "on"** showing "مائة".
 |9|[miahSplit](#miahSplit) |"on"<br/>"off"|"off"|Use separation between number and hundred words (e.g. ثلاثمائة becomes ثلاث مائة).
 |10|[comma](#comma)     |"on"<br/>"off"|'off'|Insert a comma between the number triplet text for better readability of large numbers.
 |11|[legal](#legal)    |"on"<br/>"off"|'off'|Use the legal accounting mode; helpful to get the correct legal writing and avoid misinterpretation of written numbers.
-|12|[arabicNumbers](#arabicNumbers) |"on"<br/>"off"||Uses Arabic-Eastern numbers (٠١٢٣٤٥٦٧٨٩) in place of Arabic-Western numbers (0123456789). This will also set the appropriate Arabic decimal and thousand separators, unless overriden by the `sepDecimal` and `sepThousands` options.
-|13|[scale](#scale)  |"arabic"<br/>"short"<br/>"long"|"arabic"| Selects the Numbering Scale System. "arabic", "short", or "long" numbering scale system. The Default is the Arabic-Modified Short Scale Numbering System. See more details below.
-|14|[maxNumber](#maxNumber) |\<number\>|100|The maximum number in zeros on the right hand. Default up to 100 zeros for numbers. This can be up to 3000 zeros. The maxNumber also sets the maximum number of decimal digits that can be translated to words.
-|15|[addZero](#addZero)  |"on"<br/>"off"||Adds the word zero "صفر" for numbers below one (1).
+|12|[arabicNumbers](#arabicNumbers) |"on"<br/>"off"|'off'|Uses Arabic-Eastern numbers (٠١٢٣٤٥٦٧٨٩) in place of Arabic-Western numbers (0123456789). This will also set the appropriate Arabic decimal and thousand separators, unless overriden by the `sepDecimal` and `sepThousands` options.
+|13|[scale](#scale)  |"arabic"<br/>"short"<br/>"long"|"**arabic**"| Selects the Numbering Scale System. "arabic", "short", or "long" numbering scale system. The Default is the Arabic-Modified Short Scale Numbering System. See more details below.
+|14|[maxNumber](#maxNumber) |\<number\>|**1000**|The maximum number in zeros on the right hand. Default up to 100 zeros for numbers. This can be up to 3000 zeros. The maxNumber also sets the maximum number of decimal digits that can be translated to words.
+|15|[addZero](#addZero)  |"on"<br/>"off"|'off'|Adds the word zero "صفر" for numbers below one (1).
 |16|[sepDecimal](#sepDecimal) |"" empty<br/>\<string\><br/>lang tag|"" empty|The decimal separator to use for display. Defaults to the system locale if "" empty.
 |17|[sepThousands](#sepThousands) |"" empty<br/>\<string\><br/>lang tag|"" empty|The thousands separator to use for display. Defaults to the system locale if empty.
 |18|[brackets](#brackets) |"" empty<br/>"start"<br/>"end"|"" empty| Adds the whole number (including any decimal parts) in digits form inside brackets either at the end of the text or at the start of the text, with the options in the Currency Mode to add the currency ISO Code or the currency symbol/sign. Default: no number in bracket shown.<br/>The brackets type can be controlled by the `bracketsOpen` and `bracketsClose` options.
@@ -304,7 +303,7 @@ arqamAR.toWords(3300.5,{tashkeel:"on", code:"AED", brackets: "end", arabicNumber
 |26|[decIgnore](#decIgnore)    |"on"<br/>"off"|'off'|Ignores the **Decimal Part** of the number.
 |27|[decAL](#decAL)   |"on"<br/>"off"|'**on**'|Default is 'on'. See details below.
 |28|[ignoreCountry](#ignoreCountry) |"on"<br/>"off"|'off'|Ignores the country name but keeps the currency name. Available in **[Currency Mode](#CurrencyMode)**.
-|29|[currDecForce](#currDecForce) |"on"<br/>"off"||With the brackets option in the **[Currency Mode](#CurrencyMode)**, forces the decimal (sub-unit) part to always be displayed, even when there is no decimal part. Available in the **[Currency Mode](#CurrencyMode)**.
+|29|[currDecForce](#currDecForce) |"on"<br/>"off"|'off'|With the brackets option in the **[Currency Mode](#CurrencyMode)**, forces the decimal (sub-unit) part to always be displayed, even when there is no decimal part. Available in the **[Currency Mode](#CurrencyMode)**.
 |30|[prefix](#prefix) |\<string\>|"" empty|Add a prefix text before the resulting output text. Default no prefix.
 |31|[suffix](#suffix) |\<string\>|"" empty|Add a suffix text to the end of the resulting output text. Default no suffix.
 |32|[isNaN](#isNaN) |\<string\>|"" empty|The text to be returned if the number passed is not a valid number. Default is an empty string.
@@ -1823,7 +1822,10 @@ arqamAR.toWords(22.238);
 
 In the **[Currency Mode](#CurrencyMode)**, this option permits the output text to be displayed **without the Country Name** but keeps the Currency Name.
 
-- [x] This option is only available in the **[Currency Mode](#CurrencyMode)**.
+In the **[Subjects Mode](#subjectsmode)**, the the adjective/demonym is ignored.
+
+
+- [x] This option is only available in the **[Currency Mode](#CurrencyMode)** and the **[Subjects Mode](#subjectsmode)**.
 
 
 ***Examples in the option {ignoreCountry: "on"}:***

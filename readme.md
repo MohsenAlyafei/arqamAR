@@ -84,7 +84,7 @@
 
 8. **[Modify Existing Currency](#modify)**
 
-9.  **[Create New Currency](#createNew)**
+9.  **[Create New Currency (New Currency Mode)](#createNew)**
 
 10. **[Use Other Subjects (the Subjects Mode)](#subjectsMode)**
 
@@ -275,12 +275,12 @@ arqamAR.toWords(3300.5,{tashkeel:"on", code:"AED", brackets: "end", arabicNumber
 |:---:|:---|:---:|:---:|:-----
 |     |    |     |     |
 |1|[code](#CurrencyMode)|"" empty<br/>ISO code<br/>'sub'|"" empty|The 3-Letter ISO Code of the Currency.<br/>Specifying a valid currency-code will switch to the **[Currency Mode](#CurrencyMode)** and generate the text for a currency taking into account the sub-currency.<br/>An empty "" string  will switch to the **[Numbers Mode](#NumbersMode)** which is the default.<br/>'sub' will enter the **[Subjects Mode](#subjectsMode)**.
-|2|[compact](#compact) |"on"<br/>"off"|'off'|Use the [compact](#compact) display mode.
+|2|[compact](#compact) |"on"<br/>"off"|'off'|Use the **[Compact Mode](#compact)**.
 |3|[tashkeel](#tashkeel)|"on"<br/>"off"|"off"|Use full Tashkeel (تشكيل كامل للحروف).<br/><br/>**Examples:**<br/>‏خَمْسَةَ عَشَرَ ألْفَ دِينَارٍ أُردُنِيٍّ<br/>ثَلاثَةُ رِيَالاتٍ عُمَانِيَّةٍ<br/>‏ ثَلاثَةُ آلَافٍ وَخَمْسُمَائَةٍ وَخَمْسَةٌ وَخَمْسونَ دُولارًا أمْريكِيًّا
-|4|[tanween](#tanween)|"on"<br/>"off"|"off"|Use full Tanweens (Tanween Fatih, Dham, and Kasr)<br/>(استخدام تنوين الفتح وتنوين النصب والكسر).<br/><br/>**Examples:**<br/>‏خمسة عشر ألف دينارٍ أردنيٍ<br/>ثلاثة ريالاتٍ عمانيةٍ<br/>‏ ثَلاثة آلافٍ وخمسمائةٍ وخمسةٌ وخمسون دولارًا أمريكيًا
-|5|[tanweenFatih](#tanweenFatih)|"on"<br/>"off"|**"on"**|Use Tanween Fatih only (تنوين فتح فقط). This is the default Basic Tanween and is "on" by default.<br/><br/>**Examples:**<br/>خمسون ريالًا قطريًّا<br/>‏ ثَلاثة آلاف وخمسمائة وخمسة وخمسون دولارًا أمريكيًا
+|4|[tanween](#tanween)|"on"<br/>"off"|"off"|Use full Tanweens (Tanween Fatih, Dham, and Kasr)<br/>(استخدام تنوين الفتح وتنوين الضم والكسر).<br/><br/>**Examples:**<br/>‏خمسة عشر ألف دينارٍ أردنيٍ<br/>ثلاثة ريالاتٍ عمانيةٍ<br/>‏ ثلاثة آلافٍ وخمسمائةٍ وخمسةٌ وخمسون دولارًا أمريكيًا
+|5|[tanweenFatih](#tanweenFatih)|"on"<br/>"off"|**"on"**|Use Tanween Fatih only (تنوين فتح فقط). This is the default Basic Tanween and is "on" by default.<br/><br/>**Examples:**<br/>خمسون ريالًا قطريًا<br/>‏ ثلاثة آلاف وخمسمائة وخمسة وخمسون دولارًا أمريكيًا
 |6|[jarnsb](#jarnsb)  |"on"<br/>"off"||The output text is displayed in Jar/Nasb (جر/نصب) mode.
-|7|[miah](#miah)     |"on"<br/>"off"|"on"| Selects between "مئة" (off) and "مائة" (on) style. Default is "on" showing "مائة".
+|7|[miah](#miah)     |"on"<br/>"off"|"**on**"| Selects between "مئة" (off) and "مائة" (on) style. **Default is "on"** showing "مائة".
 |8|[miahSplit](#miahSplit) |"on"<br/>"off"|"off"|Use separation between number and hundred words (e.g. ثلاثمائة becomes ثلاث مائة).
 |9|[comma](#comma)     |"on"<br/>"off"|'off'|Insert a comma between the number triplet text for better readability of large numbers.
 |10|[legal](#legal)    |"on"<br/>"off"|'off'|Use the legal accounting mode; helpful to get the correct legal writing and avoid misinterpretation of written numbers.
@@ -292,14 +292,14 @@ arqamAR.toWords(3300.5,{tashkeel:"on", code:"AED", brackets: "end", arabicNumber
 |16|[sepThousands](#sepThousands) |"" empty<br/>\<string\><br/>lang tag|"" empty|The thousands separator to use for display. Defaults to the system locale if empty.
 |17|[brackets](#brackets) |"" empty<br/>"start"<br/>"end"|"" empty| Adds the whole number (including any decimal parts) in digits form inside brackets either at the end of the text or at the start of the text, with the options in the Currency Mode to add the currency ISO Code or the currency symbol/sign. Default: no number in bracket shown.<br/>The brackets type can be controlled by the `bracketsOpen` and `bracketsClose` options.
 |18|[bracketsType](#bracketsType) |\<string\><br/>empty|"" empty|Change the brackets type from the default round brackets '()' to any other type such '[]' or '{}', etc.
-|19|[numSymbol](#numSymbol) |"" empty<br/>"iso"<br/>"symbol"<br/>"symbolL"<br/>"currency"|"" empty|With the brackets option, controls the symbol/sign to be used when displaying currency numbers inside brackets. Available with the **[brackets](#brackets)** and the **[Currency Mode](#CurrencyMode)** options only.
+|19|[numSymbol](#numSymbol) |\<string\><br/>"" empty<br/>"iso"<br/>"symbol"<br/>"symbolL"<br/>"currency"|"" empty|With the brackets option, controls the symbol/sign to be used when displaying currency numbers inside brackets. Available with the **[brackets](#brackets)** and the **[Currency Mode](#CurrencyMode)** options only.
 |20|[decRound](#decRound) |number<br/>"" empty|"" empty|The number of decimal places for rounding decimals. Default no rounding and all decimal digits will be converted to words. Available in **[Numbers Mode](#NumbersMode)** Only. In the **[Currency Mode](#CurrencyMode)**, rounding is dictated by the *minor unit* decimals.
 |21|[decFormat](#decFormat) |"" empty<br/>"ww"<br/>"wn"<br/>"nw"<br/>"nn"<br/>"sw"<br/>"d"<br/>"/"<br/>"n"<br/>"w"|"" empty|Controls the format of the decimal (fractional) part with nine (9) options.<br/>Defaults to "w" in the **[Currency Mode](#CurrencyMode)** and to "ww" in the **[Numbers Mode](#NumbersMode)**.<br/>See below for more details and examples.
-|22|[decInBrackets](#dec-in-brackets)|"on"<br/>"off"|'off'|Inserts the fractional part (either text or number) inside brackets at the end of the text.<br/>The brackets type can be controlled by the `bracketsOpen` and `bracketsClose` options.
-|23|[decJuz](#decJuz) |"on"<br/>"off"|'on'| The word "Juzu'" (جزء من) is used in the formation of the Decimal Part for the number. This is the default and is set to 'on'.
-|24|[decFaslah](#decFaslah) |"on"<br/>"off"|'off'| The word "fasila" (فاصلة) is used in the formation of the Decimal Part for the number. The default is "Juzu" (جزء).
-|25|[decIgnore](#decIgnore)    |"on"<br/>"off"|'off'|Ignores the fractional part of the number.
-|26|[decAL](#decAL)   |"on"<br/>"off"||Adds .
+|22|[decInBrackets](#dec-in-brackets)|"on"<br/>"off"|'off'|Inserts the fractional part (either text or number) inside brackets at the end of the text.<br/>The brackets type can be changed by the [bracketsType](#bracketsType) option.
+|23|[decJuz](#decJuz) |"on"<br/>"off"|'**on**'| The word "Juzu'" (جزء من) is used in the formation of the Decimal Part for the number. This is the **default** and is set to 'on'.
+|24|[decFaslah](#decFaslah) |"on"<br/>"off"|'off'| The word "fasila" (فاصلة) is used in the formation of the Decimal Part for the number instead of "Juzu" (جزء). The **default** is "Juzu" (جزء).
+|25|[decIgnore](#decIgnore)    |"on"<br/>"off"|'off'|Ignores the **Decimal Part** of the number.
+|26|[decAL](#decAL)   |"on"<br/>"off"|'**on**'|Default is 'on'. See details below.
 |27|[ignoreCountry](#ignoreCountry) |"on"<br/>"off"|'off'|Ignores the country name but keeps the currency name. Available in **[Currency Mode](#CurrencyMode)**.
 |28|[currDecForce](#currDecForce) |"on"<br/>"off"||With the brackets option in the **[Currency Mode](#CurrencyMode)**, forces the decimal (sub-unit) part to always be displayed, even when there is no decimal part. Available in the **[Currency Mode](#CurrencyMode)**.
 |29|[prefix](#prefix) |\<string\>|"" empty|Add a prefix text before the resulting output text. Default no prefix.
@@ -317,13 +317,13 @@ arqamAR.toWords(3300.5,{tashkeel:"on", code:"AED", brackets: "end", arabicNumber
 
 <h2 id="NumbersMode">⚙6.1 Numbers Mode</h2>
 
-The **Numbers Mode** is the default ***arqamAR*** display mode. ***arqamAR*** will always start in the **Numbers Mode** by default.
+The **Numbers Mode** is the default ***arqamAR*** output mode. ***arqamAR*** will always start in the **Numbers Mode** by default.
 
 In this mode, numbers in digit form are converted into Arabic text using various configuration formats.
 
-**Decimals Parts** of the number are also converted into Arabic text with various display formats available.
+**Decimals Parts** of the number are also converted into Arabic text with various output formats available.
 
-The default output is very simple and precise Arabic text; with an example below:
+The default output in the **Numbers Mode** is very simple and precise Arabic text; with an example below:
 
 #### Examples:
 ```javascript
@@ -344,10 +344,10 @@ arqamAR.toWords(0.35);
 ```
 ![Image](/images/numbersMode01.png?raw=true)
 
-If you were in the ***Currency Mode***, you can switch back to the **[Numbers Mode](#NumbersMode)** by setting the `arqam.arConfig` to (currMode : '') using the following line:
+If you were in the ***Currency Mode***, you can switch back to the **[Numbers Mode](#NumbersMode)** by setting the `arqam.arConfig` to (code : '') using the following line:
 
 ```javascript
-arqamAR.config({currMode : ''}).
+arqamAR.config({code : ''}).
 ```
 
 <h2 id="CurrencyMode">⚙6.2 Currency Mode</h2>
@@ -356,17 +356,17 @@ The **Currency Mode** is enabled by specifying a **valid** 3-letter ISO **Curren
 
 The 3-letter ISO Code must be in **block letters**, for example : USD, GBP, KWD, QAR, JOD, EGP, etc.
 
-An invalid ISO Code will not produce and error and ***arqamAR*** will switch to the **[Numbers Mode](#NumbersMode)** unless a **New Currency** is intended. See below how to create a **New Currency** or **Modify Existing Currency**.
+An invalid ISO Code will not produce and error and ***arqamAR*** will first try to switch to the **[New Currency Mode](#createNew)** expecting that it is a new currency to be created, but if that failed it will switch to the **[Numbers Mode](#NumbersMode)**. See below how to create a **[New Currency](#createNew)** or **[Modify Existing Currency](#modify)**.
 
 Almost all of the ***arqamAR*** configuration options are available in the **Currency Mode**.
 
 In addition, there are specific ***arqamAR*** configuration options which only apply in the **Currency Mode**.
 
-***arqamAR*** recognises **173** currency codes (including the latest ISO-4217 codes) and has all necessary data settings for each currency. This includes the names of the *major* and *minor* currencies, the applicable country names, and the decimal sub-units.
+***arqamAR*** recognises **173** currency codes (including the latest ISO-4217 codes) and has all necessary data settings for each currency. This includes the names of the *major* and *minor* currencies, the applicable country names, the decimal sub-units, and symbols/signs.
 
 #### Examples:
 ```javascript
-arqamAR.config({currMode : 'USD'});
+arqamAR.config({code : 'USD'});
 
 arqamAR.toWords(20000);
 arqamAR.toWords(2560000);
@@ -387,7 +387,7 @@ arqamAR.toWords(0.35);
 
 <h2 id="compact">⚙6.3 Compact</h2>
 
-The `compact` configuration option provides a unique display method that many newspapers and magazines prefer using for writing large numbers.
+The `compact` configuration option provides a unique output method that many newspapers and magazines prefer using for writing large numbers.
 
 The compact output text is a combination of both digits and words.
 
@@ -807,7 +807,7 @@ arqamAR.toWords(102010);   // "مائة ألف وألفان وعشرة"
 
 <h2 id="arabicNumbers">⚙6.12 Arabic Numbers</h2>
 
-The `arabicNumbers` option displays digits in the Arabic-Eastern form (٠١٢٣٤٥٦٧٨٩) rather than the Arabic-Western form (0123456789).
+The `arabicNumbers` option outputs digits in the Arabic-Eastern form (٠١٢٣٤٥٦٧٨٩) rather than the Arabic-Western form (0123456789).
 
 Digits are displayed when any of the following options are used:
 
@@ -1061,8 +1061,8 @@ The default is 10^1000 (i.e. 100 دِيْوْتْرِيجِنْتاترِسِن�
 
 The Largest number that can be converted by ***arqamAR*** is:
 
-*  100 نُوفِنوناجِنْتانونْجِنْتِلْيون   which is (10^3002) under the Short Scale System, and
-*  100 نُوفِنوناجِنْتانونْجِنْتِلْيَارات which is (10^6000) under the Long Scale System.
+*  مائة نُوفِنوناجِنْتانونْجِنْتِلْيون   which is (10^3002) under the Short Scale System, and
+*  مائة نُوفِنوناجِنْتانونْجِنْتِلْيَارات which is (10^6000) under the Long Scale System.
 
 💡 *Note: Increasing the [Decimal Rounding](#decRound) using the `{decRound}` above the Maximum Number will also increase the maximum number so that large decimal places are correctly converted.*
 
@@ -2022,11 +2022,11 @@ console.log( arqamAR.toWords(0.1) );
 
 This example shows how you can create an all new currency using an existing currency data as a shortcut.
 
-Let us create the old French currency 'Franc' (old iso code FRF) and it had the sub-unit 'Centime'.
+Let us create the old French currency 'Franc' (old ISO code FRF) and it had the sub-unit 'Centime'.
 
 There are few countries that still use the Franc and Centime, one of them Guinea in west Africa.
 
-Guinean Franc has the iso code 'GNF' which we can use and modify.
+Guinean Franc has the ISO code 'GNF' which we can use and modify.
 
 But in the Brackets Mode, the code will be shown as 'GNF' not as 'FRF'. We can fix that with the option `numSymbol`
 
@@ -2034,7 +2034,7 @@ But in the Brackets Mode, the code will be shown as 'GNF' not as 'FRF'. We can f
 ```javascript
 arqamAR.config( {
 arqamAR.config( {
-    code         : "GNF",      //use Guinea iso code
+    code         : "GNF",      //use Guinea ISO code
     majorSingleC : "فرنسي",   // change demonym (adjectives) for Single to France
     majorPluralC : "فرنسية",  // change demonym (adjectives) for Plural to France
 

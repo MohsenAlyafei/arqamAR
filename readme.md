@@ -1081,12 +1081,12 @@ By default, numbers below zero (i.e. with only **Decimal Parts**) will have thei
 
 ***Examples in the Numbers Mode:***
 ```javascript
-arqamAR.toWords(aqmAFd(0.5);
-arqamAR.toWords(aqmAFd(0.01);
-arqamAR.toWords(aqmAFd(0.2);
-arqamAR.toWords(aqmAFd(0.5,{addZero:"on"});    // option on
-arqamAR.toWords(aqmAFd(0.01,{addZero:"on"});   // option on
-arqamAR.toWords(aqmAFd(0.2,{addZero:"on"});    // option on
+arqamAR.toWords(0.5);
+arqamAR.toWords(0.01);
+arqamAR.toWords(0.2);
+arqamAR.toWords(0.5,{addZero:"on"});    // option on
+arqamAR.toWords(0.01,{addZero:"on"});   // option on
+arqamAR.toWords(0.2,{addZero:"on"});    // option on
 
 // ===== Output =======
 خمسة أجزاء من العشرة
@@ -1099,12 +1099,12 @@ arqamAR.toWords(aqmAFd(0.2,{addZero:"on"});    // option on
 
 ***Examples in the Currency Mode:***
 ```javascript
-arqamAR.toWords(aqmAFd(0.5, {code:"USD"});
-arqamAR.toWords(aqmAFd(0.01,{code:"USD"});
-arqamAR.toWords(aqmAFd(0.2, {code:"USD"});
-arqamAR.toWords(aqmAFd(0.5, {code:"USD", addZero:"on"});   // option on
-arqamAR.toWords(aqmAFd(0.01,{code:"USD", addZero:"on"});   // option on
-arqamAR.toWords(aqmAFd(0.2, {code:"USD", addZero:"on"});   // option on
+arqamAR.toWords(0.5, {code:"USD"});
+arqamAR.toWords(0.01,{code:"USD"});
+arqamAR.toWords(0.2, {code:"USD"});
+arqamAR.toWords(0.5, {code:"USD", addZero:"on"});   // option on
+arqamAR.toWords(0.01,{code:"USD", addZero:"on"});   // option on
+arqamAR.toWords(0.2, {code:"USD", addZero:"on"});   // option on
 
 // ===== Output =======
 خمسون سنتًا أمريكيًا
@@ -1618,9 +1618,9 @@ With this option, the words **'جزءًا من'** can be ignored (removed) by us
 ***Examples in the default {decJuz: "on"}:***
 ```javascript
 arqamAR.toWords(22.1);
-aqmAFd(22.2);
-aqmAFd(22.3);
-aqmAFd(22.238);
+arqamAR.toWords(22.2);
+arqamAR.toWords(22.3);
+arqamAR.toWords(22.238);
 
 //======= Output ========
 اثنان وعشرون، وجزء واحد من العشرة
@@ -1633,9 +1633,9 @@ aqmAFd(22.238);
 arqamAR.config( {decJuz:"off"} );
 
 arqamAR.toWords(22.1);
-aqmAFd(22.2);
-aqmAFd(22.3);
-aqmAFd(22.238);
+arqamAR.toWords(22.2);
+arqamAR.toWords(22.3);
+arqamAR.toWords(22.238);
 
 //======= Output ========
 اثنان وعشرون، وواحد من العشرة
@@ -1698,9 +1698,9 @@ The default is with the **`{decAL: 'on'}`**
 ***Examples in the default {decAL: "on"}:***
 ```javascript
 arqamAR.toWords(22.1);
-aqmAFd(22.2);
-aqmAFd(22.3);
-aqmAFd(22.238);
+arqamAR.toWords(22.2);
+arqamAR.toWords(22.3);
+arqamAR.toWords(22.238);
 
 //======= Output ========
 اثنان وعشرون، وجزء واحد من العشرة
@@ -1713,9 +1713,9 @@ aqmAFd(22.238);
 arqamAR.config( {decAL:"off"} );
 
 arqamAR.toWords(22.1);
-aqmAFd(22.2);
-aqmAFd(22.3);
-aqmAFd(22.238);
+arqamAR.toWords(22.2);
+arqamAR.toWords(22.3);
+arqamAR.toWords(22.238);
 
 //======= Output ========
 اثنان وعشرون، وجزء واحد من عشرة

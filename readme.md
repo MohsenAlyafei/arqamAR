@@ -55,7 +55,7 @@
 
    6.20 [Brackets Type](#bracketsType)
 
-   6.21 [Number Symbol (رمز الرقم)](#numSymbol)
+   6.21 [Number Symbol (رمز الرقم/علامة العملة)](#numSymbol)
 
    6.22 [Decimal Rounding](#decRound)
 
@@ -219,9 +219,9 @@ because the option "USD" is remembered in the next call.
 
 
 ### Alternative Configuration Shortcuts
-`arqamAR.config()` provides full access to arqam configurations.
+`arqamAR.config()` provides full access to ***arqamAR*** configurations.
 
-However, rather than using the `arqamAR.config()`, arqam provides two (2) alternative methods of shortcut using the `arqamAR.toWords()` itself by using the second parameter of `arqamAR.toWords()`. See above for the [`arqamAR.toWords()` syntax](#syntax).
+However, rather than using the `arqamAR.config()`, ***arqamAR*** provides two (2) alternative methods of shortcut using the `arqamAR.toWords()` itself by using the second parameter of `arqamAR.toWords()`. See above for the [`arqamAR.toWords()` syntax](#syntax).
 
 If the 2nd parameter of the `arqamAR.toWords()` function is a valid ISO Currency Code, then that code is used and a switch is made to the **[Currency Mode](#CurrencyMode)**.
 
@@ -265,7 +265,7 @@ arqamAR.toWords(3300.5,{tashkeel:"on", code:"AED", brackets: "end", arabicNumber
 ```
 ![Image](/images/general_02.png?raw=true)
 
-💡 ***While arqam provides many options and configuration to use, the default settings are sufficient to handle the most used methods of converting numbers to words in Arabic.***
+💡 ***While ***arqamAR*** provides many options and configuration to use, the default settings are sufficient to handle the most used methods of converting numbers to words in Arabic.***
 
 💡 ***When displaying Arabic text inside fields or html 'div's, set the text direction to Righ-to-Left (RTL) for proper display especially when the text includes both Arabic and Latin characters.***
 
@@ -347,7 +347,7 @@ arqamAR.toWords(0.35);
 ```
 ![Image](/images/numbersMode01.png?raw=true)
 
-If you were in the ***Currency Mode***, you can switch back to the **[Numbers Mode](#NumbersMode)** by setting the `arqam.arConfig` to (code : '') using the following line:
+If you were in the ***Currency Mode***, you can switch back to the **[Numbers Mode](#NumbersMode)** by setting the `arqamAR.config` to (code : '') using the following line:
 
 ```javascript
 arqamAR.config({code : ''}).
@@ -819,7 +819,7 @@ The above situations are unacceptable when writing legal or official documents (
 
 This option permits such situations of ambiguity to be avoided.
 
-The above examples cab ne re-done with the option `{legal: "on"}`:
+The above examples can ne re-done with the option `{legal: "on"}`:
 
 ```javascript
 arqamAR.config({ legal: "on"}); // enable legal option
@@ -829,6 +829,9 @@ arqamAR.toWords(102010);   // "مائة ألف وألفان وعشرة"
 ```
 
 💡 ***As additional protection against any ambiguity, it is advisable to enable the option {comma: "on"} to clearly indicate the separation between triplets.***
+
+
+
 
 
 <h2 id="arabicNumbers">⚙6.13 Arabic Numbers</h2>
@@ -1033,13 +1036,15 @@ arqamAR.toWords(33.2,"SDG");
 
 
 
+
+
 <h2 id="scale">⚙6.14 Scale</h2>
 
 This `scale` option permits the selection of the **Numbering System**.
 
 There are tree (3) Numbering Systems:
 
-- `arabic` Arabic Numbering System. Is a modified Short Scale Numbering System (commonly used in Arabic countries except Saudi Arabia and the UA). **This is the Default ued by arqam**.
+- `arabic` Arabic Numbering System. Is a modified Short Scale Numbering System (commonly used in Arabic countries except Saudi Arabia and the UA). **This is the Default ued by ***arqamAR*****.
 - `short` The Short Scale Numbering system (UK, USA, ans most English-speaking countries using the word Billion for the number 10^9).
 - `long` The Long Scale Numbering system. Used in most Europe and french speaking countries.
 
@@ -1095,6 +1100,8 @@ The Largest number that can be converted by ***arqamAR*** is:
 💡 ***Only change the default number if you want to work with extremely very large numbers. Which is always not necessary.***
 
 
+
+
 <h2 id="addZero">⚙6.16 Add Zero</h2>
 
 Adds the word zero "صفر" for numbers below one (1).
@@ -1141,11 +1148,13 @@ arqamAR.toWords(0.2, {code:"USD", addZero:"on"});   // option on
 صفر دولار أمريكي، وعشرون سنتًا       // option on
 ```
 
+
+
 <h2 id="sepDecimal">⚙6.17 Decimal Separator</h2>
 
 When options are used for displaying numbers in digits inside brackets, ***arqamAR*** uses the system locale setting for displaying the **Decimal Separator** by default.
 
-You can use this option to change the charatrer for the **Decimal Separator** irrespective of the system locale.
+You can use this option to change the charatrer used by ***arqamAR*** for the **Decimal Separator** irrespective of the system locale.
 
 The character may be any type or may be a BCP 47 language tag.
 
@@ -1208,6 +1217,8 @@ In the [Arabic Numbers Mode](#arabicNumbers), if no specific **Decimal Separator
 ⚠ Note 1: If the BCP 47 language tag is invalid, then the system locale setting is used.
 
 ⚠ Note 2: While it is possible to set both the Thousands Separator and the Decimal Separator to different BCP 47 language tags, it is recommended when using a BCP 47 language tag to use the same language tag for both the Thousands Separator and the Decimal Separator.
+
+
 
 <h2 id="sepThousands">⚙6.18 Thousands Separator</h2>
 
@@ -1282,22 +1293,24 @@ In the [Arabic Numbers Mode](#arabicNumbers), if no specific **Thousands Separat
 ⚠ Note 2: While it is possible to set both the Thousands Separator and the Decimal Separator to different BCP 47 language tags, it is recommended when using a BCP 47 language tag to use the same language tag for both the Thousands Separator and the Decimal Separator.
 
 
+
+
 <h2 id="brackets">⚙6.19 Brackets</h2>
 
-The brackets option provides a flexible method for enclosing the **whole number** (*in digital form*) including its Decimal Part if any inside brackets.
+The brackets option `{brackets : 'end'}` or  `{brackets : 'start'}` provides a flexible method for enclosing the **whole Number** (*in digital form*) including its **Decimal Part** (if any) inside brackets.
 
-No brackets are displayed by default.
+By default, no brackets are outputted.
 
-The brackets may be at the end of the output text or at the start of the output text.
+The brackets may be **at the end** of the output text or **at the start** of the output text.
 
-The default type of brackets is the round brackets "()". This may however be changed by the **[`bracketsOpen`](#bracketsOpen)** option and the **[`bracketsClose`](#bracketsClose)** to other forms of brackets or other characters.
+The default type of brackets is the round brackets "()". This may however be changed by the **[`bracketsType`](#bracketsType)** option to other forms of brackets or other characters.
 
 When the `brackets` option is enabled, the following options are also available to format the number inside the brackets:
 
 - [`bracketsType`](#bracketsType) change the opening and closing bracket characters.
-- [`numSymbol`](#numSymbol) add the type of symbol or sign before or after the currency.
+- [`numSymbol`](#numSymbol) add the type of symbol or sign before or after the number.
 
-If only the Decimal Part needs to be placed inside brackets rather than the whole number then use the option [decInBrackets](#dec-in-brackets).
+If only the **Decimal Part** needs to be placed inside brackets rather than the **Whole Number** then use the option [decInBrackets](#dec-in-brackets).
 
 This option has priority and will override the [decInBrackets](#dec-in-brackets) option.
 
@@ -1340,6 +1353,9 @@ arqamAR.toWords(120000);
 (USD 120,000.00) مائة وعشرون ألف دولار أمريكي
 ```
 
+
+
+
 <h2 id="bracketsType">⚙6.20 Brackets Type</h2>
 
 Change the characters used with the **[`brackets`](#brackets)** option, and therefore is only available when the **[`brackets`](#brackets)** option is also enabled.
@@ -1363,31 +1379,40 @@ arqamAR.toWords(256,"USD");
 [USD 256.00] مائتان وستة وخمسون دولارًا أمريكيًا
 ```
 
-<h2 id="numSymbol">⚙6.21 Number Symbol (رمز الرقم)</h2>
 
-This option allows the Currency symbol or Currency sign, when using the **[`brackets`](#brackets)** option in the **[Currency Mode](#CurrencyMode)**, to be changed.
 
-The default sign/symbol is the 3-letter ISO Code.
 
-Available pre-programmed settings are:
+
+<h2 id="numSymbol">⚙6.21 Number Symbol (رمز الرقم/علامة العملة)</h2>
+
+This option allows the symbol or sign to be specified, when using the **[`brackets`](#brackets)** option in the **[Currency Mode](#CurrencyMode)** and the **[Subjects Mode](#subjectsmode)**.
+
+In the **[Currency Mode](#CurrencyMode)**, the default sign/symbol is the 3-letter ISO Code.
+
+***arqamAR*** provides the Currency symbols (both in Native form and Latin form) for all currencies in accordance with the international standards. A full list of the Currency Symbols can be found here on  Wikipedia: [List of Currency Symbols](https://en.wikipedia.org/wiki/Currency_symbol).
+
+
+Available pre-programmed settings in the **[Currency Mode](#CurrencyMode)** are:
 - `"iso"` or `""` or `"i"`: display the 3-letter ISO Code (this is the Default).
 - `"symbol"` or `"S"` or `"N"`, or `"symbolN"`: display the Native symbol for the Currency.
 - `"symbolL"` or `"L"`: display the Latin symbol for the Currency.
 - `"currency"` or `"C"`: display the currency name.
 
-However, you can give any other string.
+**However, you can specify any other string as the symbol/sign**.
 
 **Applicability**
-- [x] This option is only available in the **[Currency Mode](#CurrencyMode)**.
 - [x] This option is only available when using the **[`brackets`](#brackets)** option.
+- [x] This option is only available in the **[Currency Mode](#CurrencyMode)** and the **[Subjects Mode](#subjectsmode)**.
 
+***Examples 1:***
 
-***Examples:***
+In the **[Currency Mode](#CurrencyMode)**, using the Default (ISO Code).
+
 ```javascript
 //-----------------------------------------------
 // Examples of the default sign/symbol (ISO Code)
 //-----------------------------------------------
-arqamAR.config({ brackets: "end" }); // add brackets at the start
+arqamAR.config({ brackets: "end" }); // add brackets at the end
 
 arqamAR.toWords(256,"USD");
 arqamAR.toWords(2500,"KWD");
@@ -1399,6 +1424,12 @@ arqamAR.toWords(120000,"QAR");
 (QAR 120,000.00) مائة وعشرون ألف ريال قطري
 ```
 ![Image](/images/numSymbol_01.png?raw=true)
+
+
+***Examples 2:***
+
+In the **[Currency Mode](#CurrencyMode)**, using the Currency Native Symbol/Sign.
+
 
 ```javascript
 //----------------------------------------
@@ -1417,10 +1448,17 @@ arqamAR.toWords(120000,"QAR");
 ```
 ![Image](/images/numSymbol_02.png?raw=true)
 
+
+***Examples 3:***
+
+In the **[Currency Mode](#CurrencyMode)**, using the Currency Latin Symbol/Sign.
+
+
+
 ```javascript
-//----------------------------------------
-// Examples of the Currency Latin Symbol
-//----------------------------------------
+//-------------------------------------------
+// Examples of the Currency Latin Symbol/Sign
+//-------------------------------------------
 arqamAR.config({ brackets: "end" , numSymbol:"L" });  // Latin symbol
 
 arqamAR.toWords(256,"USD");
@@ -1434,11 +1472,18 @@ arqamAR.toWords(120000,"QAR");
 ```
 ![Image](/images/numSymbol_03.png?raw=true)
 
+
+
+***Examples 4:***
+
+In the **[Currency Mode](#CurrencyMode)**, using the Currency Name.
+
+
 ```javascript
-//----------------------------------------
-// Examples of the Currency with Currency  Symbol
-//----------------------------------------
-arqamAR.config({ brackets: "end" , numSymbol:"L" });  // Currency Name as symbol
+//---------------------------------------------
+// Examples of the Currency with Currency Name
+//---------------------------------------------
+arqamAR.config({ brackets: "end" , numSymbol:"C" });  // Currency Name
 
 arqamAR.toWords(256,"USD");
 arqamAR.toWords(2500,"KWD");
@@ -1450,6 +1495,28 @@ arqamAR.toWords(120000,"QAR");
 (120,000.00 ريال قطري) مائة وعشرون ألف ريال قطري
 ```
 ![Image](/images/numSymbol_04.png?raw=true)
+
+
+
+***Examples 5:***
+
+In the **[Currency Mode](#CurrencyMode)**, using custom letters/signs.
+
+
+```javascript
+//---------------------------------------------------
+// Examples of the Currency with custom letters/signs
+//---------------------------------------------------
+
+arqamAR.toWords(25, {code:"OMR", brackets :"end", numSymbol:"ر؏"});
+arqamAR.toWords(25, {code:"KWD", brackets :"end", numSymbol:"دڪ"});
+
+// ===== Output =======
+(25.000 ر؏) خمسة وعشرون ريالًا عُمانيًا ‎
+(25.000 دڪ) خمسة وعشرون دينارًا كويتيًا
+```
+
+💡 **See examples below on how this can be used in the **[Subjects Mode](#subjectsmode)** to add other symboles/signs/words like 'كم' or 'كغ', etc.**
 
 💡 ***When displaying Arabic text inside fields or html 'div's, set the text direction to Right-to-Left (RTL) for proper display especially when the text includes both Arabic and Latin characters.***
 

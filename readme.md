@@ -23,63 +23,59 @@
 
    6.4 [Tashkeel Mode (تشكيل الحروف)](#tashkeel)
 
-   6.5 [Tanween (تنوين كامل)](#tanween)
+   6.5 [Tanween Type](#tanweenType)
 
-   6.6 [Tanween Fatih (تنوين فتح)](#tanweenFatih)
+   6.6 [ʾIʿrāb Cases (حالات الإعراب (رفع، نصب، جر))](#ierab)
 
-   6.7 [Tanween Type](#tanweenType)
+   6.7 [Miah (مئة ومائة)](#miah)
 
-   6.8 [Accusative/Genitive (حالة الجر/النصب)](#jarnsb)
+   6.8 [Miah Split (فصل المائة عن الرقم)](#miahSplit)
 
-   6.9 [Miah (مئة ومائة)](#miah)
+   6.9 [Comma between Words (فاصلة بين الكلمات)](#comma)
 
-   6.10 [Miah Split (فصل المائة عن الرقم)](#miahSplit)
+   6.10 [Legal (كتابة قانونية)](#legal)
 
-   6.11 [Comma between Words (فاصلة بين الكلمات)](#comma)
+   6.11 [Arabic Numbers](#arabicNumbers)
 
-   6.12 [Legal (كتابة قانونية)](#legal)
+   6.12 [Numbering System Scale](#scale)
 
-   6.13 [Arabic Numbers](#arabicNumbers)
+   6.13 [Maximum Number](#maxNumber)
 
-   6.14 [Numbering System Scale](#scale)
+   6.14 [Add Zero](#addZero)
 
-   6.15 [Maximum Number](#maxNumber)
+   6.15 [Decimal Separator](#sepDecimal)
 
-   6.16 [Add Zero](#addZero)
+   6.16 [Thousands Separator](#sepThousands)
 
-   6.17 [Decimal Separator](#sepDecimal)
+   6.17 [Brackets Mode](#brackets)
 
-   6.18 [Thousands Separator](#sepThousands)
+   6.18 [Brackets Type](#bracketsType)
 
-   6.19 [Brackets Mode](#brackets)
+   6.19 [Number Symbol (رمز الرقم/علامة العملة)](#numSymbol)
 
-   6.20 [Brackets Type](#bracketsType)
+   6.20 [Decimal Rounding](#decRound)
 
-   6.21 [Number Symbol (رمز الرقم/علامة العملة)](#numSymbol)
+   6.21 [Decimal Formats (تنسيقات الكسور)](#decFormat)
 
-   6.22 [Decimal Rounding](#decRound)
+   6.22 [Decimals in Brackets (كسور بين قوسين)](#decInBrackets)
 
-   6.23 [Decimal Formats (تنسيقات الكسور)](#decFormat)
+   6.23 [Decimal Juzu](#decJuz)
 
-   6.24 [Decimals in Brackets (كسور بين قوسين)](#decInBrackets)
+   6.24 [Decimal Fasilah (فاصلة عوضًا عن الواو)](#decFaslah)
 
-   6.25 [Decimal Juzu](#decJuz)
+   6.25 [Ignore Decimals](#decIgnore)
 
-   6.26 [Decimal Fasilah (فاصلة عوضًا عن الواو)](#decFaslah)
+   6.26 [Decimal AL (لام تعريف الكسر)](#decAL)
 
-   6.27 [Ignore Decimals](#decIgnore)
+   6.27 [Ignore Country (تجاهل اسم البد)](#ignoreCountry)
 
-   6.28 [Decimal AL (لام تعريف الكسر)](#decAL)
+   6.28 [Force Decimals in Currency](#currDecForce)
 
-   6.29 [Ignore Country (تجاهل اسم البد)](#ignoreCountry)
+   6.29 [Prefix Text](#prefix)
 
-   6.30 [Force Decimals in Currency](#currDecForce)
+   6.30 [Suffix Text](#suffix)
 
-   6.31 [Prefix Text](#prefix)
-
-   6.32 [Suffix Text](#suffix)
-
-   6.33 [IsNaN String](#isNaNString)
+   6.31 [IsNaN String](#isNaNString)
 
 
 7. **[Batch Processing](#batch)**
@@ -92,16 +88,22 @@
 
 11. **[Notes on Coding and Use](#codingnotes)**
 
-
+12. **[Reference and Tables](#references)**
 
 <h2 id="introduction">1️⃣ Introduction</h2>
 
-Some time ago I felt that it was necessary to have a library that properly and correctly converts numbers and currencies into Arabic text.
+Some time ago I felt that it was necessary to have a library that properly and correctly converts numbers (including all world currencies) into correct Arabic text that is free and available for all.
 
-Many websites and library functions exist (in various programming languages) that attempt to convert numbers and currencies to Arabic text but many fail to do it properly in accordance with the correct Arabic language grammar, let alone provide the needed options, flexibilities, and facilities required.
+Many websites and programming libraries exist (in various programming languages) that attempt to convert numbers and currencies to Arabic text but many fail to do it properly in accordance with the correct Arabic language grammar, let alone provide the needed options, flexibilities, and facilities required. Many other utilities fail to handle large numbers or very small numbers correctly, let alone handle decimal parts of numbers.
+
+For the above reasons, I had decided to code this library in the most used programming language (javascript) and make it available for all of us; which means you can use it at your front-end web page or back-end server.
+
+I have chosen the name of the group libraries to be "**arqam**" which means "**numbers**" in Arabic.
+
+This library is called ***arqamAR*** which means that it is for Arabic output text.
 
 <div align="center">
-  NOW IT IS HERE
+  NOW IT IS HERE FOR ALL OF US
 </div>
 
 <h2 id="purpose">2️⃣ Purpose</h2>
@@ -281,18 +283,16 @@ arqamAR.toWords(3300.5,{tashkeel:"on", code:"AED", brackets: "end", arabicNumber
 |:---:|:---|:---:|:---:|:-----
 |1|[code](#CurrencyMode)|"" empty<br/>ISO code<br/>'sub'|"" empty|The 3-Letter ISO Code of the Currency.<br/>Specifying a valid currency-code will switch to the **[Currency Mode](#CurrencyMode)** and generate the text for a currency taking into account the sub-currency.<br/><br/>An empty "" string  will switch to the **[Numbers Mode](#NumbersMode)** which is the default.<br/><br/>'sub' will enter the **[Subjects Mode](#subjectsMode)**.
 |2|[compact](#compact) |"on"<br/>"off"|'off'|Use the **[Compact Mode](#compact)**.
-|3|[tashkeel](#tashkeel)|"on"<br/>"off"|"off"|Use full Tashkeel (تشكيل كامل للحروف).<br/><br/>**Examples:**<br/>‏خَمْسَةَ عَشَرَ ألْفَ دِينَارٍ أُردُنِيٍّ<br/>ثَلاثَةُ رِيَالاتٍ عُمَانِيَّةٍ<br/>‏ ثَلاثَةُ آلَافٍ وَخَمْسُمَائَةٍ وَخَمْسَةٌ وَخَمْسونَ دُولارًا أمْريكِيًّا
-|4|[tanween](#tanween)|"on"<br/>"off"|"off"|Use full Tanweens (Tanween Fatih, Dham, and Kasr)<br/>(استخدام تنوين الفتح وتنوين الضم والكسر).<br/><br/>**Examples:**<br/>‏خمسة عشر ألف دينارٍ أردنيٍ<br/>ثلاثة ريالاتٍ عمانيةٍ<br/>‏ ثلاثة آلافٍ وخمسمائةٍ وخمسةٌ وخمسون دولارًا أمريكيًا
-|5|[tanweenFatih](#tanweenFatih)|"on"<br/>"off"|**"on"**|Use Tanween Fatih only (تنوين فتح فقط). This is the default Basic Tanween and is "on" by default.<br/><br/>**Examples:**<br/>خمسون ريالًا قطريًا<br/>‏ ثلاثة آلاف وخمسمائة وخمسة وخمسون دولارًا أمريكيًا
-|6|[tanweenType](#tanweenType)|"on"<br/>"off"|"off"|In the case of Tanween Fatih. Selects the placement of the tanween sign either on the charater before last (default), or on the last character.<br/><br/>**Examples:**<br/>ريالًا قطريًا   and ‏ دولارًا أمريكيًا<br/>with option 'on' becomes:<br/>ريالاً قطرياً   and ‏ دولاراً أمريكياً
-|7|[jarnsb](#jarnsb)  |"on"<br/>"off"|'off'|The output text is displayed in Jar/Nasb (Accusative/Genitive) (جر/نصب) mode.<br/>The **default** is Nominative case (حالة الرفع).<br/><br/>**Examples:**<br/>ثلاثون ==> ثلاثين<br/>خمسون ==> خمسين<br/>ألفان ==> ألفين<br/>اثنان ==> اثنين<br/>
-|8|[miah](#miah)     |"on"<br/>"off"|"**on**"| Selects between "مئة" (off) and "مائة" (on) style. **Default is "on"** showing "مائة".
-|9|[miahSplit](#miahSplit) |"on"<br/>"off"|"off"|Use separation between number and hundred words (e.g. ثلاثمائة becomes ثلاث مائة).
-|10|[comma](#comma)     |"on"<br/>"off"|'off'|Insert a comma between the number triplet text for better readability of large numbers.
-|11|[legal](#legal)    |"on"<br/>"off"|'off'|Use the legal accounting mode; helpful to get the correct legal writing and avoid misinterpretation of written numbers.
+|3|[tashkeel](#tashkeel)|<br/>"f"<br/>"p"<br/>"t"<br/>"a"|"**a**"|Selects the type of Tashkeel (تشكيل الحروف) with:<br/>1. **'f'** 'full tashkeel',<br/>2. **'p'** 'partial tashkeel',<br/>3. **'t'** full tanween, or<br/>4. **'a'** tansween fatih only.<br/>The **default** is 'a' (tanween fatih) (تنوين فتح فقط)<br/><br/>**Examples:**<br/>1. '**a**' سبعة آلاف وثلاثمائة وواحد وعشرون دينارًا كويتيًا<br/>2. '**t**'  سبعة آلافٍ وثلاثمائةٍ وواحدٌ وعشرون دينارًا كويتيًا<br/>3. '**p**' سبعةُ آلافٍ وثلاثُمائةٍ وواحدٌ وعشرونَ دينارًا كويتيًا<br/>4. '**f**' سَبْعَةُ آلَافٍ وَثَلاثُمِائَةٍ وَواحِدٌ وَعِشْرونَ دِينَارًا كُوَيتِيًّا<br/>
+|4|[tanweenType](#tanweenType)|"on"<br/>"off"|"off"|In the case of Tanween Fatih. Selects the placement of the tanween sign either on the charater before last (default), or on the last character.<br/><br/>**Examples:**<br/>قر**شً**ا مصر**يً**ا  and ‏ دولا**رً**ا أمريك**يً**ا<br/>with option 'on' becomes:<br/>قرش**اً** مصري**اً**  and ‏ دولار**اً** أمريكي**اً**
+|5|[ierab](#ierab)  |"r"<br/>"n"<br/>"j"|"**r**"|Selects the ʾIʿrāb Type (حالة الإعراب) which can be any of the following:<br/>1. **'r' (Raf')** (Nominative Case) حالة **الرفع**,<br/>2. **'n' (Nasb)** (Accusative Case) حالة **النصب**, or <br/>3. **'j' (Jar)** (Genitive Case) حالة **الجر**.<br/>The **default** is Nominative Case (حالة الرفع).<br/><br/>**Examples:**<br/>'**r**'➡️ سَبْعَ**ةُ** آلَافٍ وَثَلا**ثُ**مِائَةٍ وَواحِ**دٌ** وَعِشْرونَ دِينَارًا كُوَيتِيًّا<br/>'**n**'➡️ سَبْعَ**ةَ** آلَافٍ وَثَلا**ثَ**مِائَةٍ وَواحِ**دًا** وَعِشْرينَ دِينَارًا كُوَيتِيًّا<br/>'**j**'➡️ سَبْعَ**ةِ** آلَافٍ وَثَلا**ثِ**مِائَةٍ وَواحِ**دٍ** وَعِشْرينَ دِينَارًا كُوَيتِيًّا<br/>
+|6|[miah](#miah)     |"on"<br/>"off"|"**on**"| Selects between "مئة" (off) and "مائة" (on) style. **Default is "on"** showing "مائة".
+|7|[miahSplit](#miahSplit) |"on"<br/>"off"|"off"|Use separation between number and hundred words (e.g. ثلاثمائة becomes ثلاث مائة).
+|8|[comma](#comma)     |"on"<br/>"off"|'off'|Insert a comma between the number triplet text for better readability of large numbers.
+|9|[legal](#legal)    |"on"<br/>"off"|'off'|Use the legal accounting mode; helpful to get the correct legal writing and avoid misinterpretation of written numbers.
 |12|[arabicNumbers](#arabicNumbers) |"on"<br/>"off"|'off'|Uses Arabic-Eastern numbers (٠١٢٣٤٥٦٧٨٩) in place of Arabic-Western numbers (0123456789). This will also set the appropriate Arabic decimal and thousand separators, unless overriden by the `sepDecimal` and `sepThousands` options.
 |13|[scale](#scale)  |"arabic"<br/>"short"<br/>"long"|"**arabic**"| Selects the Numbering Scale System. "arabic", "short", or "long" numbering scale system. The Default is the Arabic-Modified Short Scale Numbering System. See more details below.
-|14|[maxNumber](#maxNumber) |\<number\>|**1000**|The maximum number in zeros on the right hand. Default up to 100 zeros for numbers. This can be up to 3000 zeros. The maxNumber also sets the maximum number of decimal digits that can be translated to words.
+|14|[maxNumber](#maxNumber) |\<number\>|**1000**|The maximum number in the form 10^n (i.e. the number of zeros on the right hand). Default up to 1,000 zeros for numbers. This can be up to 3,000 zeros. The maxNumber also sets the maximum number of decimal digits that can be translated to words.
 |15|[addZero](#addZero)  |"on"<br/>"off"|'off'|Adds the word zero "صفر" for numbers below one (1).
 |16|[sepDecimal](#sepDecimal) |"" empty<br/>\<string\><br/>lang tag|"" empty|The decimal separator to use for display. Defaults to the system locale if "" empty.
 |17|[sepThousands](#sepThousands) |"" empty<br/>\<string\><br/>lang tag|"" empty|The thousands separator to use for display. Defaults to the system locale if empty.
@@ -516,7 +516,7 @@ arqamAR.toWords(0.35);
 
 
 
-<h2 id="tanween">⚙6.5 Tanween (تنوين الكلمات)</h2>
+<h2 id="tanween">⚙ Tanween (تنوين الكلمات) //////// </h2>
 
 The `tanween` option (in English: Nunation) provides full Arabic tanween of the outputted text.
 
@@ -589,7 +589,7 @@ arqamAR.toWords(0.35);
 
 
 
-<h2 id="tanweenFatih">⚙6.6 Tanween Fath (تنوين فتح)</h2>
+<h2 id="tanweenFatih">⚙ Tanween Fath (تنوين فتح) ////////</h2>
 
 The `tanweenFatih` option is the basic option that provides tanween fatih (تنوين الفتح) only, and is the default ***arqamAR*** option.
 
@@ -640,7 +640,7 @@ arqamAR.toWords(0.35);
 ```
 
 
-<h2 id="tanweenType">⚙6.7 Tanween Type</h2>
+<h2 id="tanweenType">⚙6.5 Tanween Type</h2>
 
 This option permits the choice of where tanween fatih sign (حركة أو شكل تنوين الفتح) in case of the additional 'alif' is used (في حال استخدام ألف العوض).
 
@@ -665,24 +665,144 @@ With this option "on" `{tanweenType : 'on'}` this becomes:
 
 
 
-<h2 id="jarnsb">⚙6.8 Accusative/Genitive (حالة الجر/النصب)</h2>
+
+
+
+<h2 id="ierab">⚙6.6 ʾIʿrāb Cases (حالات الإعراب (رفع، نصب، جر))</h2>
+
+The `{ierab: ""}` selects the ʾIʿrāb Type (حالة الإعراب) which can be any of the following:
+
+1. **'r' (Raf')** (Nominative Case) حالة **الرفع**,
+
+2. **'n' (Nasb)** (Accusative Case) حالة **النصب**, or
+
+3. **'j' (Jar)** (Genitive Case) حالة **الجر**.
 
 The default ***arqamAR*** ouput is the Nominative case (حالة الرفع).
 
-When using this option, the output text is produced in the Accusative/Genitive (جر/نصب) case.
+When using this option, the output text can be produced in any of the ʾIʿrāb Cases.
 
-The following table summarizes the conditions under which numbers are converted from Nominative to Accusative/Genitive.
-
-![Image](/images/ag.png?raw=true)
 
 **Applicability**
 - [x] This option is available in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
 
+The following examples will demonstrate the use of the `{ierab: ""}` option using full tashkeel for better presentation as it is sometimes difficult to differentiate between the Nasb and Jar without tashkeel.
+
+
+***Example 1 (Raf' Case) حالة الرفع***
+
+```javascript
+arqamAR.config({ ierab: "r", tashkeel: "f"}); // Select Raf' (إعراب رفع) with full tashkeel (تشكيل كامل)
+
+console.log(arqamAR.toWords(5321));        // convert normal numbers
+console.log(arqamAR.toWords(32112));
+console.log(arqamAR.toWords(12012));
+console.log(arqamAR.toWords(88888));
+
+arqamAR.config({code:"EGP"});             // convert male currency numbers
+
+console.log(arqamAR.toWords(521.34));
+console.log(arqamAR.toWords(3212.02));
+console.log(arqamAR.toWords(1212.23));
+console.log(arqamAR.toWords(8088.11));
+
+arqamAR.config({code:"LBP"});             // convert female currency numbers
+
+console.log(arqamAR.toWords(521.34));
+console.log(arqamAR.toWords(3212.02));
+console.log(arqamAR.toWords(1212.23));
+console.log(arqamAR.toWords(8088.11));
+
+//======= Output ========
+خَمْسَةِ آلَافٍ وَثَلاثِمِائَةٍ وَواحِدٍ وَعِشْرينَ
+اثْنَيْنِ وَثَلاثينَ ألْفًا وَمِائَةٍ وَاثْنَي عَشَرَ
+اثْنَي عَشَرَ ألْفًا وَاثْنَي عَشَرَ
+ثَمَانِيَةٍ وَثَمَانينَ ألْفًا وَثَمَانِمِائَةٍ وَثَمَانِيَةٍ وَثَمَانينَ
+خَمْسِمِائَةٍ وَواحِدٍ وَعِشْرينَ جُنَيْهًا مِصْرِيًّا، وَأرْبَعَةٍ وَثَلاثينَ قِرْشًا
+ثَلاثَةِ آلَافٍ وَمِائَتَيْنِ وَاثْنَي عَشَرَ جُنَيْهًا مِصْرِيًّا، وَقِرْشَيْنِ اثْنَيْنِ
+ألْفٍ وَمِائَتَيْنِ وَاثْنَي عَشَرَ جُنَيْهًا مِصْرِيًّا، وَثَلاثَةٍ وَعِشْرينَ قِرْشًا
+ثَمَانِيَةِ آلَافٍ وَثَمَانِيَةٍ وَثَمَانينَ جُنَيْهًا مِصْرِيًّا، وَأحَدَ عَشَرَ قِرْشًا
+خَمْسِمِائَةٍ وَإحْدَىَ وَعِشْرينَ لِيرَةً لُبْنَانِيَّةً، وَأرْبَعَةٍ وَثَلاثينَ قِرْشًا
+ثَلاثَةِ آلَافٍ وَمِائَتَيْنِ وَاثْنَتَي عَشَرَةَ لِيرَةً لُبْنَانِيَّةً، وَقِرْشَيْنِ اثْنَيْنِ
+ألْفٍ وَمِائَتَيْنِ وَاثْنَتَي عَشَرَةَ لِيرَةً لُبْنَانِيَّةً، وَثَلاثَةٍ وَعِشْرينَ قِرْشًا
+ثَمَانِيَةِ آلَافٍ وَثَمَانٍ وَثَمَانينَ لِيرَةً لُبْنَانِيَّةً، وَأحَدَ عَشَرَ قِرْشًا
+```
+
+![Image](/images/arqamAR_Raf_Tashkeel.png?raw=true)
+
+***Example 2 (Nasb Case) حالة النصب***
+
+```javascript
+arqamAR.config({ ierab: "n", tashkeel: "f"}); // Select Nasb (إعراب نصب) with full tashkeel (تشكيل كامل)
+
+console.log(arqamAR.toWords(5321));        // convert normal numbers
+console.log(arqamAR.toWords(32112));
+console.log(arqamAR.toWords(12012));
+console.log(arqamAR.toWords(88888));
+
+arqamAR.config({code:"EGP"});             // convert male currency numbers
+
+console.log(arqamAR.toWords(521.34));
+console.log(arqamAR.toWords(3212.02));
+console.log(arqamAR.toWords(1212.23));
+console.log(arqamAR.toWords(8088.11));
+
+arqamAR.config({code:"LBP"});             // convert female currency numbers
+
+console.log(arqamAR.toWords(521.34));
+console.log(arqamAR.toWords(3212.02));
+console.log(arqamAR.toWords(1212.23));
+console.log(arqamAR.toWords(8088.11));
+
+//======= Output ========
+خَمْسَةَ آلَافٍ وَثَلاثَمِائَةٍ وَواحِدًا وَعِشْرينَ
+اثْنَيْنِ وَثَلاثينَ ألْفًا وَمِائَةً وَاثْنَي عَشَرَ
+اثْنَي عَشَرَ ألْفًا وَاثْنَي عَشَرَ
+ثَمَانِيَةً وَثَمَانينَ ألْفًا وَثَمَانِمِائَةٍ وَثَمَانِيَةً وَثَمَانينَ
+خَمْسَمِائَةٍ وَواحِدًا وَعِشْرينَ جُنَيْهًا مِصْرِيًّا، وَأرْبَعَةً وَثَلاثينَ قِرْشًا
+ثَلاثَةَ آلَافٍ وَمِائَتَيْنِ وَاثْنَي عَشَرَ جُنَيْهًا مِصْرِيًّا، وَقِرْشَيْنِ اثْنَيْنِ
+ألْفً وَمِائَتَيْنِ وَاثْنَي عَشَرَ جُنَيْهًا مِصْرِيًّا، وَثَلاثَةً وَعِشْرينَ قِرْشًا
+ثَمَانِيَةَ آلَافٍ وَثَمَانِيَةً وَثَمَانينَ جُنَيْهًا مِصْرِيًّا، وَأحَدَ عَشَرَ قِرْشًا
+خَمْسَمِائَةٍ وَإحْدَىَ وَعِشْرينَ لِيرَةً لُبْنَانِيَّةً، وَأرْبَعَةً وَثَلاثينَ قِرْشًا
+ثَلاثَةَ آلَافٍ وَمِائَتَيْنِ وَاثْنَتَي عَشَرَةَ لِيرَةً لُبْنَانِيَّةً، وَقِرْشَيْنِ اثْنَيْنِ
+ألْفً وَمِائَتَيْنِ وَاثْنَتَي عَشَرَةَ لِيرَةً لُبْنَانِيَّةً، وَثَلاثَةً وَعِشْرينَ قِرْشًا
+ثَمَانِيَةِ آلَافٍ وَثَمَانيًا وَثَمَانينَ لِيرَةً لُبْنَانِيَّةً، وَأحَدَ عَشَرَ قِرْشًا
+```
+
+![Image](/images/arqamAR_Nasb_Tashkeel.png?raw=true)
+
+***Example 3 (Jar Case) حالة الجر***
+
+```javascript
+arqamAR.config({ ierab: "j", tashkeel: "f"}); // Select Jar (إعراب جر) with full tashkeel (تشكيل كامل)
+
+console.log(arqamAR.toWords(5321));        // convert normal numbers
+console.log(arqamAR.toWords(32112));
+console.log(arqamAR.toWords(12012));
+console.log(arqamAR.toWords(88888));
+
+arqamAR.config({code:"EGP"});             // convert male currency numbers
+
+console.log(arqamAR.toWords(521.34));
+console.log(arqamAR.toWords(3212.02));
+console.log(arqamAR.toWords(1212.23));
+console.log(arqamAR.toWords(8088.11));
+
+arqamAR.config({code:"LBP"});             // convert female currency numbers
+
+console.log(arqamAR.toWords(521.34));
+console.log(arqamAR.toWords(3212.02));
+console.log(arqamAR.toWords(1212.23));
+console.log(arqamAR.toWords(8088.11));
+
+//======= Output ========
+
+```
+![Image](/images/arqamAR_Jar_Tashkeel.png?raw=true)
 
 
 
-
-<h2 id="miah">⚙6.9 miah (مئة ومائة)</h2>
+<h2 id="miah">⚙6.7 miah (مئة ومائة)</h2>
 With this option, the default word "مئة" (hundred) is replaced with the word "مائة".
 
 Many Arabic-speaking countries' official documents prefer the use of the word "مئة".
@@ -726,7 +846,7 @@ arqamAR.toWords(700900.02);
 
 
 
-<h2 id="miahSplit">⚙6.10 Miha Split (فصل المائة عن الرقم)</h2>
+<h2 id="miahSplit">⚙6.8 Miha Split (فصل المائة عن الرقم)</h2>
 
 This option permits the splitting/separation of the unit name from the hundred words.
 
@@ -776,7 +896,7 @@ arqamAR.toWords(700900.02);
 
 
 
-<h2 id="comma">⚙6.11 Comma between Words (فاصلة بين الكلمات)</h2>
+<h2 id="comma">⚙6.9 Comma between Words (فاصلة بين الكلمات)</h2>
 
 This option adds a comma "،" between the triplet number strings. This assists in having a more readable and better-interpreted text, especially for large numbers.
 
@@ -803,7 +923,7 @@ arqamAR.toWords(700900);
 
 
 
-<h2 id="legal">⚙6.12 Legal (كتابة قانونية)</h2>
+<h2 id="legal">⚙6.10 Legal (كتابة قانونية)</h2>
 The output text is produced in a legal non-ambiguous form.
 
 **Applicability**
@@ -837,7 +957,7 @@ arqamAR.toWords(102010);   // "مائة ألف وألفان وعشرة"
 
 
 
-<h2 id="arabicNumbers">⚙6.13 Arabic Numbers</h2>
+<h2 id="arabicNumbers">⚙6.11 Arabic Numbers</h2>
 
 The `arabicNumbers` option outputs digits in the Arabic-Eastern form (٠١٢٣٤٥٦٧٨٩) rather than the Arabic-Western form (0123456789).
 
@@ -1041,7 +1161,7 @@ arqamAR.toWords(33.2,"SDG");
 
 
 
-<h2 id="scale">⚙6.14 Scale</h2>
+<h2 id="scale">⚙6.12 Scale</h2>
 
 This `scale` option permits the selection of the **Numbering System**.
 
@@ -1082,16 +1202,20 @@ arqamAR.toWords("1100100100100100000" {scale : "long"});   // short scale
 ترليون و100 بليار و100 بليون و100 مليار و100 مليون و100 ألف          // short scale
 ```
 
+Noe the change of the word "مليار" to "بليون" under the short scale numbering system.
+
 ***Note 1: In the above example, the `compact` mode is used for easier readability and comparison.***
 
-***Note 1: Large numbers are passed as a string.***
+***Note 2: Large numbers are passed as a string.***
 
 
-<h2 id="maxNumber">⚙6.15 Maximum Number</h2>
+
+
+<h2 id="maxNumber">⚙6.13 Maximum Number</h2>
 
 Set the maximum number that can be used by ***arqamAR***.
 
-The default is 10^1000 (i.e. 100 دِيْوْتْرِيجِنْتاترِسِنْتِلْيون).
+The default is 10^1000 (i.e. 100 مائة دِيْوْتْرِيجِنْتاترِسِنْتِلْيون).
 
 The Largest number that can be converted by ***arqamAR*** is:
 
@@ -1105,7 +1229,7 @@ The Largest number that can be converted by ***arqamAR*** is:
 
 
 
-<h2 id="addZero">⚙6.16 Add Zero</h2>
+<h2 id="addZero">⚙6.14 Add Zero</h2>
 
 Adds the word zero "صفر" for numbers below one (1).
 
@@ -1153,7 +1277,7 @@ arqamAR.toWords(0.2, {code:"USD", addZero:"on"});   // option on
 
 
 
-<h2 id="sepDecimal">⚙6.17 Decimal Separator</h2>
+<h2 id="sepDecimal">⚙6.15 Decimal Separator</h2>
 
 When options are used for displaying numbers in digits inside brackets, ***arqamAR*** uses the system locale setting for displaying the **Decimal Separator** by default.
 
@@ -1223,7 +1347,7 @@ In the [Arabic Numbers Mode](#arabicNumbers), if no specific **Decimal Separator
 
 
 
-<h2 id="sepThousands">⚙6.18 Thousands Separator</h2>
+<h2 id="sepThousands">⚙6.16 Thousands Separator</h2>
 
 When options are used for displaying numbers in digits inside brackets, ***arqamAR*** uses the system locale setting for displaying the **Thousand Separator** by default.
 
@@ -1298,7 +1422,7 @@ In the [Arabic Numbers Mode](#arabicNumbers), if no specific **Thousands Separat
 
 
 
-<h2 id="brackets">⚙6.19 Brackets</h2>
+<h2 id="brackets">⚙6.17 Brackets</h2>
 
 The brackets option `{brackets : 'end'}` or  `{brackets : 'start'}` provides a flexible method for enclosing the **whole Number** (*in digital form*) including its **Decimal Part** (if any) inside brackets.
 
@@ -1359,7 +1483,7 @@ arqamAR.toWords(120000);
 
 
 
-<h2 id="bracketsType">⚙6.20 Brackets Type</h2>
+<h2 id="bracketsType">⚙6.18 Brackets Type</h2>
 
 Change the characters used with the **[`brackets`](#brackets)** option, and therefore is only available when the **[`brackets`](#brackets)** option is also enabled.
 
@@ -1386,7 +1510,7 @@ arqamAR.toWords(256,"USD");
 
 
 
-<h2 id="numSymbol">⚙6.21 Number Symbol (رمز الرقم/علامة العملة)</h2>
+<h2 id="numSymbol">⚙6.19 Number Symbol (رمز الرقم/علامة العملة)</h2>
 
 This option allows the symbol or sign to be specified, when using the **[`brackets`](#brackets)** option in the **[Currency Mode](#CurrencyMode)** and the **[Subjects Mode](#subjectsmode)**.
 
@@ -1526,7 +1650,7 @@ arqamAR.toWords(25, {code:"KWD", brackets :"end", numSymbol:"دڪ"});
 💡 ***If you copy the output text to an MS Excel cell, set the cell format display to Right-to-Left (RTL) using 'Format Cells, Alignment, Text direction: Right-to-Left***
 
 
-<h2 id="decRound">⚙6.22 Decimal Rounding</h2>
+<h2 id="decRound">⚙6.20 Decimal Rounding</h2>
 
 The `decRound` option specifies the **number** of decimal places for upward rounding of the **Decimal Part** of the number.
 
@@ -1605,7 +1729,7 @@ arqamAR.toWords(22.9999, "USD");
 💡 The above is another example that shows how you can combine configuration options using the `arqamAR.config()` and using the `arqamAR.toWords()`.
 
 
-<h2 id="decFormat">⚙6.23 Decimal Formats (تنسيقات الكسور)</h2>
+<h2 id="decFormat">⚙6.21 Decimal Formats (تنسيقات الكسور)</h2>
 
 This option controls the text formatting of the **Decimal Part** of the number in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
 
@@ -1650,7 +1774,7 @@ The following illustration summarises the **`decFormat`** settings with an examp
 
 
 
-<h2 id="decInBrackets">⚙6.24 Decimals in Brackets (كسور بين قوسين)</h2>
+<h2 id="decInBrackets">⚙6.22 Decimals in Brackets (كسور بين قوسين)</h2>
 
 **Purpose**
 
@@ -1705,7 +1829,7 @@ arqamAR.toWords(0.5,"OMR");
 ```
 
 
-<h2 id="decJuz">⚙6.25 Decimal Juzu ("كلمة "جزءًا من)</h2>
+<h2 id="decJuz">⚙6.23 Decimal Juzu ("كلمة "جزءًا من)</h2>
 
 In the formation of the **Decimal Part** of the number, the words **'جزءًا من'** is used by default for certain Decimal Formats using the **[{decFormat}](#decFormat)** option.
 
@@ -1740,7 +1864,7 @@ arqamAR.toWords(22.238);
 اثنان وعشرون، ومائتان وثمانية وثلاثون من الألف
 ```
 
-<h2 id="decFaslah">⚙6.26 Decimal Fasilah (فاصلة عوضًا عن الواو)</h2>
+<h2 id="decFaslah">⚙6.24 Decimal Fasilah (فاصلة عوضًا عن الواو)</h2>
 
 When displaying a **Decimal Part** with a **Whole Part**, mostly the joining word is the letter "**و**". For example:
 
@@ -1758,7 +1882,7 @@ See above the **[`decFormat`](#decFormat)** option for more details.
 
 
 
-<h2 id="decIgnore">⚙6.27 Ignore Decimals</h2>
+<h2 id="decIgnore">⚙6.25 Ignore Decimals</h2>
 
 The **Decimal Part** of a number (and the Sub-Unit of a Currency Value) is not displayed in the output text and is completely ignore.
 
@@ -1782,7 +1906,7 @@ arqamAR.toWords(145.32,"BHD");
 مائة وخمسة وأربعون دينارًا بحرينيًا
 ```
 
-<h2 id="decAL">⚙6.28 Decimal AL (لام تعريف الكسر)</h2>
+<h2 id="decAL">⚙6.26 Decimal AL (لام تعريف الكسر)</h2>
 
 This option enables or disables the use of the word '**الـ**' as used in the formatting of the **Decimal Part** with the **[{decFormat}](#decFormat)** option when using the '**ww**', '**wn**', '**nw**', and '**nn**' settings.
 
@@ -1822,7 +1946,7 @@ arqamAR.toWords(22.238);
 
 
 
-<h2 id="ignoreCountry">⚙6.29 Ignore Country (تجاهل اسم البد)</h2>
+<h2 id="ignoreCountry">⚙6.27 Ignore Country (تجاهل اسم البد)</h2>
 
 In the **[Currency Mode](#CurrencyMode)**, this option permits the output text to be displayed **without the Country Name** but keeps the Currency Name.
 
@@ -1849,7 +1973,7 @@ arqamAR.toWords(145.32,"BHD");
 ```
 ![Image](/images/example_ignoreCountry.png?raw=true)
 
-<h2 id="currDecForce">⚙6.30 Force Decimals in Currency</h2>
+<h2 id="currDecForce">⚙6.28 Force Decimals in Currency</h2>
 
 This option is only available in the Currency Mode with brackets option.
 
@@ -1866,17 +1990,17 @@ With this option set to 'off' (`{currDecForce: "off"}`), the Decimal Part is not
 - [x] This option is only used with the **[brackets](#brackets) option**.
 
 
-<h2 id="prefix">⚙6.31 Prefix Text</h2>
+<h2 id="prefix">⚙6.29 Prefix Text</h2>
 
 Adds a prefix text to the outputted string.
 
 
-<h2 id="suffix">⚙6.32 Suffix Text</h2>
+<h2 id="suffix">⚙6.30 Suffix Text</h2>
 
 Adds a suffix text to the outputted string.
 
 
-<h2 id="isNaNString">⚙6.33 IsNaN String</h2>
+<h2 id="isNaNString">⚙6.31 IsNaN String</h2>
 
 The string to be returned if the number passed is not a valid number.
 
@@ -2361,17 +2485,22 @@ console.log(arqamAR.toWords(1.5));
 console.log(arqamAR.toWords(3));
 console.log(arqamAR.toWords(100));
 console.log(arqamAR.toWords(0.25));
-
 // ========= Output ==========
-(كغ 1) كيلوغرام واحد
-(2 كغ) كيلوغرامان اثنان
-‎(1.500 كغ) كيلوغرام واحد ، وخمسمائة غرام
-(3 كغ) ثلاثة كيلوغرامات
-‎(100 كغ) مائة كيلوغرام
-(0.250 كغ) مائتان وخمسون غرامًا
 ```
+<div dir=rtl>
 
-⚠ Note: The position of the symbol word "كغ" and the number will not show correctly here as Github using the Markdown language does not allow right-to-left (RTL) text direction. The following image illustrates the output better.
+**كيلوغرام واحد (1 كغ)**
+
+**كيلوغرامان اثنان(2 كغ)**
+
+**كيلوغرام واحد ، وخمسمائة غرام (1.500 كغ)**
+
+**ثلاثة كيلوغرامات (3 كغ)**
+
+**‎مائة كيلوغرام (100 كغ)**
+
+**مائتان وخمسون غرامًا (0.250 كغ)**
+</div>
 
 ![Image](/images/subject01.png?raw=true)
 
@@ -2437,3 +2566,22 @@ The other reason that numbers be passed as strings is because javascript will te
 
 ***arqamAR*** has a built-in table array of world currencies in a compact mode (simple encoding) to reduce the size of the ***arqamAR*** code.
 
+
+
+<h2 id="references">1️⃣2️⃣ Reference and Tables</h2>
+
+The following tables provide guidance and assistance for differentiating between certain numbers under the three (3) cases of ʾIʿrāb Type (حالات الإعراب) with full tashkeel (تشكيلاً كاملاً).
+
+<div dir=rtl>
+توفر الجداول التالية إرشادات ومساعدة للتمييز بين أرقام معينة تحت ثلاث (3) حالات الإعراب مع تشكيل كامل للحروف.
+</div>
+
+![Image](/images/arqamAR00-10.png?raw=true)
+
+![Image](/images/arqamAR11-19.png?raw=true)
+
+![Image](/images/arqamAR20-29.png?raw=true)
+
+![Image](/images/arqamAR100-900.png?raw=true)
+
+![Image](/images/ag.png?raw=true)

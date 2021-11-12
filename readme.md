@@ -122,9 +122,9 @@ The ***arqamAR*** library provides the following functionalities and features in
   - [x] Arabic output text in accordance with the Arabic grammar rules.
   - [x] Handles both numbers (**[Numbers Mode](#NumbersMode)**) and currencies (**[Currency Mode](#CurrencyMode)**) with decimals and sub-units.
   - [x] Comes with **173** currencies including all current ISO currencies.
-  - [x] Support for full words tashkeel (تشكيل الحروف كاملاً).
-  - [x] Support for full Tanween (تنوين كامل).
-  - [x] Support for Tanween Fatih only (تنوين فتح).
+  - [x] Support full ʾIʿrāb (حالات الإعراب) الرفع والنصب والجر
+  - [x] Support for 4 modes of tashkeel (تشكيل الحروف كاملاً أو جزئيّا).
+  - [x] Support for full and partial Tanween (تنوين كامل).
   - [x] Provide the compact mode which is preferred by the press and newspapers (الكتابة المختصرة).
   - [x] Provide an **Accountant Legal Mode** (كتابة محاسبية قانونية).
   - [x] Provide thirty (30) formats and options for outputting Arabic text.
@@ -210,8 +210,8 @@ because the option "USD" is remembered in the next call.
 
 ***Example:***
 ```javascript
-// Set the options to QAR Currency with Tashkeel and using Miah
-   arqamAR.config({Currency: "QAR", tashkeel: "on"});
+// Set the options to QAR Currency with Full Tashkeel and using Miah
+   arqamAR.config({Currency: "QAR", tashkeel: "f"});
 
    let result = arqamAR.toWords(2500.35);     // convert the number to currency text
    console.log(result);
@@ -262,8 +262,8 @@ arqamAR.toWords(2200.2,"KWD");
 ```javascript
 // Shortcut to change the configuration without using the arqamAR.config()
 
-arqamAR.toWords(2200.2,{tashkeel:"on", code:"QAR", brackets: "end"});
-arqamAR.toWords(3300.5,{tashkeel:"on", code:"AED", brackets: "end", arabicNumbers: "on"});
+arqamAR.toWords(2200.2,{tashkeel:"f", code:"QAR", brackets: "end"});
+arqamAR.toWords(3300.5,{tashkeel:"f", code:"AED", brackets: "end", arabicNumbers: "on"});
 
 // ===== Output =======
 (QAR 2,200٫20) ألْفانِ وَمَائَتا رِيَالٍ قَطَرِيٍّ، وَعِشْرونَ دِرْهَمًا
@@ -389,7 +389,7 @@ arqamAR.toWords(0.35);
 خمسون سنتًا أمريكيًا
 خمسة وثلاثون سنتًا أمريكيًا
 ```
-![Image](/images/CurrencyMode01.png?raw=true)
+![Image](/images/currencyMode01.png?raw=true)
 
 <h2 id="compact">⚙6.3 Compact</h2>
 
@@ -455,15 +455,30 @@ arqamAR.toWords(0.35);
 
 <h2 id="tashkeel">⚙6.4 Tashkeel Mode (تشكيل الحروف)</h2>
 
-The **Taskeel Mode** is enabled by setting the option `{tashkeel: 'on'}`.
+***arqamAR*** provide four (4) options of tashkeel (تشكيل الحروف) namely
 
-The **Taskeel Mode** provides full Arabic tashkeel of the outputted text.
+1. **'f'** 'full tashkeel' (تشكسل كامل),
+
+2. **'p'** 'partial tashkeel' (تشكيل جزئي بتشكيل آخر حرف من كل كلمة),
+
+3. **'t'** full tanween (تنوين كامل فتح ضم وكسر), or
+
+4. **'a'** tansween fatih only (تنوين فتح فقط).
+
+
+**Examples:**
+
+1. '**a**' سبعة آلاف وثلاثمائة وواحد وعشرون دينارًا كويتيًا
+
+2. '**t**'  سبعة آلافٍ وثلاثمائةٍ وواحدٌ وعشرون دينارًا كويتيًا
+
+3. '**p**' سبعةُ آلافٍ وثلاثُمائةٍ وواحدٌ وعشرونَ دينارًا كويتيًا
+
+4. '**f**' سَبْعَةُ آلَافٍ وَثَلاثُمِائَةٍ وَواحِدٌ وَعِشْرونَ دِينَارًا كُوَيتِيًّا
+
 
 **Applicability**
 - [x] This option is available in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
-
-**Notes:**
-- [x] The The **Taskeel Mode** overrides the [`tanween`](#tanween) and [`tanweenFatih`](#tanweenFatih) options.
 
 
 ***Examples in Numbers Mode:***
@@ -471,7 +486,7 @@ The **Taskeel Mode** provides full Arabic tashkeel of the outputted text.
 //--------------------------
 // Examples using Numbers
 //--------------------------
-arqamAR.config({ tashkeel : "on"  }); // enable tashkeel option
+arqamAR.config({ tashkeel : "f"  }); // enable tashkeel option
 
 arqamAR.toWords(20200);
 arqamAR.toWords(2560000);
@@ -495,7 +510,7 @@ arqamAR.toWords(0.35);
 //--------------------------
 // Examples using Currencies
 //--------------------------
-arqamAR.config({ tashkeel: "on"  code: "JOD"}); // enable both tashkeel and currency options
+arqamAR.config({ tashkeel: "f"  code: "JOD"}); // enable both tashkeel and currency options
 
 arqamAR.toWords(20200);
 arqamAR.toWords(2560000);
@@ -515,34 +530,19 @@ arqamAR.toWords(0.35);
 ![Image](/images/tashkeel_02.png?raw=true)
 
 
-
-<h2 id="tanween">⚙ Tanween (تنوين الكلمات) //////// </h2>
-
-The `tanween` option (in English: Nunation) provides full Arabic tanween of the outputted text.
-
-Arabic Tanween (Nunation) has three (3) forms: tanween Fath (تنوين الفتح), tanween Dhum (تنوين الضم), and tanween Kasr (تنوين الكسر).
-
-*Examples of Tanween:*
+***Examples of Full Tanween:***
 
 - Tanween Fatih (تنوين الفتح): ألفًا جنيهًا دولارًا ريالًا خمسةً عشرةً
 - Tanween Dhum (تنوين الضم): سبعةٌ خمسةٌ ستةٌ
 - Tanween Kasr (تنوين الكسر): مئةٍ مائةٍ ألفٍ سبعمائةٍ بيسةٍ ليرةٍ
 
-**Applicability**
-- [x] This option is available in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
 
-**Notes:**
-- [x] The [`tashkeel`](#tashkeel) option overrides this option.
-- [x] This option overrides the [`tanweenFatih`](#tanweenFatih) option.
-
-
-
-***Examples in Numbers Mode:***
+***Examples of Full Tanween in Numbers Mode:***
 ```javascript
 //--------------------------
 // Examples using Numbers
 //--------------------------
-arqamAR.config({ tanween : "on"  }); // enable tanween option
+arqamAR.config({ tashkeel : "t"  }); // enable tanween option
 
 arqamAR.toWords(20200);
 arqamAR.toWords(2560000);
@@ -561,12 +561,12 @@ arqamAR.toWords(0.35);
 ```
 ![Image](/images/tanweenAll_01.png?raw=true)
 
-***Example in Currency Mode:***
+***Example of Full Tanween in Currency Mode:***
 ```javascript
 //--------------------------
 // Examples using Currencies
 //--------------------------
-arqamAR.config({ tanween: "on"  code: "EGP"}); // enable both tanween and currency options
+arqamAR.config({ tashkeel : "t",  code: "EGP"}); // enable both tanween and currency options
 
 arqamAR.toWords(20200);
 arqamAR.toWords(2560000);
@@ -587,26 +587,12 @@ arqamAR.toWords(0.35);
 
 
 
-
-
-<h2 id="tanweenFatih">⚙ Tanween Fath (تنوين فتح) ////////</h2>
-
-The `tanweenFatih` option is the basic option that provides tanween fatih (تنوين الفتح) only, and is the default ***arqamAR*** option.
-
-**Applicability**
-- [x] This option is available in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
-
-**Notes:**
-- [x] This option is the default ***arqamAR*** option.
-- [x] The [`tashkeel`](#tashkeel) and [`tanween`](#tanween) options override this option.
-
-
-***Examples in Numbers Mode:***
+***Examples of Tanween Fatih Only in the Numbers Mode:***
 ```javascript
 //--------------------------
 // Examples using Numbers
 //--------------------------
-arqamAR.config({ tanweenFatih : "on"  }); // enable tanween option
+arqamAR.config({ tashkeel : "a"}); // enable tanween fatih only
 
 arqamAR.toWords(20200);
 arqamAR.toWords(3356789);
@@ -620,12 +606,12 @@ arqamAR.toWords(0.35);
 ‏خمسة وثلاثون جزءًا من المائة
 ```
 
-***Example in Currency Mode:***
+***Example of Tanween Fatih Only in the Currency Mode:***
 ```javascript
 //--------------------------
 // Examples using Currencies
 //--------------------------
-arqamAR.config({ tanween: "on"  code: "KWD"}); // enable both tanween and currency options
+arqamAR.config({ tashkeel : "a",  code: "KWD"}); // enable both tanween and currency options
 
 arqamAR.toWords(20200);
 arqamAR.toWords(3356789);
@@ -796,7 +782,18 @@ console.log(arqamAR.toWords(1212.23));
 console.log(arqamAR.toWords(8088.11));
 
 //======= Output ========
-
+خَمْسَةِ آلَافٍ وَثَلاثِمِائَةٍ وَواحِدٍ وَعِشْرينَ
+اثْنَيْنِ وَثَلاثينَ ألْفًا وَمِائَةٍ وَاثْنَي عَشَرَ
+اثْنَي عَشَرَ ألْفًا وَاثْنَي عَشَرَ
+ثَمَانِيَةٍ وَثَمَانينَ ألْفًا وَثَمَانِمِائَةٍ وَثَمَانِيَةٍ وَثَمَانينَ
+خَمْسِمِائَةٍ وَواحِدٍ وَعِشْرينَ جُنَيْهًا مِصْرِيًّا، وَأرْبَعَةٍ وَثَلاثينَ قِرْشًا
+ثَلاثَةِ آلَافٍ وَمِائَتَيْنِ وَاثْنَي عَشَرَ جُنَيْهًا مِصْرِيًّا، وَقِرْشَيْنِ اثْنَيْنِ
+ألْفٍ وَمِائَتَيْنِ وَاثْنَي عَشَرَ جُنَيْهًا مِصْرِيًّا، وَثَلاثَةٍ وَعِشْرينَ قِرْشًا
+ثَمَانِيَةِ آلَافٍ وَثَمَانِيَةٍ وَثَمَانينَ جُنَيْهًا مِصْرِيًّا، وَأحَدَ عَشَرَ قِرْشًا
+خَمْسِمِائَةٍ وَإحْدَىَ وَعِشْرينَ لِيرَةً لُبْنَانِيَّةً، وَأرْبَعَةٍ وَثَلاثينَ قِرْشًا
+ثَلاثَةِ آلَافٍ وَمِائَتَيْنِ وَاثْنَتَي عَشَرَةَ لِيرَةً لُبْنَانِيَّةً، وَقِرْشَيْنِ اثْنَيْنِ
+ألْفٍ وَمِائَتَيْنِ وَاثْنَتَي عَشَرَةَ لِيرَةً لُبْنَانِيَّةً، وَثَلاثَةٍ وَعِشْرينَ قِرْشًا
+ثَمَانِيَةِ آلَافٍ وَثَمَانٍ وَثَمَانينَ لِيرَةً لُبْنَانِيَّةً، وَأحَدَ عَشَرَ قِرْشًا
 ```
 ![Image](/images/arqamAR_Jar_Tashkeel.png?raw=true)
 

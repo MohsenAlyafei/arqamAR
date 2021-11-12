@@ -389,7 +389,7 @@ arqamAR.toWords(0.35);
 خمسون سنتًا أمريكيًا
 خمسة وثلاثون سنتًا أمريكيًا
 ```
-![Image](/images/currencyMode01.png?raw=true)
+![Image](/images/CurrencyMode01.png?raw=true)
 
 <h2 id="compact">⚙6.3 Compact</h2>
 

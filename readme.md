@@ -1290,7 +1290,7 @@ In the [Arabic Numbers Mode](#arabicNumbers), if no specific **Decimal Separator
 
 ***Examples:***
 
-`{sepDecimal : ""}`    : Default uses the system local as the Decimal Separator.
+`{sepDecimal : ""}`    : Default uses the system locale as the Decimal Separator.
 
 `{sepDecimal : ","}`   : Uses comma (,) as the Decimal Separator.
 
@@ -1361,7 +1361,7 @@ In the [Arabic Numbers Mode](#arabicNumbers), if no specific **Thousands Separat
 
 ***Examples:***
 
-`{sepThousands : ""}`    : Default uses the system local as the Thousands Separator.
+`{sepThousands : ""}`    : Default uses the system locale as the Thousands Separator.
 
 `{sepThousands : "."}`   : Uses dot (.) as the Thousands Separator.
 ```javascript

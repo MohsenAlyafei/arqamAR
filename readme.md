@@ -287,8 +287,8 @@ arqamAR.toWords(3300.5,{tashkeel:"f", code:"AED", brackets: "end", arabicNumbers
 |2|[compact](#compact) |"on"<br/>"off"|'off'|Use the **[Compact Mode](#compact)**.
 |3|[tashkeel](#tashkeel)|<br/>"f"<br/>"p"<br/>"t"<br/>"a"|"**a**"|Selects the type of Tashkeel (تشكيل الحروف) with:<br/>1. **'f'** 'full tashkeel',<br/>2. **'p'** 'partial tashkeel',<br/>3. **'t'** full tanween, or<br/>4. **'a'** tansween fatih only.<br/>The **default** is 'a' (tanween fatih) (تنوين فتح فقط)<br/><br/>**Examples:**<br/>1. '**a**' سبعة آلاف وثلاثمائة وواحد وعشرون دينارًا كويتيًا<br/>2. '**t**'  سبعة آلافٍ وثلاثمائةٍ وواحدٌ وعشرون دينارًا كويتيًا<br/>3. '**p**' سبعةُ آلافٍ وثلاثُمائةٍ وواحدٌ وعشرونَ دينارًا كويتيًا<br/>4. '**f**' سَبْعَةُ آلَافٍ وَثَلاثُمِائَةٍ وَواحِدٌ وَعِشْرونَ دِينَارًا كُوَيتِيًّا<br/>
 |4|[tanweenType](#tanweenType)|"on"<br/>"off"|"off"|In the case of Tanween Fatih. Selects the placement of the tanween sign either on the charater before last (default), or on the last character.<br/><br/>**Examples:**<br/>قر**شً**ا مصر**يً**ا  and ‏ دولا**رً**ا أمريك**يً**ا<br/>with option 'on' becomes:<br/>قرش**اً** مصري**اً**  and ‏ دولار**اً** أمريكي**اً**
-|5|[ierab](#ierab)  |"r"<br/>"n"<br/>"j"|"**r**"|Selects the ʾIʿrāb Type (حالة الإعراب) which can be any of the following:<br/>1. **'r' (Raf')** (Nominative Case) حالة **الرفع**,<br/>2. **'n' (Nasb)** (Accusative Case) حالة **النصب**, or <br/>3. **'j' (Jar)** (Genitive Case) حالة **الجر**.<br/>The **default** is Nominative Case (حالة الرفع).<br/><br/>**Examples:**<br/>'**r**'➡️ سَبْعَ**ةُ** آلَافٍ وَثَلا**ثُ**مِائَةٍ وَواحِ**دٌ** وَعِشْرونَ دِينَارًا كُوَيتِيًّا<br/>'**n**'➡️ سَبْعَ**ةَ** آلَافٍ وَثَلا**ثَ**مِائَةٍ وَواحِ**دًا** وَعِشْرينَ دِينَارًا كُوَيتِيًّا<br/>'**j**'➡️ سَبْعَ**ةِ** آلَافٍ وَثَلا**ثِ**مِائَةٍ وَواحِ**دٍ** وَعِشْرينَ دِينَارًا كُوَيتِيًّا<br/>
-|6|[miah](#miah)     |"on"<br/>"off"|"**on**"| Selects between "مئة" (off) and "مائة" (on) style. **Default is "on"** showing "مائة".
+|5|[ierab](#ierab)  |"r"<br/>"n"<br/>"j"|"**r**"|Selects the ʾIʿrāb Type (حالة الإعراب) which can be any of the following:<br/>1. **'r' (Raf')** (Nominative Case) حالة **الرفع**,<br/>2. **'n' (Nasb)** (Accusative Case) حالة **النصب**, or <br/>3. **'j' (Jar)** (Genitive Case) حالة **الجر**.<br/>The **default** is Nominative Case (حالة الرفع).<br/><br/>**Examples:**<br/>'**r**' ➡️ سَبْعَ**ةُ** آلَافٍ وَثَلا**ثُ**مِائَةٍ وَواحِ**دٌ** وَعِشْرونَ دِينَارًا كُوَيتِيًّا<br/>'**n**'➡️ سَبْعَ**ةَ** آلَافٍ وَثَلا**ثَ**مِائَةٍ وَواحِ**دًا** وَعِشْرينَ دِينَارًا كُوَيتِيًّا<br/>'**j**' ➡️ سَبْعَ**ةِ** آلَافٍ وَثَلا**ثِ**مِائَةٍ وَواحِ**دٍ** وَعِشْرينَ دِينَارًا كُوَيتِيًّا<br/>
+|6|[miah](#miah)     |"on"<br/>"off"|"**on**"| Selects between "مِئة" (off) and "مِائة" (on) style. **Default is "on"** showing "مِائة".
 |7|[miahSplit](#miahSplit) |"on"<br/>"off"|"off"|Use separation between number and hundred words (e.g. ثلاثمائة becomes ثلاث مائة).
 |8|[comma](#comma)     |"on"<br/>"off"|'off'|Insert a comma between the number triplet text for better readability of large numbers.
 |9|[legal](#legal)    |"on"<br/>"off"|'off'|Use the legal accounting mode; helpful to get the correct legal writing and avoid misinterpretation of written numbers.
@@ -2160,7 +2160,7 @@ arqamAR.toWords(3);
 
 <h2 id="createNew">9️⃣ Create New Currency</h2>
 
-If the existing 172 currencies provide by ***arqamAR*** are not enough and you want to create an all new currency you will need, as minimum, to provide three (3) settings:
+If the existing 172 currencies provided by ***arqamAR*** are not enough and you want to create an all new currency you will need, as minimum, to provide three (3) settings:
 
 1. A new code to replace the ISO code. (this can be a 2 character word or any ISO code but in lower case).
 2. The currency name Singular (`majorSingle` string).
@@ -2204,12 +2204,12 @@ arqamAR.toWords(3);
 
 ⚠ Note 2: The Tashkeel attributes are optional; if not stated, the standard names are used in the Tashkeel Option.
 
-⚠ Note 3: To obtain the correct conversion into Arabic Text, it is important that you state the Gender of your new currency for both the Major Unit and the Minor Unit.
+⚠ Note 3: To obtain the correct conversion into Arabic Text, it is important that you state the Gender of your new currency for both the Major Unit and the Minor Unit by using the `{majorGender}` and `{minorGender}` options. However, in the above example, we did not make any change because both the Major and Minor Units are **male** currency and sub-currency, which is the default. See the example below for a female currency.
 
 
 ***Example 2***
 
-Let us now create a New Currency called 'نكلة' that belongs to "تركيا" and has a sub-unit (minor) called 'بقشة' with 2 decimal places. We also enable the **[Brackets Mode](#brackets)** to show the number and code.
+Let us now create a New **Female** Currency called 'نكلة' that belongs to "تركيا" and has a sub-unit (minor) called 'بقشة' with 2 decimal places. We also enable the **[Brackets Mode](#brackets)** to show the number and code.
 
 ```javascript
 arqamAR.config( {

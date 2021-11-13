@@ -90,6 +90,8 @@
 
 12. **[Reference and Tables](#references)**
 
+13. **[History and Revision](#history)**
+
 <h2 id="introduction">1️⃣ Introduction</h2>
 
 Some time ago I felt that it was necessary to have a library that properly and correctly converts numbers (including all world currencies) into correct Arabic text that is free and available for all.
@@ -800,11 +802,13 @@ console.log(arqamAR.toWords(8088.11));
 
 
 <h2 id="miah">⚙6.7 miah (مئة ومائة)</h2>
-With this option, the default word "مئة" (hundred) is replaced with the word "مائة".
+With this option, the default word "مِئة" (hundred) is replaced with the word "مِائة".
 
-Many Arabic-speaking countries' official documents prefer the use of the word "مئة".
+Many Arabic-speaking countries' official documents prefer the use of the word "مِئة".
 
-This option affects all places where the word "مئة" (hundred) is used.
+⛔ **However, it must be noted that when using the word 'مِائة', it must still be read and announced athe same as 'مِئة'. Fo this reason you should note the tashkeel on the letter 'ميم' is the same in both cases.**
+
+This option affects all places where the word "مِئة" (hundred) is used.
 
 **Applicability**
 - [x] This option is available in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
@@ -847,9 +851,9 @@ arqamAR.toWords(700900.02);
 
 This option permits the splitting/separation of the unit name from the hundred words.
 
-Some Arabic-speaking countries consider this to be the correct method for writing the numbers from 300 to 900. The "ثلاثمائة" becomes "ثلاث مائة" and "أربعمائة" becomes "أربع مائة", and so on.
+Some Arabic-speaking countries consider this to be the correct method for writing the numbers from 300 to 900. The "ثلاثمِائة" becomes "ثلاث مِائة" and "أربعمِائة" becomes "أربع مِائة", and so on.
 
-When combined with the option `{miah: "off"}`, this option produces the combined result of (for example) "ثلاث مئة" and "أربع مئة".
+When combined with the option `{miah: "off"}`, this option produces the combined result of (for example) "ثلاث مِئة" and "أربع مِئة".
 
 **Applicability**
 - [x] This option is available in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
@@ -2196,9 +2200,11 @@ arqamAR.toWords(3);
 ثلاثة سحاتيت مصرية
 ```
 
-⚠ Note: ***arqamAR*** enters the **New Currency Mode** if 3 attributes are provided (i.e. not empty): `majorSingle`, `majorPlural`, and `code`. To get out of the New Currency Mode, set the `majorSingle` and `majorPlural` to empty strings.
+⚠ Note 1: ***arqamAR*** enters the **New Currency Mode** if 3 attributes are provided (i.e. not empty): `majorSingle`, `majorPlural`, and `code`. To get out of the New Currency Mode, set the `majorSingle` and `majorPlural` to empty strings.
 
-⚠ Note: The Tashkeel attributes are optional; if not stated, the standard names are used in the Tashkeel Option.
+⚠ Note 2: The Tashkeel attributes are optional; if not stated, the standard names are used in the Tashkeel Option.
+
+⚠ Note 3: To obtain the correct conversion into Arabic Text, it is important that you state the Gender of your new currency for both the Major Unit and the Minor Unit.
 
 
 ***Example 2***
@@ -2237,10 +2243,11 @@ console.log( arqamAR.toWords(0.1) );
 (0.10 NKL) عشر بقشات تركية‎
 ```
 
+⚠ Note 1: To obtain the correct conversion into Arabic Text, it is important that you state the Gender of your new currency for both the Major Unit and the Minor Unit.
 
 ***Example 3***
 
-This example shows how you can create an all new currency using an existing currency data as a shortcut.
+This example shows how you can create an all new currency **using an existing currency data** as a shortcut.
 
 Let us create the old French currency 'Franc' (old ISO code FRF) and it had the sub-unit 'Centime'.
 
@@ -2573,12 +2580,98 @@ The following tables provide guidance and assistance for differentiating between
 توفر الجداول التالية إرشادات ومساعدة للتمييز بين أرقام معينة تحت ثلاث (3) حالات الإعراب مع تشكيل كامل للحروف.
 </div>
 
+<p></p>
+<h3>12.1 Reference Table: Numbers from 1 to 10 (الأعداد من 1 إلى 10)</h3>
+
 ![Image](/images/arqamAR00-10.png?raw=true)
+
+<p></p>
+<h3>12.2 Reference Table: Numbers from 11 to 19 (الأعداد من 11 إلى 19)</h3>
 
 ![Image](/images/arqamAR11-19.png?raw=true)
 
+<p></p>
+<h3>12.3 Reference Table: Numbers from 20 to 29 (الأعداد من 20 إلى 29)</h3>
+
 ![Image](/images/arqamAR20-29.png?raw=true)
+
+<p></p>
+<h3>12.4 Reference Table: Numbers from 100 to 900 (الأعداد من 100 إلى 900)</h3>
 
 ![Image](/images/arqamAR100-900.png?raw=true)
 
+
+<p></p>
+<h3>12.5 Reference Table: Numbers Affected by Jar/Nasb (الأعداد المتأثرة في حالة الجر والنصب)</h3>
+
 ![Image](/images/ag.png?raw=true)
+
+
+
+
+<h2 id="history">1️⃣3️⃣ History and Revisions</h2>
+
+
+```
+08/11/2021 0.21 Currencies table now has currency symbols/signs in native and latin formats.
+                Renamed Library to 'arqamAR' for full version of Arabic numbers conversion.
+                Added more examples in the readme file.
+                Added more images with colour examples in readme file for better understanding.
+                Corrected "جزآن" to "جزءَان".
+                Corrected "جزئين" to "جزأين".
+                Added reference tables of numbers in words in readme file.
+                Add Test file (Currencies with Full Tashkeel All Ierab Types - No fractions).
+
+07/11/2021 0.20 Symbols inside brackets can now be used in Subjects Modes; and can create things like "كغ", etc.
+
+04/11/2021 0.19 Tanween-Fatih function now handles tashkeel modes.
+
+03/11/2021 0.18 Double names conversion code improved to handle more subjects.
+
+02/11/2021 0.17 Added code to Tashkeel single numbers differently to assist kids learn numbers.
+                Additional code was needed to handle the kids mode.
+
+01/11/2021 0.16 Can now modify existing currencies.
+
+29/10/2021 0.15 Option to create new currencies added.
+                Additional options added for creating new currencies.
+
+27/10/2021 0.14 Subjects Mode added.
+
+25/10/2021 0.13 Testing files started, bug fixes.
+                Verification of outputs in different Ierab modes against trusted sources.
+
+19/10/2021 0.12 major code re-write, bug fixes.
+
+17/10/2021 0.11 Ierab (Raf', Nasn, aand Jar) modes added.
+                Added changing the configuration through short cuts.
+                Made confguration options 'sticky'.
+                Decimal fractions can now be up to 3000 digits.
+                Custom 'toFixed' function created to replace javascript function.
+                Decimal rounding can be up to 3000 digits.
+
+05/10/2021 0.10 Re-done the Tashkeel options now with 4 different options.
+
+15/09/2021 0.09 Batch processing mode added.
+                Brackets can now be at start or d of the output text.
+
+01/08/2021 0.08 Brackets Mode added.
+                Added option word Juz (جزء) for decimal numbers.
+
+16/07/2021 0.07 Arabic-Eastern numbers option added.
+
+15/07/2021 0.06 Decimal and Thousand separator options added.
+                Prefix and suffix option added.
+
+12/07/2021 0.05 Currency data compacted to save code space.
+                Non-valid digits in inputs numbers are now ignored.
+
+25/06/2021 0.04 All world currenciew added.
+
+21/06/2021 0.03 Compact mode added.
+
+17/06/2021 0.02 added fractions conversion.
+                added format decimals options.
+
+12/06/2021 0.01 initial test version.
+```

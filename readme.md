@@ -292,28 +292,28 @@ arqamAR.toWords(3300.5,{tashkeel:"f", code:"AED", brackets: "end", arabicNumbers
 |7|[miahSplit](#miahSplit) |"on"<br/>"off"|"off"|Use separation between number and hundred words (e.g. ثلاثمائة becomes ثلاث مائة).
 |8|[comma](#comma)     |"on"<br/>"off"|'off'|Insert a comma between the number triplet text for better readability of large numbers.
 |9|[legal](#legal)    |"on"<br/>"off"|'off'|Use the legal accounting mode; helpful to get the correct legal writing and avoid misinterpretation of written numbers.
-|12|[arabicNumbers](#arabicNumbers) |"on"<br/>"off"|'off'|Uses Arabic-Eastern numbers (٠١٢٣٤٥٦٧٨٩) in place of Arabic-Western numbers (0123456789). This will also set the appropriate Arabic decimal and thousand separators, unless overriden by the `sepDecimal` and `sepThousands` options.
-|13|[scale](#scale)  |"arabic"<br/>"short"<br/>"long"|"**arabic**"| Selects the Numbering Scale System. "arabic", "short", or "long" numbering scale system. The Default is the Arabic-Modified Short Scale Numbering System. See more details below.
-|14|[maxNumber](#maxNumber) |\<number\>|**1000**|The maximum number in the form 10^n (i.e. the number of zeros on the right hand). Default up to 1,000 zeros for numbers. This can be up to 3,000 zeros. The maxNumber also sets the maximum number of decimal digits that can be translated to words.
-|15|[addZero](#addZero)  |"on"<br/>"off"|'off'|Adds the word zero "صفر" for numbers below one (1).
-|16|[sepDecimal](#sepDecimal) |"" empty<br/>\<string\><br/>lang tag|"" empty|The decimal separator to use for display. Defaults to the system locale if "" empty.
-|17|[sepThousands](#sepThousands) |"" empty<br/>\<string\><br/>lang tag|"" empty|The thousands separator to use for display. Defaults to the system locale if empty.
-|18|[brackets](#brackets) |"" empty<br/>"start"<br/>"end"|"" empty| Adds the whole number (including any decimal parts) in digits form inside brackets either at the end of the text or at the start of the text, with the options in the Currency Mode to add the currency ISO Code or the currency symbol/sign. Default: no number in bracket shown.<br/>The brackets type can be controlled by the `bracketsOpen` and `bracketsClose` options.
-|19|[bracketsType](#bracketsType) |\<string\><br/>empty|"" empty|Change the brackets type from the default round brackets '()' to any other type such '[]' or '{}', etc.
-|20|[numSymbol](#numSymbol) |\<string\><br/>"" empty<br/>"iso"<br/>"symbol"<br/>"symbolL"<br/>"currency"|"" empty|With the brackets option, controls the symbol/sign to be used when displaying currency numbers inside brackets. Available with the **[brackets](#brackets)** and the **[Currency Mode](#CurrencyMode)** options only.
-|21|[decRound](#decRound) |number<br/>"" empty|"" empty|The number of decimal places for rounding decimals. Default no rounding and all decimal digits will be converted to words. Available in **[Numbers Mode](#NumbersMode)** Only. In the **[Currency Mode](#CurrencyMode)**, rounding is dictated by the *minor unit* decimals.
-|22|[decFormat](#decFormat) |"" empty<br/>"ww"<br/>"wn"<br/>"nw"<br/>"nn"<br/>"sw"<br/>"d"<br/>"/"<br/>"n"<br/>"w"|"" empty|Controls the format of the decimal (fractional) part with nine (9) options.<br/>Defaults to "w" in the **[Currency Mode](#CurrencyMode)** and to "ww" in the **[Numbers Mode](#NumbersMode)**.<br/>See below for more details and examples.
-|23|[decInBrackets](#dec-in-brackets)|"on"<br/>"off"|'off'|Inserts the fractional part (either text or number) inside brackets at the end of the text.<br/>The brackets type can be changed by the [bracketsType](#bracketsType) option.
-|24|[decJuz](#decJuz) |"on"<br/>"off"|'**on**'| The word "Juzu'" (جزء من) is used in the formation of the Decimal Part for the number. This is the **default** and is set to 'on'.
-|25|[decFaslah](#decFaslah) |"on"<br/>"off"|'off'| The word "fasila" (فاصلة) is used in the formation of the Decimal Part for the number instead of "Juzu" (جزء). The **default** is "Juzu" (جزء).
-|26|[decIgnore](#decIgnore)    |"on"<br/>"off"|'off'|Ignores the **Decimal Part** of the number.
-|27|[decAL](#decAL)   |"on"<br/>"off"|'**on**'|Default is 'on'. See details below.
-|28|[ignoreCountry](#ignoreCountry) |"on"<br/>"off"|'off'|Ignores the country name but keeps the currency name. Available in **[Currency Mode](#CurrencyMode)**.
-|29|[currDecForce](#currDecForce) |"on"<br/>"off"|'off'|With the brackets option in the **[Currency Mode](#CurrencyMode)**, forces the decimal (sub-unit) part to always be displayed, even when there is no decimal part. Available in the **[Currency Mode](#CurrencyMode)**.
-|30|[prefix](#prefix) |\<string\>|"" empty|Add a prefix text before the resulting output text. Default no prefix.
-|31|[suffix](#suffix) |\<string\>|"" empty|Add a suffix text to the end of the resulting output text. Default no suffix.
-|32|[isNaN](#isNaN) |\<string\>|"" empty|The text to be returned if the number passed is not a valid number. Default is an empty string.
-|33|[decSubInParts](#) |'on'|off|Applicable only, and used in the **[Subjects Mode](#subjectsMode)** in the case of compounded adjectives. See the **[Subjects Mode](#subjectsMode)** below.
+|10|[arabicNumbers](#arabicNumbers) |"on"<br/>"off"|'off'|Uses Arabic-Eastern numbers (٠١٢٣٤٥٦٧٨٩) in place of Arabic-Western numbers (0123456789). This will also set the appropriate Arabic decimal and thousand separators, unless overriden by the `sepDecimal` and `sepThousands` options.
+|11|[scale](#scale)  |"arabic"<br/>"short"<br/>"long"|"**arabic**"| Selects the Numbering Scale System. "arabic", "short", or "long" numbering scale system. The Default is the Arabic-Modified Short Scale Numbering System. See more details below.
+|12|[maxNumber](#maxNumber) |\<number\>|**1000**|The maximum number in the form 10^n (i.e. the number of zeros on the right hand). Default up to 1,000 zeros for numbers. This can be up to 3,000 zeros. The maxNumber also sets the maximum number of decimal digits that can be translated to words.
+|13|[addZero](#addZero)  |"on"<br/>"off"|'off'|Adds the word zero "صفر" for numbers below one (1).
+|14|[sepDecimal](#sepDecimal) |"" empty<br/>\<string\><br/>lang tag|"" empty|The decimal separator to use for display. Defaults to the system locale if "" empty.
+|15|[sepThousands](#sepThousands) |"" empty<br/>\<string\><br/>lang tag|"" empty|The thousands separator to use for display. Defaults to the system locale if empty.
+|16|[brackets](#brackets) |"" empty<br/>"start"<br/>"end"|"" empty| Adds the whole number (including any decimal parts) in digits form inside brackets either at the end of the text or at the start of the text, with the options in the Currency Mode to add the currency ISO Code or the currency symbol/sign. Default: no number in bracket shown.<br/>The brackets type can be controlled by the `bracketsOpen` and `bracketsClose` options.
+|17|[bracketsType](#bracketsType) |\<string\><br/>empty|"" empty|Change the brackets type from the default round brackets '()' to any other type such '[]' or '{}', etc.
+|18|[numSymbol](#numSymbol) |\<string\><br/>"" empty<br/>"iso"<br/>"symbol"<br/>"symbolL"<br/>"currency"|"" empty|With the brackets option, controls the symbol/sign to be used when displaying currency numbers inside brackets. Available with the **[brackets](#brackets)** and the **[Currency Mode](#CurrencyMode)** options only.
+|19|[decRound](#decRound) |number<br/>"" empty|"" empty|The number of decimal places for rounding decimals. Default no rounding and all decimal digits will be converted to words. Available in **[Numbers Mode](#NumbersMode)** Only. In the **[Currency Mode](#CurrencyMode)**, rounding is dictated by the *minor unit* decimals.
+|20|[decFormat](#decFormat) |"" empty<br/>"ww"<br/>"wn"<br/>"nw"<br/>"nn"<br/>"sw"<br/>"d"<br/>"/"<br/>"n"<br/>"w"|"" empty|Controls the format of the decimal (fractional) part with nine (9) options.<br/>Defaults to "w" in the **[Currency Mode](#CurrencyMode)** and to "ww" in the **[Numbers Mode](#NumbersMode)**.<br/>See below for more details and examples.
+|21|[decInBrackets](#dec-in-brackets)|"on"<br/>"off"|'off'|Inserts the fractional part (either text or number) inside brackets at the end of the text.<br/>The brackets type can be changed by the [bracketsType](#bracketsType) option.
+|22|[decJuz](#decJuz) |"on"<br/>"off"|'**on**'| The word "Juzu'" (جزء من) is used in the formation of the Decimal Part for the number. This is the **default** and is set to 'on'.
+|23|[decFaslah](#decFaslah) |"on"<br/>"off"|'off'| The word "fasila" (فاصلة) is used in the formation of the Decimal Part for the number instead of "Juzu" (جزء). The **default** is "Juzu" (جزء).
+|24|[decIgnore](#decIgnore)    |"on"<br/>"off"|'off'|Ignores the **Decimal Part** of the number.
+|25|[decAL](#decAL)   |"on"<br/>"off"|'**on**'|Default is 'on'. See details below.
+|26|[ignoreCountry](#ignoreCountry) |"on"<br/>"off"|'off'|Ignores the country name but keeps the currency name. Available in **[Currency Mode](#CurrencyMode)**.
+|27|[currDecForce](#currDecForce) |"on"<br/>"off"|'off'|With the brackets option in the **[Currency Mode](#CurrencyMode)**, forces the decimal (sub-unit) part to always be displayed, even when there is no decimal part. Available in the **[Currency Mode](#CurrencyMode)**.
+|28|[prefix](#prefix) |\<string\>|"" empty|Add a prefix text before the resulting output text. Default no prefix.
+|29|[suffix](#suffix) |\<string\>|"" empty|Add a suffix text to the end of the resulting output text. Default no suffix.
+|30|[isNaN](#isNaN) |\<string\>|"" empty|The text to be returned if the number passed is not a valid number. Default is an empty string.
+|31|[decSubInParts](#) |'on'|off|Applicable only, and used in the **[Subjects Mode](#subjectsMode)** in the case of compounded adjectives. See the **[Subjects Mode](#subjectsMode)** below.
 
 
 ### General Notes on the Configuration Options
@@ -455,18 +455,20 @@ arqamAR.toWords(0.35);
 *Note: You will notice that the words "ألفان", "ألف", "مليون", "مليونان",  etc. will not be converted into digit form as this will lead to incorrect Arabic grammar.*
 
 
+
+
+
 <h2 id="tashkeel">⚙6.4 Tashkeel Mode (تشكيل الحروف)</h2>
 
 ***arqamAR*** provide four (4) options of tashkeel (تشكيل الحروف) namely
 
-1. **'f'** 'full tashkeel' (تشكسل كامل),
+1. **'a'** tansween fatih only (تنوين فتح فقط). **This is the default**,
 
-2. **'p'** 'partial tashkeel' (تشكيل جزئي بتشكيل آخر حرف من كل كلمة),
+2. **'t'** full tanween (تنوين كامل فتح ضم وكسر),
 
-3. **'t'** full tanween (تنوين كامل فتح ضم وكسر), or
+3. **'p'** 'partial tashkeel' (تشكيل جزئي بتشكيل آخر حرف من كل كلمة), or
 
-4. **'a'** tansween fatih only (تنوين فتح فقط).
-
+4. **'f'** 'full tashkeel' (تشكيل كامل).
 
 **Examples:**
 
@@ -806,7 +808,9 @@ With this option, the default word "مِئة" (hundred) is replaced with the wor
 
 Many Arabic-speaking countries' official documents prefer the use of the word "مِئة".
 
-⛔ **However, it must be noted that when using the word 'مِائة', it must still be read and announced athe same as 'مِئة'. Fo this reason you should note the tashkeel on the letter 'ميم' is the same in both cases.**
+⛔ **However, it must be noted that when using the word 'مِائة', it must still be read and pronounced the same as 'مِئة'. Fo this reason you should note the tashkeel on the letter 'ميم' is the same in both cases.**
+
+[Please more reference information here](#miahquran).
 
 This option affects all places where the word "مِئة" (hundred) is used.
 
@@ -2602,9 +2606,16 @@ The following tables provide guidance and assistance for differentiating between
 
 
 <p></p>
-<h3>12.5 Reference Table: Numbers Affected by Jar/Nasb (الأعداد المتأثرة في حالة الجر والنصب)</h3>
+<h3>12.5 Reference Table: Thousands (أعداد الآلاف)</h3>
 
-![Image](/images/ag.png?raw=true)
+![Image](/images/arqamAR1000s.png?raw=true)
+
+
+
+<p></p>
+<h3 id="miahquran">12.6 Reference Table: Mia in the Quran (كلمة مِئة في القرآن)</h3>
+
+![Image](/images/miah_quran.png?raw=true)
 
 
 

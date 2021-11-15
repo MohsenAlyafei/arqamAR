@@ -285,7 +285,7 @@ arqamAR.toWords(3300.5,{tashkeel:"f", code:"AED", brackets: "end", arabicNumbers
 |:---:|:---|:---:|:---:|:-----
 |1|[code](#CurrencyMode)|"" empty<br/>ISO code<br/>'sub'|"" empty|The 3-Letter ISO Code of the Currency.<br/>Specifying a valid currency-code will switch to the **[Currency Mode](#CurrencyMode)** and generate the text for a currency taking into account the sub-currency.<br/><br/>An empty "" string  will switch to the **[Numbers Mode](#NumbersMode)** which is the default.<br/><br/>'sub' will enter the **[Subjects Mode](#subjectsMode)**.
 |2|[compact](#compact) |"on"<br/>"off"|'off'|Use the **[Compact Mode](#compact)**.
-|3|[tashkeel](#tashkeel)|<br/>"f"<br/>"p"<br/>"t"<br/>"a"|"**a**"|Selects the type of Tashkeel (تشكيل الحروف) with:<br/>1. **'f'** 'full tashkeel',<br/>2. **'p'** 'partial tashkeel',<br/>3. **'t'** full tanween, or<br/>4. **'a'** tansween fatih only.<br/>The **default** is 'a' (tanween fatih) (تنوين فتح فقط)<br/><br/>**Examples:**<br/>1. '**a**' سبعة آلاف وثلاثمائة وواحد وعشرون دينارًا كويتيًا<br/>2. '**t**'  سبعة آلافٍ وثلاثمائةٍ وواحدٌ وعشرون دينارًا كويتيًا<br/>3. '**p**' سبعةُ آلافٍ وثلاثُمائةٍ وواحدٌ وعشرونَ دينارًا كويتيًا<br/>4. '**f**' سَبْعَةُ آلَافٍ وَثَلاثُمِائَةٍ وَواحِدٌ وَعِشْرونَ دِينَارًا كُوَيتِيًّا<br/>
+|3|[tashkeel](#tashkeel)|""<br/>"f"<br/>"p"<br/>"t"<br/>"a"|"**a**"|Selects the type of Tashkeel (تشكيل الحروف) with:<br/>1. **'f'** 'full tashkeel',<br/>2. **'p'** 'partial tashkeel',<br/>3. **'t'** full tanween, or<br/>4. **'a'** tansween fatih only.<br/>5. **''** none at all.<br/>The **default** is 'a' (tanween fatih) (تنوين فتح فقط)<br/><br/>**Examples:**<br/>1. '**a**' سبعة آلاف وثلاثمائة وواحد وعشرون دينارًا كويتيًا<br/>2. '**t**'  سبعة آلافٍ وثلاثمائةٍ وواحدٌ وعشرون دينارًا كويتيًا<br/>3. '**p**' سبعةُ آلافٍ وثلاثُمائةٍ وواحدٌ وعشرونَ دينارًا كويتيًا<br/>4. '**f**' سَبْعَةُ آلَافٍ وَثَلاثُمِائَةٍ وَواحِدٌ وَعِشْرونَ دِينَارًا كُوَيتِيًّا<br/>
 |4|[tanweenType](#tanweenType)|"on"<br/>"off"|"off"|In the case of Tanween Fatih. Selects the placement of the tanween sign either on the charater before last (default), or on the last character.<br/><br/>**Examples:**<br/>قر**شً**ا مصر**يً**ا  and ‏ دولا**رً**ا أمريك**يً**ا<br/>with option 'on' becomes:<br/>قرش**اً** مصري**اً**  and ‏ دولار**اً** أمريكي**اً**
 |5|[ierab](#ierab)  |"r"<br/>"n"<br/>"j"|"**r**"|Selects the ʾIʿrāb Type (حالة الإعراب) which can be any of the following:<br/>1. **'r' (Raf')** (Nominative Case) حالة **الرفع**,<br/>2. **'n' (Nasb)** (Accusative Case) حالة **النصب**, or <br/>3. **'j' (Jar)** (Genitive Case) حالة **الجر**.<br/>The **default** is Nominative Case (حالة الرفع).<br/><br/>**Examples:**<br/>'**r**' ➡️ سَبْعَ**ةُ** آلَافٍ وَثَلا**ثُ**مِائَةٍ وَواحِ**دٌ** وَعِشْرونَ دِينَارًا كُوَيتِيًّا<br/>'**n**'➡️ سَبْعَ**ةَ** آلَافٍ وَثَلا**ثَ**مِائَةٍ وَواحِ**دًا** وَعِشْرينَ دِينَارًا كُوَيتِيًّا<br/>'**j**' ➡️ سَبْعَ**ةِ** آلَافٍ وَثَلا**ثِ**مِائَةٍ وَواحِ**دٍ** وَعِشْرينَ دِينَارًا كُوَيتِيًّا<br/>
 |6|[miah](#miah)     |"on"<br/>"off"|"**on**"| Selects between "مِئة" (off) and "مِائة" (on) style. **Default is "on"** showing "مِائة".
@@ -460,25 +460,29 @@ arqamAR.toWords(0.35);
 
 <h2 id="tashkeel">⚙6.4 Tashkeel Mode (تشكيل الحروف)</h2>
 
-***arqamAR*** provide four (4) options of tashkeel (تشكيل الحروف) namely
+***arqamAR*** provide five (5) options of tashkeel (تشكيل الحروف) namely
 
-1. **'a'** tansween fatih only (تنوين فتح فقط). **This is the default**,
+1. **'' (none)** No tashkeel.
 
-2. **'t'** full tanween (تنوين كامل فتح ضم وكسر),
+2. **'a'** tansween fatih only (تنوين فتح فقط). **This is the default**,
 
-3. **'p'** 'partial tashkeel' (تشكيل جزئي بتشكيل آخر حرف من كل كلمة), or
+3. **'t'** full tanween (تنوين كامل فتح ضم وكسر),
 
-4. **'f'** 'full tashkeel' (تشكيل كامل).
+4. **'p'** 'partial tashkeel' (تشكيل جزئي بتشكيل آخر حرف من كل كلمة), or
+
+5. **'f'** 'full tashkeel' (تشكيل كامل).
 
 **Examples:**
 
-1. '**a**' سبعة آلاف وثلاثمائة وواحد وعشرون دينارًا كويتيًا
+1. **"" (none)**  ➡️  سبعة آلاف وثلاثمائة وواحد وعشرون دينارا كويتيا
 
-2. '**t**'  سبعة آلافٍ وثلاثمائةٍ وواحدٌ وعشرون دينارًا كويتيًا
+2. '**a**'        ➡️ سبعة آلاف وثلاثمائة وواحد وعشرون دينارًا كويتيًا
 
-3. '**p**' سبعةُ آلافٍ وثلاثُمائةٍ وواحدٌ وعشرونَ دينارًا كويتيًا
+3. '**t**'        ➡️  سبعة آلافٍ وثلاثمائةٍ وواحدٌ وعشرون دينارًا كويتيًا
 
-4. '**f**' سَبْعَةُ آلَافٍ وَثَلاثُمِائَةٍ وَواحِدٌ وَعِشْرونَ دِينَارًا كُوَيتِيًّا
+4. '**p**'        ➡️ سبعةُ آلافٍ وثلاثُمائةٍ وواحدٌ وعشرونَ دينارًا كويتيًا
+
+5. '**f**'        ➡️ سَبْعَةُ آلَافٍ وَثَلاثُمِائَةٍ وَواحِدٌ وَعِشْرونَ دِينَارًا كُوَيتِيًّا
 
 
 **Applicability**

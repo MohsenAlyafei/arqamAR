@@ -125,7 +125,7 @@ The ***arqamAR*** library provides the following functionalities and features in
   - [x] Handles both numbers (**[Numbers Mode](#NumbersMode)**) and currencies (**[Currency Mode](#CurrencyMode)**) with decimals and sub-units.
   - [x] Comes with **173** currencies including all current ISO currencies.
   - [x] Support full ʾIʿrāb (حالات الإعراب) الرفع والنصب والجر
-  - [x] Support for 4 modes of tashkeel (تشكيل الحروف كاملاً أو جزئيّا).
+  - [x] Support for 6 modes of tashkeel (تشكيل الحروف كاملاً أو جزئيّا).
   - [x] Support for full and partial Tanween (تنوين كامل).
   - [x] Provide the compact mode which is preferred by the press and newspapers (الكتابة المختصرة).
   - [x] Provide an **Accountant Legal Mode** (كتابة محاسبية قانونية).
@@ -285,7 +285,7 @@ arqamAR.toWords(3300.5,{tashkeel:"f", code:"AED", brackets: "end", arabicNumbers
 |:---:|:---|:---:|:---:|:-----
 |1|[code](#CurrencyMode)|"" empty<br/>ISO code<br/>'sub'|"" empty|The 3-Letter ISO Code of the Currency.<br/>Specifying a valid currency-code will switch to the **[Currency Mode](#CurrencyMode)** and generate the text for a currency taking into account the sub-currency.<br/><br/>An empty "" string  will switch to the **[Numbers Mode](#NumbersMode)** which is the default.<br/><br/>'sub' will enter the **[Subjects Mode](#subjectsMode)**.
 |2|[compact](#compact) |"on"<br/>"off"|'off'|Use the **[Compact Mode](#compact)**.
-|3|[tashkeel](#tashkeel)|""<br/>"f"<br/>"p"<br/>"t"<br/>"a"|"**a**"|Selects the type of Tashkeel (تشكيل الحروف) with:<br/>1. **'f'** 'full tashkeel',<br/>2. **'p'** 'partial tashkeel',<br/>3. **'t'** full tanween, or<br/>4. **'a'** tansween fatih only.<br/>5. **''** none at all.<br/>The **default** is 'a' (tanween fatih) (تنوين فتح فقط)<br/><br/>**Examples:**<br/>1. '**a**' سبعة آلاف وثلاثمائة وواحد وعشرون دينارًا كويتيًا<br/>2. '**t**'  سبعة آلافٍ وثلاثمائةٍ وواحدٌ وعشرون دينارًا كويتيًا<br/>3. '**p**' سبعةُ آلافٍ وثلاثُمائةٍ وواحدٌ وعشرونَ دينارًا كويتيًا<br/>4. '**f**' سَبْعَةُ آلَافٍ وَثَلاثُمِائَةٍ وَواحِدٌ وَعِشْرونَ دِينَارًا كُوَيتِيًّا<br/>
+|3|[tashkeel](#tashkeel)|""<br/>"f"<br/>"p"<br/>"t"<br/>"h"<br/>"a"|"**a**"|Selects the type of Tashkeel (تشكيل الحروف) with:<br/>1. **'f'** 'full tashkeel',<br/>2. **'p'** 'partial tashkeel',<br/>3. **'t'** full tanween,<br/>4. **'h'** tansween fatih only.<br/>5. **'a'** tanween alif only<br/>6. **''** none at all.<br/>The **default** is 'a' (tanween alif) (تنوين ألِف فقط)<br/>
 |4|[tanweenType](#tanweenType)|"on"<br/>"off"|"off"|In the case of Tanween Fatih. Selects the placement of the tanween sign either on the charater before last (default), or on the last character.<br/><br/>**Examples:**<br/>قر**شً**ا مصر**يً**ا  and ‏ دولا**رً**ا أمريك**يً**ا<br/>with option 'on' becomes:<br/>قرش**اً** مصري**اً**  and ‏ دولار**اً** أمريكي**اً**
 |5|[ierab](#ierab)  |"r"<br/>"n"<br/>"j"|"**r**"|Selects the ʾIʿrāb Type (حالة الإعراب) which can be any of the following:<br/>1. **'r' (Raf')** (Nominative Case) حالة **الرفع**,<br/>2. **'n' (Nasb)** (Accusative Case) حالة **النصب**, or <br/>3. **'j' (Jar)** (Genitive Case) حالة **الجر**.<br/>The **default** is Nominative Case (حالة الرفع).<br/><br/>**Examples:**<br/>'**r**' ➡️ سَبْعَ**ةُ** آلَافٍ وَثَلا**ثُ**مِائَةٍ وَواحِ**دٌ** وَعِشْرونَ دِينَارًا كُوَيتِيًّا<br/>'**n**'➡️ سَبْعَ**ةَ** آلَافٍ وَثَلا**ثَ**مِائَةٍ وَواحِ**دًا** وَعِشْرينَ دِينَارًا كُوَيتِيًّا<br/>'**j**' ➡️ سَبْعَ**ةِ** آلَافٍ وَثَلا**ثِ**مِائَةٍ وَواحِ**دٍ** وَعِشْرينَ دِينَارًا كُوَيتِيًّا<br/>
 |6|[miah](#miah)     |"on"<br/>"off"|"**on**"| Selects between "مِئة" (off) and "مِائة" (on) style. **Default is "on"** showing "مِائة".
@@ -464,29 +464,40 @@ arqamAR.toWords(0.35);
 
 1. **'' (none)** No tashkeel.
 
-2. **'a'** tansween fatih only (تنوين فتح فقط). **This is the default**,
+2. **"a"**  tanween alif only (تنوين حرف الألٍف فقط)
 
-3. **'t'** full tanween (تنوين كامل فتح ضم وكسر),
+3. **'h'** tansween fatih only (تنوين فتح فقط). **This is the default**,
 
-4. **'p'** 'partial tashkeel' (تشكيل جزئي بتشكيل آخر حرف من كل كلمة), or
+4. **'t'** full tanween (تنوين كامل فتح ضم وكسر),
 
-5. **'f'** 'full tashkeel' (تشكيل كامل).
+5. **'p'** 'partial tashkeel' (تشكيل جزئي بتشكيل آخر حرف من كل كلمة), or
+
+6. **'f'** 'full tashkeel' (تشكيل كامل).
 
 **Examples:**
 
-1. **"" (none)**  ➡️  سبعة آلاف وثلاثمائة وواحد وعشرون دينارا كويتيا
+1. **"" (none)**  ➡️  ثلاثمائة وواحدا وخمسين ألفا وخمسة وخمسين جنيها مصريا
 
-2. '**a**'        ➡️ سبعة آلاف وثلاثمائة وواحد وعشرون دينارًا كويتيًا
+2. '**a**'        ➡️ ثلاثمائة وواح**دً**ا وخمسين أل**فًا** وخمسة وخمسين جني**هًا** مصر**يًا**
 
-3. '**t**'        ➡️  سبعة آلافٍ وثلاثمائةٍ وواحدٌ وعشرون دينارًا كويتيًا
+3. '**h**'        ➡️ ثلاثمائة وواح**دًا** وخمسين أل**فًا** وخمس**ةً** وخمسين جني**هًا** مصر**يًا**
 
-4. '**p**'        ➡️ سبعةُ آلافٍ وثلاثُمائةٍ وواحدٌ وعشرونَ دينارًا كويتيًا
+4. '**t**'        ➡️ ثلاثمائ**ةٍ** وواح**دًا** وخمسين أل**فًا** وخمس**ةً** وخمسين جني**هًا** مصر**يًا**
 
-5. '**f**'        ➡️ سَبْعَةُ آلَافٍ وَثَلاثُمِائَةٍ وَواحِدٌ وَعِشْرونَ دِينَارًا كُوَيتِيًّا
+5. '**p**'        ➡️ ثلاثَمائ**ةٍ** وواح**دًا** وخمسي**نَ** أل**فًا** وخمس**ةً** وخمسي**نَ** جني**هًا** مصر**يًا**
+
+6. '**f**'        ➡️ ثَلاثَمِائَةٍ وَواحِدًا وَخَمْسينَ ألْفًا وَخَمْسَةً وَخَمْسينَ جُنَيْهًا مِصْرِيًّا
+
 
 
 **Applicability**
 - [x] This option is available in both the **[Numbers Mode](#NumbersMode)** and the **[Currency Mode](#CurrencyMode)**.
+
+The following two (2) illustrations summarize the tashkeel options with display examples.
+
+![Image](/images/tashkeelOptions01.png?raw=true)
+
+![Image](/images/tashkeelOptions02.png?raw=true)
 
 
 ***Examples in Numbers Mode:***
@@ -574,7 +585,7 @@ arqamAR.toWords(0.35);
 //--------------------------
 // Examples using Currencies
 //--------------------------
-arqamAR.config({ tashkeel : "t",  code: "EGP"}); // enable both tanween and currency options
+arqamAR.config({ tashkeel : "t",  code: "EGP"}); // enable both full tanween and currency options
 
 arqamAR.toWords(20200);
 arqamAR.toWords(2560000);
@@ -600,7 +611,7 @@ arqamAR.toWords(0.35);
 //--------------------------
 // Examples using Numbers
 //--------------------------
-arqamAR.config({ tashkeel : "a"}); // enable tanween fatih only
+arqamAR.config({ tashkeel : "h"}); // enable tanween fatih only
 
 arqamAR.toWords(20200);
 arqamAR.toWords(3356789);
@@ -619,7 +630,7 @@ arqamAR.toWords(0.35);
 //--------------------------
 // Examples using Currencies
 //--------------------------
-arqamAR.config({ tashkeel : "a",  code: "KWD"}); // enable both tanween and currency options
+arqamAR.config({ tashkeel : "h",  code: "KWD"}); // enable both tanween fatih and currency options
 
 arqamAR.toWords(20200);
 arqamAR.toWords(3356789);
@@ -2628,6 +2639,12 @@ The following tables provide guidance and assistance for differentiating between
 
 
 ```
+11/11/2021 0.23 Add one more Tashkeel Option (now 6 options of Tashkeel).
+                Improved the Tanween Fatih function code.
+
+10/11/2021 0.22 Improved output with no tashkeel at all.
+                Minor bug fixed in tanween fatih option.
+
 08/11/2021 0.21 Currencies table now has currency symbols/signs in native and latin formats.
                 Renamed Library to 'arqamAR' for full version of Arabic numbers conversion.
                 Added more examples in the readme file.

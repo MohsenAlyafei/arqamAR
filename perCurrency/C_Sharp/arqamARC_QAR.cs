@@ -1,6 +1,6 @@
 /**************************************************************************************
 * @function      : arqamARC_QAR(Number)
-* @purpose       : C# function to convert Numbers to Sudanese Pound Currency in Arabic Words
+* @purpose       : C# function to convert Numbers to Qatari Riyals Currency in Arabic Words
 *                  A simplified version of arqamAR library functions.
 *                  Visit GitHub here for full functions: https://github.com/MohsenAlyafei/arqamAR
 * @version       : 0.01
@@ -70,7 +70,7 @@ public static string arqamARC_QAR(String NumIn)
     TableScalesP         = { "", "آلاف", "ملايين", "مليارات" },
     TableUnits           = { "", "واحد", "اثنان", "ثلاث", "أربع", "خمس", "ست", "سبع", "ثمان", "تسع", "عشر" };
 
-    string FullInWords="", SpWa = " و", wordMiah = "مئة";               // Can change to "مائة"
+    string FullInWords="", SpWa = " و", wordMiah = "مائة";               // Can change to "مئة"
     bool IsLastEffTriplet = false, hasDecimal = false;
     int Triplet=0, currencyDigits = 2;                                   // number of digits for the currency (i.e. sub unit) change for others e.g. 3 for Kuwaiti Dinar
 

@@ -50,7 +50,7 @@ public static string arqamARC_EGP(String NumIn)
     string[] arr = NumIn.ToString().Split('.');                          // split the number (assumes . is a decimal separator)
     if (arr[0].TrimStart('0') !="") {                                    // if we have a whole number
     FullInWords =convertNumber(arr[0]) + addSubject();                   // then convert the whole to words
-    } else FullInWords="صفر"+ addSubject();;
+    } else FullInWords="صفر "+ addSubject();;
 
     if (arr.Length > 1) {                                                // if we have a decimal part
         if (arr[1].Length<currencyDigits) arr[1]=arr[1].PadRight(currencyDigits+1-arr[1].Length,'0'); // pad right with zeros if necessary

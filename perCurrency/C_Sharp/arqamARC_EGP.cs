@@ -53,8 +53,7 @@ public static string arqamARC_EGP(String NumIn)
     } else FullInWords="صفر "+ addSubject();;
 
     if (arr.Length > 1) {                                                // if we have a decimal part
-        if (arr[1].Length<currencyDigits) arr[1]=arr[1].PadRight(currencyDigits+1-arr[1].Length,'0'); // pad right with zeros if necessary
-        arr[1]=arr[1].Substring(0,currencyDigits);                       // remove excess digits from RH of decimal
+        arr[1]=arr[1].PadRight(3,'0').Substring(0,currencyDigits);       // remove excess digits from RH of decimal
         if (arr[1].TrimEnd('0') != "" ) {                                // only if there is a non-zero Decimal Part
             hasDecimal=true;                                              // flag it as Decimal
             FullInWords += "، و" + convertNumber(arr[1]) + addSubject();   // convert the decimal to words and joint the 2 parts with a comma in between.

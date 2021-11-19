@@ -1,5 +1,5 @@
 /**************************************************************************************
-* @function      : arqamAR_EGP(Number)
+* @function      : arqamARC_EGP(Number)
 * @purpose       : C# function to convert Numbers to Egyptian Currency in Arabic Words
 * @version       : 0.01
 * @author        : Mohsen Alyafei

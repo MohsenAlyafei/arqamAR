@@ -17,7 +17,7 @@ public static void Main()
     Console.WriteLine(arqamARC_SDG("3"));
     Console.WriteLine(arqamARC_SDG("10"));
     Console.WriteLine(arqamARC_SDG("11"));
-    Console.WriteLine(arqamARC_SDG("12.11"));
+    Console.WriteLine(arqamARC_SDG("12.18"));
     Console.WriteLine(arqamARC_SDG("22.45"));
     Console.WriteLine(arqamARC_SDG("100"));
     Console.WriteLine(arqamARC_SDG("100.45"));
@@ -40,8 +40,7 @@ public static string arqamARC_SDG(String NumIn)
 {
     string[] TableScales = { "", "ألف", "مليون", "مليار", "ترليون", "كوادرليون", "كوينتليون", "سكستليون" }, // Add scale here if needed
     TableScalesP         = { "", "آلاف", "ملايين", "مليارات" },
-    TableMale            = { "", "واحد", "اثنان", "ثلاثة", "أربعة", "خمسة", "ستة", "سبعة", "ثمانية", "تسعة", "عشرة" },
-    TableFemale          = { "", "واحدة", "اثنتان", "ثلاث", "أربع", "خمس", "ست", "سبع", "ثمان", "تسع", "عشر" };
+    TableUnits           = { "", "واحد", "اثنان", "ثلاث", "أربع", "خمس", "ست", "سبع", "ثمان", "تسع", "عشر" };
 
     string FullInWords="", SpWa = " و", wordMiah = "مائة";               // Can change to "مئة"
     bool IsLastEffTriplet = false, hasDecimal = false;
@@ -77,19 +76,15 @@ public static string arqamARC_SDG(String NumIn)
 
     //* ===== local function convert one full number
     string convertNumber(String NumIn) {
-    var Table11_19 = new string[TableMale.Length];
-    TableMale.CopyTo(Table11_19, 0);       // Create copies of Masculine Table for manipulation
-    Table11_19[1] = "أحد";                 // Starting words for 11
-    Table11_19[2] = "اثنا";                 // Starting words for 12
     String NumberInWords = "", Scale, ScalePlural;
     NumIn = new String('0', NumIn.Length * 2 % 3) + NumIn;
     int NumLen = NumIn.Length,
         ScalePos,
         LastEffTriplet= ~~((NumIn.Length - NumIn.TrimEnd('0').Length) / 3)*3+3;
 
-    for (int digits = NumLen; digits > 0; digits -= 3)                                           // Loop and convert each Triplet
+    for (int digits = NumLen; digits > 0; digits -= 3)                                            // Loop and convert each Triplet
     {
-        Triplet          = Convert.ToInt32(NumIn.Substring(NumLen - digits, 3));                 // Get a Triplet Number
+        Triplet          = Convert.ToInt32(NumIn.Substring(NumLen - digits, 3));                  // Get a Triplet Number
         IsLastEffTriplet = digits <= LastEffTriplet;                                              // is it last effective triplet
         if (Triplet > 0) {                                                                        // If not Empty: Convert Triplet Number to Words
             ScalePos = digits / 3 - 1;                                                            // Position of Scale Name in Scale Table
@@ -111,15 +106,14 @@ public static string arqamARC_SDG(String NumIn)
     Word_99         = "";                             // Holds words for 0-99
 
     if (Num_100 > 0)   {   // ---------- Do Hundreds (100 to 900) ----------
-        if      (Num_100 > 2)  Word_100 = TableFemale[Num_100] + wordMiah;                                          // 300-900
+        if      (Num_100 > 2)  Word_100 = TableUnits[Num_100] + wordMiah;                                          // 300-900
         else if (Num_100 == 1) Word_100 = wordMiah;                                                                 // 100
         else                   Word_100 = wordMiah.Substring(0, wordMiah.Length - 1) + (Num_99 == 0  ? "تا" : "تان");  // 200 Use either مئتا or مئتان
     }
-
-    if      (Num_99 > 19) Word_99 = TableMale[Num_Unit] + (Num_Unit > 0 ? SpWa : "") +  // 20-99 Units و and
-            (Num_Tens == 2 ? "عشر" : TableFemale[Num_Tens]) + "ون";                      // Add Woon for 20's or 30's to 90's
-    else if (Num_99 > 10) Word_99 = Table11_19[Num_99 - 10] + " عشر";                    // for 11-19
-    else if (Num_99 > 2 || Num_99 == 0) Word_99 = TableMale[Num_99];                   // 0 or 3-10 (else keep void for 1 &2)
+    if      (Num_99 > 19) Word_99 = TableUnits[Num_Unit] + (Num_Unit > 0 ? SpWa : "") +  // 20-99 Units و and
+            (Num_Tens == 2 ? "عشر" : TableUnits[Num_Tens]) + "ون";                      // Add Woon for 20's or 30's to 90's
+    else if (Num_99 > 10) Word_99= (Num_Unit==1?"أحد":Num_Unit==2?"اثنا":TableUnits[Num_Unit]+(Num_Unit==8?"ي":"")+"ة")+" عشر";     // for 11-19
+    else if (Num_99 > 2 || Num_99 == 0) Word_99 = TableUnits[Num_99]+ (Num_99 == 0?"":"ة");
 
     string Words999 = Word_100 + (Num_100 > 0 && Num_99 > 0 ? SpWa : "") + Word_99;     // Join Hund, Tens, and Units
     if (Scale !="")

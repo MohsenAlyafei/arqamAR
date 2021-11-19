@@ -70,7 +70,7 @@ public static string arqamARC_SDG(String NumIn)
     TableScalesP         = { "", "آلاف", "ملايين", "مليارات" },
     TableUnits           = { "", "واحد", "اثنان", "ثلاث", "أربع", "خمس", "ست", "سبع", "ثمان", "تسع", "عشر" };
 
-    string FullInWords="", SpWa = " و", wordMiah = "مئة";               // Can change to "مائة"
+    string FullInWords="", SpWa = " و", wordMiah = "مائة";               // Can change to "مئة"
     bool IsLastEffTriplet = false, hasDecimal = false;
     int Triplet=0, currencyDigits = 2;                                   // number of digits for the currency (i.e. sub unit) change for others e.g. 3 for Kuwaiti Dinar
 
@@ -94,7 +94,7 @@ public static string arqamARC_SDG(String NumIn)
     int Num_99 = Triplet % 100;
     string space = IsLastEffTriplet ? " " : "";
     Triplet = Triplet % 100;
-    string SubjectName = space + (hasDecimal ? "قرش":"جنيه سوداني");            // Singular Currency Name
+    string CurrencyName = space + (hasDecimal ? "قرش":"جنيه سوداني");            // Singular Currency Name
     if (Triplet > 10)  return space + (hasDecimal ? "قرشاً":"جنيهاً سودانياً");     // Currency Tanween
     if (Triplet > 2)   return space + (hasDecimal ? "قروش":"جنيهات سودانية");    // Plural Currency
     if (Triplet ==2)   return (hasDecimal ? "قرشان":"جنيهان سودانيان")+" اثنان"; // Double Currency

@@ -4,38 +4,38 @@ public class Program
 {
 public static void Main()
 {  // =============== Tests ===============
-    Console.WriteLine(arqamARC_QAR(""));
-    Console.WriteLine(arqamARC_QAR("0"));
-    Console.WriteLine(arqamARC_QAR("0.01"));
-    Console.WriteLine(arqamARC_QAR("0.02"));
-    Console.WriteLine(arqamARC_QAR("0.11"));
-    Console.WriteLine(arqamARC_QAR("0.12"));
-    Console.WriteLine(arqamARC_QAR("0.21"));
-    Console.WriteLine(arqamARC_QAR("0.21"));
-    Console.WriteLine(arqamARC_QAR("1"));
-    Console.WriteLine(arqamARC_QAR("2"));
-    Console.WriteLine(arqamARC_QAR("3"));
-    Console.WriteLine(arqamARC_QAR("10"));
-    Console.WriteLine(arqamARC_QAR("11"));
-    Console.WriteLine(arqamARC_QAR("12.11"));
-    Console.WriteLine(arqamARC_QAR("22.45"));
-    Console.WriteLine(arqamARC_QAR("100"));
-    Console.WriteLine(arqamARC_QAR("100.45"));
-    Console.WriteLine(arqamARC_QAR("200"));
-    Console.WriteLine(arqamARC_QAR("200.45"));
-    Console.WriteLine(arqamARC_QAR("532"));
-    Console.WriteLine(arqamARC_QAR("1000"));
-    Console.WriteLine(arqamARC_QAR("2000"));
-    Console.WriteLine(arqamARC_QAR("1000000"));
-    Console.WriteLine(arqamARC_QAR("200000"));
-    Console.WriteLine(arqamARC_QAR("2000000"));
-    Console.WriteLine(arqamARC_QAR("818.18"));
-    Console.WriteLine(arqamARC_QAR("878799987998787878787.09"));
+    Console.WriteLine(arqamARC_EGP(""));
+    Console.WriteLine(arqamARC_EGP("0"));
+    Console.WriteLine(arqamARC_EGP("0.01"));
+    Console.WriteLine(arqamARC_EGP("0.02"));
+    Console.WriteLine(arqamARC_EGP("0.11"));
+    Console.WriteLine(arqamARC_EGP("0.12"));
+    Console.WriteLine(arqamARC_EGP("0.21"));
+    Console.WriteLine(arqamARC_EGP("0.21"));
+    Console.WriteLine(arqamARC_EGP("1"));
+    Console.WriteLine(arqamARC_EGP("2"));
+    Console.WriteLine(arqamARC_EGP("3"));
+    Console.WriteLine(arqamARC_EGP("10"));
+    Console.WriteLine(arqamARC_EGP("11"));
+    Console.WriteLine(arqamARC_EGP("12.11"));
+    Console.WriteLine(arqamARC_EGP("22.45"));
+    Console.WriteLine(arqamARC_EGP("100"));
+    Console.WriteLine(arqamARC_EGP("100.45"));
+    Console.WriteLine(arqamARC_EGP("200"));
+    Console.WriteLine(arqamARC_EGP("200.45"));
+    Console.WriteLine(arqamARC_EGP("532"));
+    Console.WriteLine(arqamARC_EGP("1000"));
+    Console.WriteLine(arqamARC_EGP("2000"));
+    Console.WriteLine(arqamARC_EGP("1000000"));
+    Console.WriteLine(arqamARC_EGP("200000"));
+    Console.WriteLine(arqamARC_EGP("2000000"));
+    Console.WriteLine(arqamARC_EGP("818.18"));
+    Console.WriteLine(arqamARC_EGP("878799987998787878787.09"));
 }
 
 
 //============================================================================================================
-public static string arqamARC_QAR(String NumIn)
+public static string arqamARC_EGP(String NumIn)
 //============================================================================================================
 {
     string[] TableScales = { "", "ألف", "مليون", "مليار", "ترليون", "كوادرليون", "كوينتليون", "سكستليون" }, // Add scale here if needed
@@ -43,7 +43,7 @@ public static string arqamARC_QAR(String NumIn)
     TableMale            = { "", "واحد", "اثنان", "ثلاثة", "أربعة", "خمسة", "ستة", "سبعة", "ثمانية", "تسعة", "عشرة" },
     TableFemale          = { "", "واحدة", "اثنتان", "ثلاث", "أربع", "خمس", "ست", "سبع", "ثمان", "تسع", "عشر" };
 
-    string FullInWords="", SpWa = " و", wordMiah = "مئة";               // Can change to "مائة"
+    string FullInWords="", SpWa = " و", wordMiah = "مائة";               // Can change to "مئة"
     bool IsLastEffTriplet = false, hasDecimal = false;
     int Triplet=0, currencyDigits=2;                                    // number of digits for the currency (i.e. sub unit) change for others e.g. 3 for Kuwaiti Dinar
 
@@ -69,7 +69,7 @@ public static string arqamARC_QAR(String NumIn)
     string space = IsLastEffTriplet ? " " : "";              // Position correct spacing
     Triplet = Triplet % 100;
     string SubjectName = space + (hasDecimal ? "درهم":"ريال قطري");               // Default Subject Name is at Pos 1
-    if (Triplet > 10)  return space + (hasDecimal ? "درهمًا":"ريالاً قطرياً");     // Subject name with Tanween for 11-99
+    if (Triplet > 10)  return space + (hasDecimal ? "درهماً":"ريالاً قطرياً");     // Subject name with Tanween for 11-99
     if (Triplet > 2)   return space + (hasDecimal ? "دراهم":"ريالات قطرية");    // Subject name Plural for 3-10
     if (Triplet ==2)   return (hasDecimal ? "درهمان":"ريالان قطريان")+" اثنان"; // Reverse names for 2
     if (Triplet ==1)   return (hasDecimal ?"درهم":"ريال قطري")+" واحد";        // Reverse names for 1

@@ -77,8 +77,6 @@ public static string arqamARC_QAR(String NumIn)
 
     //* ===== local function convert one full number
     string convertNumber(String NumIn) {
-    var TableUnits = new string[TableMale.Length];
-    TableMale.CopyTo(TableUnits, 0);       // Create copies of Masculine Table for manipulation
     var Table11_19 = new string[TableMale.Length];
     TableMale.CopyTo(Table11_19, 0);       // Create copies of Masculine Table for manipulation
     Table11_19[1] = "أحد";                 // Starting words for 11
@@ -118,10 +116,10 @@ public static string arqamARC_QAR(String NumIn)
         else                   Word_100 = wordMiah.Substring(0, wordMiah.Length - 1) + (Num_99 == 0  ? "تا" : "تان");  // 200 Use either مئتا or مئتان
     }
 
-    if      (Num_99 > 19) Word_99 = TableUnits[Num_Unit] + (Num_Unit > 0 ? SpWa : "") +  // 20-99 Units و and
+    if      (Num_99 > 19) Word_99 = TableMale[Num_Unit] + (Num_Unit > 0 ? SpWa : "") +  // 20-99 Units و and
             (Num_Tens == 2 ? "عشر" : TableFemale[Num_Tens]) + "ون";                      // Add Woon for 20's or 30's to 90's
     else if (Num_99 > 10) Word_99 = Table11_19[Num_99 - 10] + " عشر";                    // for 11-19
-    else if (Num_99 > 2 || Num_99 == 0) Word_99 = TableUnits[Num_99];                   // 0 or 3-10 (else keep void for 1 &2)
+    else if (Num_99 > 2 || Num_99 == 0) Word_99 = TableMale[Num_99];                    // 0 or 3-10 (else keep void for 1 &2)
 
     string Words999 = Word_100 + (Num_100 > 0 && Num_99 > 0 ? SpWa : "") + Word_99;     // Join Hund, Tens, and Units
     if (Scale !="")

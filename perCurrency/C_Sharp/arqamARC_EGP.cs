@@ -1,6 +1,8 @@
 /**************************************************************************************
-* @function      : arqamARC_EGP(Number)
-* @purpose       : C# function to convert Numbers to Egyptian Currency in Arabic Words
+* @function      : arqamAR_EGP(Number)
+* @purpose       : C# function to convert Numbers to Egyptian Pound Currency in Arabic Words
+*                  A simplified version of arqamAR library functions.
+*                  Visit GitHub here for full functions: https://github.com/MohsenAlyafei/arqamAR
 * @version       : 0.01
 * @author        : Mohsen Alyafei
 * @date          : 18 November 2021

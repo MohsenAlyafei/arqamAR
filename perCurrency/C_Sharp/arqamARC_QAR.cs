@@ -1,3 +1,27 @@
+/**************************************************************************************
+* @function      : arqamARC_QAR(Number)
+* @purpose       : C# function to convert Numbers to Sudanese Pound Currency in Arabic Words
+*                  A simplified version of arqamAR library functions.
+*                  Visit GitHub here for full functions: https://github.com/MohsenAlyafei/arqamAR
+* @version       : 0.01
+* @author        : Mohsen Alyafei
+* @date          : 18 November 2021
+* @Licence       : MIT
+* @param         : {Number} [Numeric in String form]
+*
+* @returns       : {string} The wordified number string in Arabic.
+**************************************************************************************
+* NOTES:
+* The function is specifically coded to deal with Male/Male currency types
+* (i.e. both major and minor names of the currency are Masculine).
+* A currency that has Feminine major or minor units must not use this function.
+*
+* To change the function to other currency:
+* 1. If needed change the variable: 'currencyDigits' to the decimal of the currency
+*    This is normally 2 or 3.
+* 2. Change the 'CurrencyName' variable Arabic Strings for single, plural, etc.
+**************************************************************************************/
+
 using System;
 
 public class Program
@@ -36,28 +60,30 @@ public static void Main()
 }
 
 
-//============================================================================================================
+//*==============================================
+//*         arqamARC_QAR Function Start
+//*==============================================
 public static string arqamARC_QAR(String NumIn)
-//============================================================================================================
+//*==============================================
 {
     string[] TableScales = { "", "ألف", "مليون", "مليار", "ترليون", "كوادرليون", "كوينتليون", "سكستليون" }, // Add scale here if needed
     TableScalesP         = { "", "آلاف", "ملايين", "مليارات" },
     TableUnits           = { "", "واحد", "اثنان", "ثلاث", "أربع", "خمس", "ست", "سبع", "ثمان", "تسع", "عشر" };
 
-    string FullInWords="", SpWa = " و", wordMiah = "مائة";               // Can change to "مئة"
+    string FullInWords="", SpWa = " و", wordMiah = "مئة";               // Can change to "مائة"
     bool IsLastEffTriplet = false, hasDecimal = false;
-    int Triplet=0, currencyDigits=2;                                    // number of digits for the currency (i.e. sub unit) change for others e.g. 3 for Kuwaiti Dinar
+    int Triplet=0, currencyDigits = 2;                                   // number of digits for the currency (i.e. sub unit) change for others e.g. 3 for Kuwaiti Dinar
 
     string[] arr = NumIn.ToString().Split('.');                          // split the number (assumes . is a decimal separator)
-    if (arr[0].TrimStart('0') !="") {                                    // if we have a whole number
-    FullInWords =convertNumber(arr[0]) + addSubject();                   // then convert the whole to words
+    if (arr[0].TrimStart('0') !="") {
+    FullInWords =convertNumber(arr[0]) + addSubject();
     } else FullInWords="صفر "+ addSubject();;
 
-    if (arr.Length > 1) {                                                // if we have a decimal part
-        arr[1]=arr[1].PadRight(3,'0').Substring(0,currencyDigits);       // remove excess digits from RH of decimal
-        if (arr[1].TrimEnd('0') != "" ) {                                // only if there is a non-zero Decimal Part
-            hasDecimal=true;                                              // flag it as Decimal
-            FullInWords += "، و" + convertNumber(arr[1]) + addSubject();   // convert the decimal to words and joint the 2 parts with a comma in between.
+    if (arr.Length > 1) {
+        arr[1]=arr[1].PadRight(3,'0').Substring(0,currencyDigits);
+        if (arr[1].TrimEnd('0') != "" ) {
+            hasDecimal=true;
+            FullInWords += "، و" + convertNumber(arr[1]) + addSubject();
         }
     }
     return  FullInWords ;                     // All done
@@ -65,15 +91,15 @@ public static string arqamARC_QAR(String NumIn)
 
     //* ===== local function add currency and sub-currency names
     string addSubject() {
-    int Num_99 = Triplet % 100;                              // 00 to 99
-    string space = IsLastEffTriplet ? " " : "";              // Position correct spacing
+    int Num_99 = Triplet % 100;
+    string space = IsLastEffTriplet ? " " : "";
     Triplet = Triplet % 100;
-    string SubjectName = space + (hasDecimal ? "درهم":"ريال قطري");               // Default Subject Name is at Pos 1
-    if (Triplet > 10)  return space + (hasDecimal ? "درهماً":"ريالاً قطرياً");     // Subject name with Tanween for 11-99
-    if (Triplet > 2)   return space + (hasDecimal ? "دراهم":"ريالات قطرية");    // Subject name Plural for 3-10
-    if (Triplet ==2)   return (hasDecimal ? "درهمان":"ريالان قطريان")+" اثنان"; // Reverse names for 2
-    if (Triplet ==1)   return (hasDecimal ?"درهم":"ريال قطري")+" واحد";        // Reverse names for 1
-    return SubjectName; // else it is 0 or 100,200, etc. so return default string
+    string CurrencyName = space + (hasDecimal ? "درهم":"ريال قطري");            // Singular Currency Name
+    if (Triplet > 10)  return space + (hasDecimal ? "درهماً":"ريالاً قطرياً");     // Currency Tanween
+    if (Triplet > 2)   return space + (hasDecimal ? "دراهم":"ريالات قطرية");    // Plural Currency
+    if (Triplet ==2)   return (hasDecimal ? "درهمان":"ريالان قطريان")+" اثنان"; // Double Currency
+    if (Triplet ==1)   return (hasDecimal ?"درهم":"ريال قطري")+" واحد";        // One Currency
+    return CurrencyName;
     }
 
     //* ===== local function convert one full number
@@ -84,15 +110,15 @@ public static string arqamARC_QAR(String NumIn)
         ScalePos,
         LastEffTriplet= ~~((NumIn.Length - NumIn.TrimEnd('0').Length) / 3)*3+3;
 
-    for (int digits = NumLen; digits > 0; digits -= 3)                                            // Loop and convert each Triplet
+    for (int digits = NumLen; digits > 0; digits -= 3)
     {
-        Triplet          = Convert.ToInt32(NumIn.Substring(NumLen - digits, 3));                  // Get a Triplet Number
-        IsLastEffTriplet = digits <= LastEffTriplet;                                              // is it last effective triplet
-        if (Triplet > 0) {                                                                        // If not Empty: Convert Triplet Number to Words
-            ScalePos = digits / 3 - 1;                                                            // Position of Scale Name in Scale Table
-            Scale = TableScales[ScalePos];                                                        // Get Scale Name
-            ScalePlural = (ScalePos < 4 ? TableScalesP[ScalePos] : TableScales[ScalePos] + "ات"); // Make Scale Plural
-            NumberInWords += oneTripletToWords();                                                 // Convert one Triplet to Words
+        Triplet          = Convert.ToInt32(NumIn.Substring(NumLen - digits, 3));
+        IsLastEffTriplet = digits <= LastEffTriplet;
+        if (Triplet > 0) {
+            ScalePos = digits / 3 - 1;
+            Scale = TableScales[ScalePos];
+            ScalePlural = (ScalePos < 4 ? TableScalesP[ScalePos] : TableScales[ScalePos] + "ات");
+            NumberInWords += oneTripletToWords();                                                  // Convert one Triplet to Words
             if (!IsLastEffTriplet) NumberInWords += "،" + SpWa;                                    // Add "و " and  Comma
         }
     }
@@ -100,38 +126,41 @@ public static string arqamARC_QAR(String NumIn)
 
     //* ===== local function convert 1 triplet ====
     string oneTripletToWords() 	{
-    int Num_99      = Triplet % 100,                  // 00 to 99
-    Num_100         = ~~(Triplet / 100),              // Hundreds (1 digit)
-    Num_Unit        = Num_99 % 10,                    // 0 to 9 (1 digit)
-    Num_Tens        = ~~(Num_99 / 10);                // Tens   (1 digit)
-    string  Word_100= "",                             // Holds words for Hundreds only
-    Word_99         = "";                             // Holds words for 0-99
+    int Num_99      = Triplet % 100,
+    Num_100         = ~~(Triplet / 100),
+    Num_Unit        = Num_99 % 10,
+    Num_Tens        = ~~(Num_99 / 10);
+    string  Word_100= "",
+    Word_99         = "";
 
-    if (Num_100 > 0)   {   // ---------- Do Hundreds (100 to 900) ----------
-        if      (Num_100 > 2)  Word_100 = TableUnits[Num_100] + wordMiah;                                          // 300-900
-        else if (Num_100 == 1) Word_100 = wordMiah;                                                                 // 100
-        else                   Word_100 = wordMiah.Substring(0, wordMiah.Length - 1) + (Num_99 == 0  ? "تا" : "تان");  // 200 Use either مئتا or مئتان
+    if (Num_100 > 0)   {
+        if      (Num_100 > 2)  Word_100 = TableUnits[Num_100] + wordMiah;
+        else if (Num_100 == 1) Word_100 = wordMiah;
+        else                   Word_100 = wordMiah.Substring(0, wordMiah.Length - 1) + (Num_99 == 0  ? "تا" : "تان");
     }
-    if      (Num_99 > 19) Word_99 = TableUnits[Num_Unit] + (Num_Unit > 0 ? SpWa : "") +  // 20-99 Units و and
-            (Num_Tens == 2 ? "عشر" : TableUnits[Num_Tens]) + "ون";                      // Add Woon for 20's or 30's to 90's
-    else if (Num_99 > 10) Word_99= (Num_Unit==1?"أحد":Num_Unit==2?"اثنا":TableUnits[Num_Unit]+(Num_Unit==8?"ي":"")+"ة")+" عشر";     // for 11-19
+    if      (Num_99 > 19) Word_99 = TableUnits[Num_Unit] + (Num_Unit > 0 ? SpWa : "") +
+            (Num_Tens == 2 ? "عشر" : TableUnits[Num_Tens]) + "ون";
+    else if (Num_99 > 10) Word_99= (Num_Unit==1?"أحد":Num_Unit==2?"اثنا":TableUnits[Num_Unit]+(Num_Unit==8?"ي":"")+"ة")+" عشر";
     else if (Num_99 > 2 || Num_99 == 0) Word_99 = TableUnits[Num_99]+ (Num_99 == 0?"":"ة");
 
-    string Words999 = Word_100 + (Num_100 > 0 && Num_99 > 0 ? SpWa : "") + Word_99;     // Join Hund, Tens, and Units
+    string Words999 = Word_100 + (Num_100 > 0 && Num_99 > 0 ? SpWa : "") + Word_99;
     if (Scale !="")
-    {                                                                                   // Add Scale Name if applicable
-        string Word_100Wa = (Num_100 > 0 ? Word_100 + SpWa : "") + Scale;               // Scale Name
-        if (Num_99 > 2)  Words999 += " " + (Num_99 > 10 ? Scale+(IsLastEffTriplet ? "" : "ًا") : ScalePlural); // Scale for 3 to 99
+    {
+        string Word_100Wa = (Num_100 > 0 ? Word_100 + SpWa : "") + Scale;
+        if (Num_99 > 2)  Words999 += " " + (Num_99 > 10 ? Scale+(IsLastEffTriplet ? "" : "ًا") : ScalePlural);
         else {
-            if (Num_99 == 0) Words999 += " " + Scale;                    // Scale for 0
-            else if (Num_99 == 1) Words999 = Word_100Wa;                 // Scale for 1
-            else Words999 = Word_100Wa + (IsLastEffTriplet ? "ا" : "");   // Scale for 2 ألفا or ألفان
+            if (Num_99 == 0) Words999 += " " + Scale;
+            else if (Num_99 == 1) Words999 = Word_100Wa;
+            else Words999 = Word_100Wa + (IsLastEffTriplet ? "ا" : "");
         }
     }
-    return Words999; //Return the Triple in Words
+    return Words999;
 }
     }
-    //=================================================================
 }
+//*==============================================
+//*         arqamARC_QAR Function Ends
+//*==============================================
+
 
 }

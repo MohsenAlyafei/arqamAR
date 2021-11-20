@@ -108,6 +108,9 @@ This library is called ***arqamAR*** which means that it is for Arabic output te
   NOW IT IS HERE FOR ALL OF US
 </div>
 
+![Image](/images/arqamAR_Header.png?raw=true)
+
+
 <h2 id="purpose">2️⃣ Purpose</h2>
 
 #### ***arqamAR*** is a JavaScript utility library part of the ***arqam Library Group*** that converts numbers and currencies into the equivalent Arabic text, taking into account the correct type of the counted subject's gender (مؤنث ومذكر) and other Arabic language grammar and styling rules therefore ensuring accuracy of the converted numbers and currencies in accordance with the Arabic grammar rules.

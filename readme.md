@@ -2223,6 +2223,8 @@ arqamAR.toWords(3);
 ثلاثة سحاتيت مصرية
 ```
 
+![Image](/images/arqamAR_NewCurr01.png?raw=true)
+
 ⚠ Note 1: ***arqamAR*** enters the **New Currency Mode** if 3 attributes are provided (i.e. not empty): `majorSingle`, `majorPlural`, and `code`. To get out of the New Currency Mode, set the `majorSingle` and `majorPlural` to empty strings.
 
 ⚠ Note 2: The Tashkeel attributes are optional; if not stated, the standard names are used in the Tashkeel Option.
@@ -2266,6 +2268,9 @@ console.log( arqamAR.toWords(0.1) );
 (0.10 NKL) عشر بقشات تركية‎
 ```
 
+![Image](/images/arqamAR_NewCurr02.png?raw=true)
+
+
 ⚠ Note 1: To obtain the correct conversion into Arabic Text, it is important that you state the Gender of your new currency for both the Major Unit and the Minor Unit.
 
 ***Example 3***
@@ -2283,7 +2288,6 @@ But in the Brackets Mode, the code will be shown as 'GNF' not as 'FRF'. We can f
 
 ```javascript
 arqamAR.config( {
-arqamAR.config( {
     code         : "GNF",      //use Guinea ISO code
     majorSingleC : "فرنسي",   // change demonym (adjectives) for Single to France
     majorPluralC : "فرنسية",  // change demonym (adjectives) for Plural to France
@@ -2294,7 +2298,6 @@ arqamAR.config( {
     numSymbol    : "FRF",     // use France old ISO code
     brackets     :"end",      // enale Brackets Mode to show the the code
 
-    });
     });
 
 console.log( arqamAR.toWords(22.5) );
@@ -2309,7 +2312,7 @@ console.log( arqamAR.toWords(0.1) );
 ‎(0.10 FRF) عشرة سنتيمات فرنسية
 ```
 
-
+![Image](/images/arqamAR_NewCurr03.png?raw=true)
 
 
 <h2 id="subjectsMode">🔟 Use Other Subjects (the Subjects Mode)</h2>
@@ -2705,7 +2708,7 @@ The following tables provide guidance and assistance for differentiating between
 12/07/2021 0.05 Currency data compacted to save code space.
                 Non-valid digits in inputs numbers are now ignored.
 
-25/06/2021 0.04 All world currenciew added.
+25/06/2021 0.04 All world currencies added.
 
 21/06/2021 0.03 Compact mode added.
 

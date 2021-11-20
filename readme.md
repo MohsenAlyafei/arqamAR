@@ -23,33 +23,33 @@
 
    6.4 [Tashkeel Mode (تشكيل الحروف)](#tashkeel)
 
-   6.5 [Tanween Alif Type](#tanweenAlifType)
+   6.5 [Tanween Alif Type (نوع ألِف التنوين)](#tanweenAlifType)
 
    6.6 [ʾIʿrāb Cases (حالات الإعراب (رفع، نصب، جر))](#ierab)
 
-   6.7 [Miah (مئة ومائة)](#miah)
+   6.7 [Miah (مِئة أو مِائة)](#miah)
 
-   6.8 [Miah Split (فصل المائة عن الرقم)](#miahSplit)
+   6.8 [Miah Split (فصل المِائة عن الرقم)](#miahSplit)
 
    6.9 [Comma between Words (فاصلة بين الكلمات)](#comma)
 
    6.10 [Legal (كتابة قانونية)](#legal)
 
-   6.11 [Arabic Numbers](#arabicNumbers)
+   6.11 [Arabic Numbers (أرقام عربية مشرقية)](#arabicNumbers)
 
-   6.12 [Numbering System Scale](#scale)
+   6.12 [Numbering System Scale (النظام العددي)](#scale)
 
-   6.13 [Maximum Number](#maxNumber)
+   6.13 [Maximum Number (أعلى رقم)](#maxNumber)
 
-   6.14 [Add Zero](#addZero)
+   6.14 [Add Zero (إضافة الصفر)](#addZero)
 
-   6.15 [Decimal Separator](#sepDecimal)
+   6.15 [Decimal Separator (رمز الفاصل العشري)](#sepDecimal)
 
-   6.16 [Thousands Separator](#sepThousands)
+   6.16 [Thousands Separator (رمز فاصل الآلاف)](#sepThousands)
 
-   6.17 [Brackets Mode](#brackets)
+   6.17 [Brackets Mode (نظام القوسين)](#brackets)
 
-   6.18 [Brackets Type](#bracketsType)
+   6.18 [Brackets Type (اختيار نوع القوسين)](#bracketsType)
 
    6.19 [Number Symbol (رمز الرقم/علامة العملة)](#numSymbol)
 
@@ -63,7 +63,7 @@
 
    6.24 [Decimal Fasilah (فاصلة عوضًا عن الواو)](#decFaslah)
 
-   6.25 [Ignore Decimals](#decIgnore)
+   6.25 [Ignore Decimals (تجاهل الكسور)](#decIgnore)
 
    6.26 [Decimal AL (لام تعريف الكسر)](#decAL)
 
@@ -2643,6 +2643,9 @@ The following tables provide guidance and assistance for differentiating between
 
 
 ```
+19/11/2021 0.24 Updated 'Compact' mode so that the numbers 1 and 2 are not compacted.
+                The words "إحدى عَشَرَة" corrected to "إحدى عَشْرَه" with skoon on the letter "ش".
+
 11/11/2021 0.23 Add one more Tashkeel Option (now 6 options of Tashkeel).
                 Improved the Tanween Fatih function code.
 

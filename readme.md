@@ -90,7 +90,11 @@
 
 12. **[Reference and Tables](#references)**
 
-13. **[History and Revision](#history)**
+13. **[Terms Used in arqamAR](#termsDef)**
+
+14. **[History and Revision](#history)**
+
+
 
 <h2 id="introduction">1️⃣ Introduction</h2>
 
@@ -108,8 +112,8 @@ This library is called ***arqamAR*** which means that it is for Arabic output te
   NOW IT IS HERE FOR ALL OF US
 </div>
 
-![Image](/images/arqamAR_Header.png?raw=true)
 
+![Image](/images/arqamAR_Header.png?raw=true)
 
 <h2 id="purpose">2️⃣ Purpose</h2>
 
@@ -2551,10 +2555,10 @@ Consider the following:
 console.log(arqamAR.towords(0.0000001));
 ```
 
-The output will be a blank String because arqam considers not to be a number.
+The output will be a blank String because arqam considers it not to be a number.
 What happended is that javascript passed the number to arqam as 1e-7.
 
-***arqamAR*** removed all no digit character and the result was **1-7**. This becomes a NaN.
+***arqamAR*** removed all non-digit character and the result was **1-7**. This becomes a NaN.
 
 You will get more understanding if you change the line to the following:
 
@@ -2565,7 +2569,7 @@ console.log(arqamAR.toWords(0.0000001, {isNaN:"ليس رقمًا"}));
 Now the output will be:
 ليس رقمًا
 
-The above should be passed to ***arqamAR*** is a string as follows:
+The above should be passed to ***arqamAR*** as a string as follows:
 
 ```javascript
 console.log(arqamAR.towords("0.0000001"));
@@ -2645,7 +2649,18 @@ The following tables provide guidance and assistance for differentiating between
 
 
 
-<h2 id="history">1️⃣3️⃣ History and Revisions</h2>
+
+<h2 id="termsDef">1️⃣3️⃣Terms Used in arqamAR</h2>
+
+
+![Image](/images/arqamAR_Def01.png?raw=true)
+
+![Image](/images/arqamAR_Def02.png?raw=true)
+
+
+
+
+<h2 id="history">1️⃣4️⃣ History and Revisions</h2>
 
 
 ```

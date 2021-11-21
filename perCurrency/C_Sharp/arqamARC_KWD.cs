@@ -39,6 +39,7 @@ public static void Main()
     Console.WriteLine(arqamARC_KWD("1"));
     Console.WriteLine(arqamARC_KWD("2"));
     Console.WriteLine(arqamARC_KWD("3"));
+    Console.WriteLine(arqamARC_KWD("8"));
     Console.WriteLine(arqamARC_KWD("10"));
     Console.WriteLine(arqamARC_KWD("11"));
     Console.WriteLine(arqamARC_KWD("12.11"));
@@ -132,23 +133,24 @@ public static string arqamARC_KWD(String NumIn)
     Num_Unit        = Num_99 % 10,
     Num_Tens        = ~~(Num_99 / 10);
     string  Word_100= "",
-    Word_99         = "";
+    Word_99         = "",
+    eight=Num_Unit==8?"ي":"";
 
     if (Num_100 > 0)   {
         if      (Num_100 > 2)  Word_100 = TableUnits[Num_100] + wordMiah;
         else if (Num_100 == 1) Word_100 = wordMiah;
         else                   Word_100 = wordMiah.Substring(0, wordMiah.Length - 1) + (Num_99 == 0  ? "تا" : "تان");
     }
-    if      (Num_99 > 19) Word_99 = TableUnits[Num_Unit] + (Num_Unit > 0 ? SpWa : "") +
+    if      (Num_99 > 19) Word_99 = TableUnits[Num_Unit] + (Num_Unit > 0 ? (Num_Unit > 2? eight+"ة":"") +SpWa : "") +
             (Num_Tens == 2 ? "عشر" : TableUnits[Num_Tens]) + "ون";
-    else if (Num_99 > 10) Word_99= (Num_Unit==1?"أحد":Num_Unit==2?"اثنا":TableUnits[Num_Unit]+(Num_Unit==8?"ي":"")+"ة")+" عشر";
-    else if (Num_99 > 2 || Num_99 == 0) Word_99 = TableUnits[Num_99]+ (Num_99 == 0?"":"ة");
+    else if (Num_99 > 10) Word_99= (Num_Unit==1?"أحد":Num_Unit==2?"اثنا":TableUnits[Num_Unit]+eight+"ة")+" عشر";
+    else if (Num_99 > 2 || Num_99 == 0) Word_99 = TableUnits[Num_99] + (Num_99==8?"ي":"") + (Num_99 == 0?"":"ة");
 
     string Words999 = Word_100 + (Num_100 > 0 && Num_99 > 0 ? SpWa : "") + Word_99;
     if (Scale !="")
     {
         string Word_100Wa = (Num_100 > 0 ? Word_100 + SpWa : "") + Scale;
-        if (Num_99 > 2)  Words999 += " " + (Num_99 > 10 ? Scale+(IsLastEffTriplet ? "" : "ًا") : ScalePlural);
+        if (Num_99 > 2)  Words999 += " " + (Num_99 > 10 ? Scale+(IsLastEffTriplet ? "" : "اً") : ScalePlural);
         else {
             if (Num_99 == 0) Words999 += " " + Scale;
             else if (Num_99 == 1) Words999 = Word_100Wa;
@@ -160,7 +162,7 @@ public static string arqamARC_KWD(String NumIn)
     }
 }
 //*==============================================
-//*         arqamARC_KWD Function Ends
+//*         arqamARC_EGP Function Ends
 //*==============================================
 
 

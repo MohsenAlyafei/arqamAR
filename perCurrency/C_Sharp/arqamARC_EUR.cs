@@ -52,6 +52,7 @@ public static void Main()
     Console.WriteLine(arqamARC_EUR("532"));
     Console.WriteLine(arqamARC_EUR("1000"));
     Console.WriteLine(arqamARC_EUR("2000"));
+    Console.WriteLine(arqamARC_EUR("2020"));
     Console.WriteLine(arqamARC_EUR("1000000"));
     Console.WriteLine(arqamARC_EUR("200000"));
     Console.WriteLine(arqamARC_EUR("2000000"));
@@ -151,7 +152,7 @@ public static string arqamARC_EUR(String NumIn)
         else {
             if (Num_99 == 0) Words999 += " " + Scale;
             else if (Num_99 == 1) Words999 = Word_100Wa;
-            else Words999 = Word_100Wa + (IsLastEffTriplet ? "ا" : "");
+            else Words999 = Word_100Wa + (IsLastEffTriplet ? "ا" : "ان");
         }
     }
     return Words999;

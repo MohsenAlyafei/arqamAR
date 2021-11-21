@@ -151,7 +151,7 @@ public static string arqamARC_QAR(String NumIn)
         else {
             if (Num_99 == 0) Words999 += " " + Scale;
             else if (Num_99 == 1) Words999 = Word_100Wa;
-            else Words999 = Word_100Wa + (IsLastEffTriplet ? "ا" : "");
+            else Words999 = Word_100Wa + (IsLastEffTriplet ? "ا" : "ان");
         }
     }
     return Words999;

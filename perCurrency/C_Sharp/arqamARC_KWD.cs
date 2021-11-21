@@ -52,6 +52,7 @@ public static void Main()
     Console.WriteLine(arqamARC_KWD("532"));
     Console.WriteLine(arqamARC_KWD("1000"));
     Console.WriteLine(arqamARC_KWD("2000"));
+    Console.WriteLine(arqamARC_KWD("2020"));
     Console.WriteLine(arqamARC_KWD("1000000"));
     Console.WriteLine(arqamARC_KWD("200000"));
     Console.WriteLine(arqamARC_KWD("2000000"));
@@ -151,7 +152,7 @@ public static string arqamARC_KWD(String NumIn)
         else {
             if (Num_99 == 0) Words999 += " " + Scale;
             else if (Num_99 == 1) Words999 = Word_100Wa;
-            else Words999 = Word_100Wa + (IsLastEffTriplet ? "ا" : "");
+            else Words999 = Word_100Wa + (IsLastEffTriplet ? "ا" : "ان");
         }
     }
     return Words999;

@@ -39,7 +39,7 @@
 
    6.12 [Numbering System Scale (النظام العددي)](#scale)
 
-   6.13 [Maximum Number (أعلى رقم)](#maxNumber)
+   6.13 [Maximum Number (أقصى رقم)](#maxNumber)
 
    6.14 [Add Zero (إضافة الصفر)](#addZero)
 
@@ -92,7 +92,7 @@
 
 13. **[Terms Used in arqamAR](#termsDef)**
 
-14. **[History and Revision](#history)**
+14. **[Changelog](#Changelog)**
 
 
 
@@ -305,7 +305,7 @@ arqamAR.toWords(3300.5,{tashkeel:"f", code:"AED", brackets: "end", arabicNumbers
 |13|[addZero](#addZero)  |"on"<br/>"off"|'off'|Adds the word zero "صفر" for numbers below one (1).
 |14|[sepDecimal](#sepDecimal) |"" empty<br/>\<string\><br/>lang tag|"" empty|The decimal separator to use for display. Defaults to the system locale if "" empty.
 |15|[sepThousands](#sepThousands) |"" empty<br/>\<string\><br/>lang tag|"" empty|The thousands separator to use for display. Defaults to the system locale if empty.
-|16|[brackets](#brackets) |"" empty<br/>"start"<br/>"end"|"" empty| Adds the whole number (including any decimal parts) in digits form inside brackets either at the end of the text or at the start of the text, with the options in the Currency Mode to add the currency ISO Code or the currency symbol/sign. Default: no number in bracket shown.<br/>The brackets type can be controlled by the `bracketsOpen` and `bracketsClose` options.
+|16|[brackets](#brackets) |"" empty<br/>"start"<br/>"end"<br/>"decimal"|"" empty| Adds the whole number (including any decimal parts) in digits form inside brackets either at the end of the text or at the start of the text, or to add only the **Decimal Part** in braclets at the end of the output text. Options are provided in the **[Currency Mode](#CurrencyMode)** to add the currency ISO Code or the currency symbol/sign. Default: no number in bracket shown.<br/><br/>The brackets character type can be controlled by the `bracketsOpen` and `bracketsClose` options.
 |17|[bracketsType](#bracketsType) |\<string\><br/>empty|"" empty|Change the brackets type from the default round brackets '()' to any other type such '[]' or '{}', etc.
 |18|[numSymbol](#numSymbol) |\<string\><br/>"" empty<br/>"iso"<br/>"symbol"<br/>"symbolL"<br/>"currency"|"" empty|With the brackets option, controls the symbol/sign to be used when displaying currency numbers inside brackets. Available with the **[brackets](#brackets)** and the **[Currency Mode](#CurrencyMode)** options only.
 |19|[decRound](#decRound) |number<br/>"" empty|"" empty|The number of decimal places for rounding decimals. Default no rounding and all decimal digits will be converted to words. Available in **[Numbers Mode](#NumbersMode)** Only. In the **[Currency Mode](#CurrencyMode)**, rounding is dictated by the *minor unit* decimals.
@@ -1455,7 +1455,13 @@ In the [Arabic Numbers Mode](#arabicNumbers), if no specific **Thousands Separat
 
 <h2 id="brackets">⚙6.17 Brackets</h2>
 
-The brackets option `{brackets : 'end'}` or  `{brackets : 'start'}` provides a flexible method for enclosing the **whole Number** (*in digital form*) including its **Decimal Part** (if any) inside brackets.
+The brackets mode provides three (3 options):
+
+- `{brackets : 'end'}` (or `{brackets : 'e'}`)
+- `{brackets : 'start'}` (or `{brackets : 's'}`)
+- `{brackets : 'deciaml'}` (or `{brackets : 'd'}`) - See here for details on the **[Deciaml Parts in Brackets](#decInBrackets)**.
+
+This provides a flexible method for enclosing the **whole Number** (*in digital form*) including its **Decimal Part** (if any) inside brackets, or only the **Decimal Part** at the end of the output text.
 
 By default, no brackets are outputted.
 
@@ -1468,9 +1474,7 @@ When the `brackets` option is enabled, the following options are also available 
 - [`bracketsType`](#bracketsType) change the opening and closing bracket characters.
 - [`numSymbol`](#numSymbol) add the type of symbol or sign before or after the number.
 
-If only the **Decimal Part** needs to be placed inside brackets rather than the **Whole Number** then use the option [decInBrackets](#dec-in-brackets).
-
-This option has priority and will override the [decInBrackets](#dec-in-brackets) option.
+If only the **Decimal Part** needs to be placed inside brackets rather than the **Whole Number** then use the option `{brackets : 'deciaml'}` (or `{brackets : 'd'}`) - See here for details on the **[Deciaml Parts in Brackets](#decInBrackets)**.
 
 
 ***Examples:***
@@ -1809,7 +1813,7 @@ The following illustration summarises the **`decFormat`** settings with an examp
 
 **Purpose**
 
-Permits the **Decimal Part** of the Number to be distinguished from the Whole Part. The Decimal Part could be the sub-unit of a currency.
+The option `{brackets:"d"}`  permits the **Decimal Part** of the Number to be distinguished from the Whole Part. The Decimal Part could be the sub-unit of a currency.
 
 **Output**
 
@@ -1832,7 +1836,7 @@ The type of brackets can be changed using the [`bracketsOpen`](#bracketsOpen) an
 ***Examples:***
 
 ```javascript
-arqamAR.config( {decInBrackets:"on"} );
+arqamAR.config( {brackets:"d"} );
 
 // Example with Numbers only
 arqamAR.toWords(113.13);
@@ -1851,7 +1855,7 @@ arqamAR.toWords(0.5,"OMR");
 خمسمائة بيسة عمانية
 
 // examples with only decimal numbers but using the "addZero" option
-arqamAR.config( {decInBrackets:"on", addZero :" on"} );
+arqamAR.config( {brackets:"d", addZero :" on"} );
 arqamAR.toWords(0.13);
 صفر، (‏و‏ثلاثة عشر جزءًا من المائة)‏
 
@@ -2660,12 +2664,17 @@ The following tables provide guidance and assistance for differentiating between
 
 
 
-<h2 id="history">1️⃣4️⃣ History and Revisions</h2>
+<h2 id="Changelog">1️⃣4️⃣ Changelog</h2>
 
 
 ```
+22/11/2021 0.25 Added 'split' option to split the output text into parts in an array
+                Initial test web page created.
+                Added one more option to the Brackets Mode.
+
 19/11/2021 0.24 Updated 'Compact' mode so that the numbers 1 and 2 are not compacted.
                 The words "إحدى عَشَرَة" corrected to "إحدى عَشْرَه" with skoon on the letter "ش".
+                Bug in ignoreCountry fixed. Country was not removed if currency has Decimal Part only.
 
 11/11/2021 0.23 Add one more Tashkeel Option (now 6 options of Tashkeel).
                 Improved the Tanween Fatih function code.

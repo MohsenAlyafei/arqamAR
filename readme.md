@@ -137,7 +137,7 @@ The ***arqamAR*** library provides the following functionalities and features in
   - [x] Provide the compact mode which is preferred by the press and newspapers (الكتابة المختصرة).
   - [x] Provide an **Accountant Legal Mode** (كتابة محاسبية قانونية).
   - [x] Provide thirty (30) formats and options for outputting Arabic text.
-  - [x] Provide nine (9) additional options for display of Decimal Numbers.
+  - [x] Provide nine (9) additional options for display of **Decimal Numbers**.
   - [x] Provide the options for using the Arabic, Short, or Long Scale Numbering Systems.
   - [x] Handle extremely very large numbers up to 10^3000 in the Short Scale and 10^6000 in the Long Scale.
   - [x] Handle extremely very low decimal digits up to 10^3000 decimal digits.
@@ -305,22 +305,21 @@ arqamAR.toWords(3300.5,{tashkeel:"f", code:"AED", brackets: "end", arabicNumbers
 |13|[addZero](#addZero)  |"on"<br/>"off"|'off'|Adds the word zero "صفر" for numbers below one (1).
 |14|[sepDecimal](#sepDecimal) |"" empty<br/>\<string\><br/>lang tag|"" empty|The decimal separator to use for display. Defaults to the system locale if "" empty.
 |15|[sepThousands](#sepThousands) |"" empty<br/>\<string\><br/>lang tag|"" empty|The thousands separator to use for display. Defaults to the system locale if empty.
-|16|[brackets](#brackets) |"" empty<br/>"start"<br/>"end"<br/>"decimal"|"" empty| Adds the whole number (including any decimal parts) in digits form inside brackets either at the end of the text or at the start of the text, or to add only the **Decimal Part** in braclets at the end of the output text. Options are provided in the **[Currency Mode](#CurrencyMode)** to add the currency ISO Code or the currency symbol/sign. Default: no number in bracket shown.<br/><br/>The brackets character type can be controlled by the `bracketsOpen` and `bracketsClose` options.
+|16|[brackets](#brackets) |"" empty<br/>"start"<br/>"end"<br/>"decimal"|"" empty| Adds the whole number (including any decimal parts) in digits form inside brackets either at the end of the text or at the start of the text, or to add only the **Decimal Part** in braclets at the end of the output text. Options are provided in the **[Currency Mode](#CurrencyMode)** to add the currency ISO Code or the currency symbol/sign. Default: no number in bracket shown.<br/><br/>The brackets character type can be controlled by the `bracketsOpen` and `bracketsClose` options.<br/<br/>The brackets type can be changed by the [bracketsType](#bracketsType) option.
 |17|[bracketsType](#bracketsType) |\<string\><br/>empty|"" empty|Change the brackets type from the default round brackets '()' to any other type such '[]' or '{}', etc.
 |18|[numSymbol](#numSymbol) |\<string\><br/>"" empty<br/>"iso"<br/>"symbol"<br/>"symbolL"<br/>"currency"|"" empty|With the brackets option, controls the symbol/sign to be used when displaying currency numbers inside brackets. Available with the **[brackets](#brackets)** and the **[Currency Mode](#CurrencyMode)** options only.
 |19|[decRound](#decRound) |number<br/>"" empty|"" empty|The number of decimal places for rounding decimals. Default no rounding and all decimal digits will be converted to words. Available in **[Numbers Mode](#NumbersMode)** Only. In the **[Currency Mode](#CurrencyMode)**, rounding is dictated by the *minor unit* decimals.
 |20|[decFormat](#decFormat) |"" empty<br/>"ww"<br/>"wn"<br/>"nw"<br/>"nn"<br/>"sw"<br/>"d"<br/>"/"<br/>"n"<br/>"w"|"" empty|Controls the format of the decimal (fractional) part with nine (9) options.<br/>Defaults to "w" in the **[Currency Mode](#CurrencyMode)** and to "ww" in the **[Numbers Mode](#NumbersMode)**.<br/>See below for more details and examples.
-|21|[decInBrackets](#dec-in-brackets)|"on"<br/>"off"|'off'|Inserts the fractional part (either text or number) inside brackets at the end of the text.<br/>The brackets type can be changed by the [bracketsType](#bracketsType) option.
-|22|[decJuz](#decJuz) |"on"<br/>"off"|'**on**'| The word "Juzu'" (جزء من) is used in the formation of the Decimal Part for the number. This is the **default** and is set to 'on'.
-|23|[decFaslah](#decFaslah) |"on"<br/>"off"|'off'| The word "fasila" (فاصلة) is used in the formation of the Decimal Part for the number instead of "Juzu" (جزء). The **default** is "Juzu" (جزء).
-|24|[decIgnore](#decIgnore)    |"on"<br/>"off"|'off'|Ignores the **Decimal Part** of the number.
-|25|[decAL](#decAL)   |"on"<br/>"off"|'**on**'|Default is 'on'. See details below.
-|26|[ignoreCountry](#ignoreCountry) |"on"<br/>"off"|'off'|Ignores the country name but keeps the currency name. Available in **[Currency Mode](#CurrencyMode)**.
-|27|[currDecForce](#currDecForce) |"on"<br/>"off"|'off'|With the brackets option in the **[Currency Mode](#CurrencyMode)**, forces the decimal (sub-unit) part to always be displayed, even when there is no decimal part. Available in the **[Currency Mode](#CurrencyMode)**.
-|28|[prefix](#prefix) |\<string\>|"" empty|Add a prefix text before the resulting output text. Default no prefix.
-|29|[suffix](#suffix) |\<string\>|"" empty|Add a suffix text to the end of the resulting output text. Default no suffix.
-|30|[isNaN](#isNaN) |\<string\>|"" empty|The text to be returned if the number passed is not a valid number. Default is an empty string.
-|31|[decSubInParts](#) |'on'|off|Applicable only, and used in the **[Subjects Mode](#subjectsMode)** in the case of compounded adjectives. See the **[Subjects Mode](#subjectsMode)** below.
+|21|[decJuz](#decJuz) |"on"<br/>"off"|'**on**'| The word "Juzu'" (جزء من) is used in the formation of the Decimal Part for the number. This is the **default** and is set to 'on'.
+|22|[decFaslah](#decFaslah) |"on"<br/>"off"|'off'| The word "fasila" (فاصلة) is used in the formation of the Decimal Part for the number instead of "Juzu" (جزء). The **default** is "Juzu" (جزء).
+|23|[decIgnore](#decIgnore)    |"on"<br/>"off"|'off'|Ignores the **Decimal Part** of the number.
+|24|[decAL](#decAL)   |"on"<br/>"off"|'**on**'|Default is 'on'. See details below.
+|25|[ignoreCountry](#ignoreCountry) |"on"<br/>"off"|'off'|Ignores the country name but keeps the currency name. Available in **[Currency Mode](#CurrencyMode)**.
+|26|[currDecForce](#currDecForce) |"on"<br/>"off"|'off'|With the brackets option in the **[Currency Mode](#CurrencyMode)**, forces the decimal (sub-unit) part to always be displayed, even when there is no decimal part. Available in the **[Currency Mode](#CurrencyMode)**.
+|27|[prefix](#prefix) |\<string\>|"" empty|Add a prefix text before the resulting output text. Default no prefix.
+|28|[suffix](#suffix) |\<string\>|"" empty|Add a suffix text to the end of the resulting output text. Default no suffix.
+|29|[isNaN](#isNaN) |\<string\>|"" empty|The text to be returned if the number passed is not a valid number. Default is an empty string.
+|30|[decSubInParts](#) |'on'|off|Applicable only, and used in the **[Subjects Mode](#subjectsMode)** in the case of compounded adjectives. See the **[Subjects Mode](#subjectsMode)** below.
 
 
 ### General Notes on the Configuration Options
@@ -1813,7 +1812,7 @@ The following illustration summarises the **`decFormat`** settings with an examp
 
 **Purpose**
 
-The option `{brackets:"d"}`  permits the **Decimal Part** of the Number to be distinguished from the Whole Part. The Decimal Part could be the sub-unit of a currency.
+The option `{brackets:"d"}`  permits the **Decimal Part** of the Number to be distinguished from the Whole Part. The **Decimal Part** could be the sub-unit of a currency.
 
 **Output**
 
@@ -1823,9 +1822,7 @@ If there is a Whole Number preceding the Decimal Part, **a comma is inserted in 
 
 The entire **Decimal Part** including the way it is formatted using the [`decFormat`](#decFormat) will be placed inside brackets.
 
-If you only need to have the Decimal Part of the number inside brackets then use the **[{decInBrackets: 'on'}](#decInBrackets)** option rather than this option
-
-The type of brackets can be changed using the [`bracketsOpen`](#bracketsOpen) and [`bracketsClose`](#bracketsClose) options.
+The type of brackets characters can be changed using the [`bracketsOpen`](#bracketsOpen) and [`bracketsClose`](#bracketsClose) options.
 
 **Applicability**
 

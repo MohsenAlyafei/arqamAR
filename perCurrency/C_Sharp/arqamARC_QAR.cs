@@ -161,7 +161,7 @@ public static string arqamARC_QAR(String NumIn)
     }
 }
 //*==============================================
-//*         arqamARC_EGP Function Ends
+//*         arqamARC_QAR Function Ends
 //*==============================================
 
 
